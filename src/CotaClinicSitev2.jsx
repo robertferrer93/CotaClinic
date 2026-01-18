@@ -304,6 +304,9 @@ function HomePage() {
           {doctors.map((d) => (
             <article
               key={d.id}
+              onMouseEnter={() => preloadImage(d.imageProfile || d.imageCard)}
+              onFocus={() => preloadImage(d.imageProfile || d.imageCard)}
+              onTouchStart={() => preloadImage(d.imageProfile || d.imageCard)}
               className="rounded-3xl p-4 border border-cota-line bg-white shadow-soft hover:shadow-lift transition-shadow"
             >
               <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-cota-line mb-4 bg-cota-mist">
@@ -566,7 +569,7 @@ function HomePage() {
 
         <div className="mt-7 grid md:grid-cols-3 gap-6 items-start">
           {/* 1) Opiniones Doctoralia */}
-          <div>
+          <div className="min-w-0">
             <div className="mb-3">
               <div className="font-semibold text-cota-ink">
                 Opiniones (Doctoralia)
@@ -576,15 +579,21 @@ function HomePage() {
               </p>
             </div>
 
-            <div className="flex justify-center">
-              <DoctoraliaReviewsWidget />
+            {/* 👇 Wrapper anti-desbordes */}
+            <div className="w-full max-w-full overflow-x-hidden">
+              <div className="w-full max-w-full flex justify-center">
+                {/* 👇 Limita el widget al ancho del contenedor */}
+                <div className="w-full max-w-full">
+                  <DoctoraliaReviewsWidget />
+                </div>
+              </div>
             </div>
           </div>
 
           {/* 2) Casos representativos (2/3) */}
-          <div className="md:col-span-2 rounded-3xl border border-cota-line bg-white shadow-soft p-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
+          <div className="md:col-span-2 min-w-0 rounded-3xl border border-cota-line bg-white shadow-soft p-6 overflow-x-hidden">
+            <div className="flex items-start justify-between gap-4 min-w-0">
+              <div className="min-w-0">
                 <div className="font-semibold text-cota-ink">
                   Casos representativos
                 </div>
@@ -594,12 +603,12 @@ function HomePage() {
                 </p>
               </div>
 
-              <div className="hidden md:block text-xs text-cota-muted/80">
+              <div className="hidden md:block text-xs text-cota-muted/80 shrink-0">
                 Tip: usa ← → en el visor
               </div>
             </div>
 
-            <div className="mt-5">
+            <div className="mt-5 w-full max-w-full overflow-x-hidden">
               <GalleryCases />
             </div>
 
@@ -706,8 +715,18 @@ function HomePage() {
 }
 
 // Modal de perfil (premium)
-function DoctorModal({ doctor, onClose }) {
+function DoctorModal({ doctor, onClose, scrollToContact }) {
   const [leaving, setLeaving] = React.useState(false);
+
+  const handleClose = React.useCallback(() => {
+    // evita dobles cierres
+    if (leaving) return;
+    setLeaving(true);
+    window.setTimeout(() => {
+      onClose?.();
+      setLeaving(false);
+    }, 220);
+  }, [leaving, onClose]);
 
   // Bloquea scroll del body mientras el modal está abierto
   React.useEffect(() => {
@@ -731,102 +750,85 @@ function DoctorModal({ doctor, onClose }) {
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [doctor]);
+  }, [doctor, handleClose]);
 
-  // Reset animación al abrir
-  React.useEffect(() => {
-    if (doctor) setLeaving(false);
-  }, [doctor]);
-
+  // Si no hay doctor, no renderizamos nada
   if (!doctor) return null;
 
-  const handleClose = () => {
-    // evita dobles cierres
-    if (leaving) return;
-    setLeaving(true);
-    window.setTimeout(() => {
-      onClose();
-    }, 180); // igual que duration-200 aprox
-  };
-
-  const scrollToContact = (e) => {
-    e.preventDefault();
-    window.location.hash = '#contacto';
-    handleClose();
-  };
-
   return (
-    <div className="fixed inset-0 z-50">
-      {/* Overlay con animación */}
+    <div className="fixed inset-0 z-[80]">
+      {/* Backdrop */}
       <div
         className={[
-          'absolute inset-0 bg-black/40 transition-opacity duration-200',
+          'absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-200',
           leaving ? 'opacity-0' : 'opacity-100',
         ].join(' ')}
+        onClick={handleClose}
       />
 
-      {/* Wrapper: click fuera cierra */}
-      <div
-        className="relative z-10 flex min-h-full items-center justify-center p-4"
-        onClick={handleClose}
-      >
-        {/* Panel: animación + stopPropagation */}
+      {/* Contenedor centrado */}
+      <div className="relative z-10 flex min-h-full items-center justify-center p-4">
+        {/* Panel */}
         <div
           className={[
-            'w-[min(920px,92vw)] max-h-[85vh] rounded-3xl shadow-2xl border border-cota-line bg-white overflow-hidden flex flex-col',
-            'transition-all duration-200 ease-out',
-            leaving
-              ? 'opacity-0 translate-y-2 scale-[0.99]'
-              : 'opacity-100 translate-y-0 scale-100',
+            'w-full max-w-5xl rounded-3xl border border-cota-line bg-white shadow-lift overflow-hidden',
+            'transition-transform duration-200',
+            leaving ? 'scale-[0.98]' : 'scale-100',
           ].join(' ')}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header fijo */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-cota-line bg-cota-fog">
-            <h3 className="text-xl font-semibold tracking-tight text-cota-ink">
-              {doctor.name}
-            </h3>
+          {/* Header */}
+          <div className="flex items-start justify-between gap-4 p-6 border-b border-cota-line">
+            <div>
+              <div className="text-lg font-semibold text-cota-ink">
+                {doctor.name}
+              </div>
+              <div className="text-sm text-cota-muted mt-1">{doctor.role}</div>
+            </div>
+
             <button
+              type="button"
               onClick={handleClose}
-              className="px-3 py-2 rounded-2xl border border-cota-line hover:bg-cota-mist transition-colors text-sm"
+              className="rounded-xl px-3 py-2 text-sm border border-cota-line hover:bg-cota-fog"
+              aria-label="Cerrar"
             >
               Cerrar
             </button>
           </div>
 
           {/* Área scrolleable (solo el modal) */}
-          <div className="min-h-0 overflow-y-auto overscroll-contain">
+          <div className="min-h-0 max-h-[80vh] overflow-y-auto overscroll-contain">
             <div className="grid md:grid-cols-3 gap-6 p-6">
               <div className="md:col-span-1">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-cota-mist border border-cota-line">
-                  {doctor.imageProfile ? (
-                    <img
-                      src={doctor.imageProfile}
-                      alt={`Actividad quirúrgica ${doctor.name}`}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : doctor.imageCard ? (
-                    <img
-                      src={doctor.imageCard}
-                      alt={doctor.name}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  ) : null}
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-cota-mist border border-cota-line relative">
+                  {(() => {
+                    const src = doctor.imageProfile || doctor.imageCard;
+                    if (!src) return null;
+
+                    return (
+                      <DoctorModalImage
+                        src={src}
+                        alt={
+                          doctor.imageProfile
+                            ? `Actividad quirúrgica ${doctor.name}`
+                            : doctor.name
+                        }
+                        objectTop={!doctor.imageProfile}
+                      />
+                    );
+                  })()}
                 </div>
 
-                <div className="mt-4 text-sm text-cota-muted">
-                  {doctor.role}
-                </div>
-
-                <ul className="mt-3 text-sm text-neutral-700 space-y-2">
-                  {doctor.highlights.map((h) => (
-                    <li key={h} className="flex gap-2">
-                      <span className="mt-2 h-1 w-1 rounded-full bg-cota-navy" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+                {doctor.highlights?.length ? (
+                  <ul className="mt-4 text-sm text-neutral-700 space-y-2">
+                    {doctor.highlights.map((h) => (
+                      <li key={h} className="flex gap-2">
+                        <span className="mt-2 h-1 w-1 rounded-full bg-cota-navy" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
 
                 <div className="mt-6 text-center">
                   <ButtonPrimary
@@ -848,45 +850,53 @@ function DoctorModal({ doctor, onClose }) {
                   </p>
                 </section>
 
-                <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                  <div className="font-semibold text-cota-ink">Experiencia</div>
-                  <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                    {doctor.experience?.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+                {doctor.experience?.length ? (
+                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
+                    <div className="font-semibold text-cota-ink">
+                      Experiencia
+                    </div>
+                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
+                      {doctor.experience.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
 
-                <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                  <div className="font-semibold text-cota-ink">Formación</div>
-                  <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                    {doctor.education?.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+                {doctor.education?.length ? (
+                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
+                    <div className="font-semibold text-cota-ink">Formación</div>
+                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
+                      {doctor.education.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
 
-                <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                  <div className="font-semibold text-cota-ink">
-                    Publicaciones y docencia
-                  </div>
-                  <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                    {doctor.publications?.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
+                {doctor.publications?.length ? (
+                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
+                    <div className="font-semibold text-cota-ink">
+                      Publicaciones y docencia
+                    </div>
+                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
+                      {doctor.publications.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : null}
 
-                {doctor.memberships && (
+                {doctor.memberships?.length ? (
                   <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
                     <div className="font-semibold text-cota-ink">
                       Sociedades científicas
@@ -900,7 +910,7 @@ function DoctorModal({ doctor, onClose }) {
                       ))}
                     </ul>
                   </section>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
@@ -908,6 +918,43 @@ function DoctorModal({ doctor, onClose }) {
         </div>
       </div>
     </div>
+  );
+}
+
+// Precarga de imágenes (antes de abrir el modal)
+function preloadImage(src) {
+  if (!src) return;
+  const img = new Image();
+  img.src = src;
+}
+
+// Imagen con placeholder + fade-in
+function DoctorModalImage({ src, alt, objectTop }) {
+  const [loaded, setLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setLoaded(false);
+  }, [src]);
+
+  return (
+    <>
+      {!loaded && (
+        <div className="absolute inset-0 animate-pulse bg-cota-mist" />
+      )}
+
+      <img
+        src={src}
+        alt={alt}
+        loading="eager"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        className={[
+          'absolute inset-0 w-full h-full object-cover transition-opacity duration-300',
+          objectTop ? 'object-top' : '',
+          loaded ? 'opacity-100' : 'opacity-0',
+        ].join(' ')}
+      />
+    </>
   );
 }
 
