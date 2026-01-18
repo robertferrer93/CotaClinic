@@ -74,7 +74,7 @@ function HomePage() {
       id: 'cabot',
       name: 'Dr. Joaquim Cabot Dalmau',
       role: 'Cirugía de Rodilla',
-      imageCard: '/public/images/team/joaquim_cabot.png',
+      imageCard: '/images/team/joaquim_cabot.png',
       highlights: [
         'Consultor de casos complejos',
         '>10.000 cirugías de rodilla',
@@ -96,8 +96,8 @@ function HomePage() {
       id: 'oliver',
       name: 'Dr. Gabriel Oliver Far',
       role: 'COT · Rodilla',
-      imageCard: '/public/images/team/gabriel_oliver.png',
-      imageProfile: '/public/images/team/oliver_quiro.png',
+      imageCard: '/images/team/gabriel_oliver.png',
+      imageProfile: '/images/team/oliver_quiro.png',
       highlights: [
         'Jefe de equipo de rodilla – H. U. Bellvitge',
         'Cirugía protésica robótica',
@@ -123,8 +123,8 @@ function HomePage() {
       id: 'llort',
       name: 'Dr. Jaume Llort Buira',
       role: 'COT · Rodilla',
-      imageCard: '/public/images/team/jaume_llort.png',
-      imageProfile: '/public/images/team/eco_llort.png',
+      imageCard: '/images/team/jaume_llort.png',
+      imageProfile: '/images/team/eco_llort.png',
       highlights: [
         'Medicina regenerativa: células madre, PRP, ozonoterapia, proloterapia',
         'Tratamientos ecoguiados',
@@ -148,8 +148,8 @@ function HomePage() {
       id: 'ferrer',
       name: 'Dr. Robert Ferrer Rivero',
       role: 'Rodilla y Traumatología Deportiva',
-      imageCard: '/public/images/team/robert_ferrer.png',
-      imageProfile: '/public/images/team/robert_ferrer_quiro.png',
+      imageCard: '/images/team/robert_ferrer.png',
+      imageProfile: '/images/team/robert_ferrer_quiro.png',
       highlights: [
         'Experto en preservación articular',
         'Cirugía deportiva: menisco, LCA/LCP, cartílago',
