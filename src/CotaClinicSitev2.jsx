@@ -20,6 +20,7 @@ import clsx from 'clsx';
 import GalleryStrip from './components/GalleryStrip.jsx';
 import GalleryCases from './components/GalleryCases.jsx';
 import Subtle from './components/typography/Subtle.jsx';
+import DocplannerScript from './components/DocplannerScript';
 
 import { ButtonPrimary, ButtonSecondary, Section } from './components/ui.jsx';
 
@@ -214,6 +215,7 @@ function HomePage() {
 
   return (
     <>
+      <DocplannerScript />
       {/* HERO */}
       <Section id="inicio" tone="plain" className="border-t-0">
         <div className="grid md:grid-cols-2 gap-10 items-center">
