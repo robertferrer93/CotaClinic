@@ -33,8 +33,6 @@ export default function CotaClinicSite() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-
-          {/* ✅ Deep-linking: /equipo/ferrer abre el modal */}
           <Route path="/equipo/:doctorId" element={<HomePage />} />
 
           <Route path="/rodilla/lca" element={<LCAPage />} />
@@ -58,6 +56,8 @@ export default function CotaClinicSite() {
             element={<ProtesisDolorosaRevisionPage />}
           />
           <Route path="/rodilla/robotica" element={<RoboticaPage />} />
+
+          <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
     </>
