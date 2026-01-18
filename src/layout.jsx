@@ -1,6 +1,6 @@
 // src/layout.jsx
 import * as React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ButtonPrimary } from './components/ui.jsx';
 
 function IconMenu(props) {
@@ -56,11 +56,50 @@ export default function Layout() {
 
   const panelRef = React.useRef(null);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const closeMobile = React.useCallback(() => {
     setMobileOpen(false);
     setMobEquipo(false);
     setMobRodilla(false);
   }, []);
+
+  // Navegación a secciones (#inicio/#equipo/#rodilla/#contacto) sin recarga
+  const onHashNav = React.useCallback(
+    (e, hash) => {
+      if (e) e.preventDefault();
+      closeMobile();
+
+      const scrollToHash = () => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      if (location.pathname === '/') {
+        // Ya estamos en home: scroll directo
+        scrollToHash();
+      } else {
+        // Estamos en otra ruta: volvemos a home y luego hacemos scroll
+        navigate('/' + hash);
+        // esperar a que el DOM de home esté pintado
+        setTimeout(scrollToHash, 50);
+      }
+    },
+    [closeMobile, location.pathname, navigate]
+  );
+
+  // Si entran a "/" con hash (por ejemplo /#equipo), hacer scroll al montar/cambiar hash
+  React.useEffect(() => {
+    if (location.pathname !== '/') return;
+    if (!location.hash) return;
+    const hash = location.hash;
+    const t = setTimeout(() => {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+    return () => clearTimeout(t);
+  }, [location.pathname, location.hash]);
 
   // Cerrar con ESC
   React.useEffect(() => {
@@ -125,21 +164,23 @@ export default function Layout() {
 
           {/* ================= NAV (DESKTOP) ================= */}
           <nav className="hidden md:flex items-center gap-6 text-sm text-neutral-700">
-            <a
-              href="/#inicio"
+            <Link
+              to="/#inicio"
+              onClick={(e) => onHashNav(e, '#inicio')}
               className="hover:text-cota-navy transition-colors"
             >
               Inicio
-            </a>
+            </Link>
 
             {/* Dropdown EQUIPO (desktop) */}
             <div className="relative group">
-              <a
-                href="/#equipo"
+              <Link
+                to="/#equipo"
+                onClick={(e) => onHashNav(e, '#equipo')}
                 className="hover:text-cota-navy transition-colors"
               >
                 Equipo
-              </a>
+              </Link>
 
               <div className="absolute left-1/2 top-full pt-3 -translate-x-1/2 w-[92vw] max-w-[560px] hidden md:block opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out">
                 <div className="rounded-3xl border border-cota-line bg-white shadow-lift p-3">
@@ -170,9 +211,9 @@ export default function Layout() {
                         photo: '/images/team/robert_ferrer.png',
                       },
                     ].map((d) => (
-                      <a
+                      <Link
                         key={d.id}
-                        href={`/equipo/${d.id}#equipo`}
+                        to={`/equipo/${d.id}#equipo`}
                         className="group/item flex items-center gap-3 rounded-2xl border border-transparent hover:border-cota-line hover:bg-cota-mist transition-all duration-200 ease-out p-3 hover:-translate-y-0.5 hover:shadow-sm"
                       >
                         <img
@@ -188,7 +229,7 @@ export default function Layout() {
                             {d.role}
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -197,12 +238,13 @@ export default function Layout() {
 
             {/* Dropdown RODILLA (desktop) */}
             <div className="relative group">
-              <a
-                href="/#rodilla"
+              <Link
+                to="/#rodilla"
+                onClick={(e) => onHashNav(e, '#rodilla')}
                 className="hover:text-cota-navy transition-colors"
               >
                 Rodilla
-              </a>
+              </Link>
 
               <div className="absolute left-1/2 top-full pt-3 -translate-x-1/2 w-[92vw] max-w-[820px] hidden md:block opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out">
                 <div className="rounded-3xl border border-cota-line bg-white shadow-lift p-5">
@@ -213,28 +255,28 @@ export default function Layout() {
                       </div>
                       <ul className="space-y-2 text-sm">
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/lca"
+                            to="/rodilla/lca"
                           >
                             Rotura LCA/LCP
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/menisco"
+                            to="/rodilla/menisco"
                           >
                             Lesiones meniscales
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/inestabilidad-rotuliana"
+                            to="/rodilla/inestabilidad-rotuliana"
                           >
                             Inestabilidad rotuliana
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -245,28 +287,28 @@ export default function Layout() {
                       </div>
                       <ul className="space-y-2 text-sm">
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/osteotomias"
+                            to="/rodilla/osteotomias"
                           >
                             Osteotomías
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/cartilago"
+                            to="/rodilla/cartilago"
                           >
                             Cartílago
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/terapias-biologicas"
+                            to="/rodilla/terapias-biologicas"
                           >
                             Terapias biológicas
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -277,28 +319,28 @@ export default function Layout() {
                       </div>
                       <ul className="space-y-2 text-sm">
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/protesis-rodilla"
+                            to="/rodilla/protesis-rodilla"
                           >
                             Prótesis de rodilla
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/protesis-dolorosa-revision"
+                            to="/rodilla/protesis-dolorosa-revision"
                           >
                             Prótesis dolorosa / revisión
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a
+                          <Link
                             className="text-cota-navy hover:underline"
-                            href="/rodilla/robotica"
+                            to="/rodilla/robotica"
                           >
                             Asistencia tecnológica
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -307,12 +349,13 @@ export default function Layout() {
               </div>
             </div>
 
-            <a
-              href="/#contacto"
+            <Link
+              to="/#contacto"
+              onClick={(e) => onHashNav(e, '#contacto')}
               className="hover:text-cota-navy transition-colors"
             >
               Contacto
-            </a>
+            </Link>
           </nav>
 
           {/* ================= RIGHT SIDE (MOBILE + CTA) ================= */}
@@ -332,10 +375,11 @@ export default function Layout() {
               )}
             </button>
 
-            {/* CTA: en móvil más corto y compacto para que no compita con la marca */}
+            {/* CTA */}
             <ButtonPrimary
-              as="a"
-              href="/#contacto"
+              as={Link}
+              to="/#contacto"
+              onClick={(e) => onHashNav(e, '#contacto')}
               className="px-3 py-2 text-sm sm:px-4"
             >
               <span className="inline sm:hidden">Visita</span>
@@ -361,13 +405,13 @@ export default function Layout() {
                 ref={panelRef}
                 className="rounded-3xl border border-cota-line bg-white shadow-lift p-3"
               >
-                <a
-                  href="/#inicio"
-                  onClick={closeMobile}
+                <Link
+                  to="/#inicio"
+                  onClick={(e) => onHashNav(e, '#inicio')}
                   className="block rounded-2xl px-4 py-3 text-sm font-medium text-cota-slate hover:bg-cota-mist transition"
                 >
                   Inicio
-                </a>
+                </Link>
 
                 {/* Equipo accordion */}
                 <button
@@ -404,9 +448,9 @@ export default function Layout() {
                         photo: '/images/team/robert_ferrer.png',
                       },
                     ].map((d) => (
-                      <a
+                      <Link
                         key={d.id}
-                        href={`/equipo/${d.id}#equipo`}
+                        to={`/equipo/${d.id}#equipo`}
                         onClick={closeMobile}
                         className="flex items-center gap-3 rounded-2xl px-3 py-2 hover:bg-cota-mist transition"
                       >
@@ -416,15 +460,15 @@ export default function Layout() {
                           className="h-10 w-10 rounded-2xl object-cover border border-cota-line bg-cota-mist"
                         />
                         <div className="text-sm text-cota-slate">{d.name}</div>
-                      </a>
+                      </Link>
                     ))}
-                    <a
-                      href="/#equipo"
-                      onClick={closeMobile}
+                    <Link
+                      to="/#equipo"
+                      onClick={(e) => onHashNav(e, '#equipo')}
                       className="block mt-1 rounded-2xl px-3 py-2 text-sm text-cota-navy hover:bg-cota-mist transition"
                     >
                       Ver todo el equipo
-                    </a>
+                    </Link>
                   </div>
                 )}
 
@@ -470,32 +514,32 @@ export default function Layout() {
                         label: 'Asistencia tecnológica',
                       },
                     ].map((it) => (
-                      <a
+                      <Link
                         key={it.href}
-                        href={it.href}
+                        to={it.href}
                         onClick={closeMobile}
                         className="block rounded-2xl px-3 py-2 text-sm text-cota-navy hover:bg-cota-mist transition"
                       >
                         {it.label}
-                      </a>
+                      </Link>
                     ))}
-                    <a
-                      href="/#rodilla"
-                      onClick={closeMobile}
+                    <Link
+                      to="/#rodilla"
+                      onClick={(e) => onHashNav(e, '#rodilla')}
                       className="block mt-1 rounded-2xl px-3 py-2 text-sm text-cota-navy hover:bg-cota-mist transition"
                     >
                       Ver la sección Rodilla
-                    </a>
+                    </Link>
                   </div>
                 )}
 
-                <a
-                  href="/#contacto"
-                  onClick={closeMobile}
+                <Link
+                  to="/#contacto"
+                  onClick={(e) => onHashNav(e, '#contacto')}
                   className="block rounded-2xl px-4 py-3 text-sm font-medium text-cota-slate hover:bg-cota-mist transition"
                 >
                   Contacto
-                </a>
+                </Link>
               </div>
             </div>
           </div>
