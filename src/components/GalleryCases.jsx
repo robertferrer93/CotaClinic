@@ -121,17 +121,21 @@ export default function GalleryCases({ contained = true }) {
     if (!el) return;
     el.scrollLeft = 1;
 
-    const id = setInterval(() => {
-      if (!trackRef.current) return;
+    const id = window.setInterval(() => {
+      const node = trackRef.current;
+      if (!node) return;
       if (hoverPausedRef.current || openIdx !== null) return;
 
-      const half = trackRef.current.scrollWidth / 2;
-      trackRef.current.scrollLeft += speedRef.current;
-      if (trackRef.current.scrollLeft >= half)
-        trackRef.current.scrollLeft -= half;
+      const half = node.scrollWidth / 2;
+      if (!half || half < 50) return;
+
+      node.scrollLeft += speedRef.current;
+
+      if (node.scrollLeft >= half) node.scrollLeft -= half;
+      if (node.scrollLeft < 0) node.scrollLeft += half;
     }, 16);
 
-    return () => clearInterval(id);
+    return () => window.clearInterval(id);
   }, [openIdx]);
 
   React.useEffect(() => {
@@ -148,46 +152,54 @@ export default function GalleryCases({ contained = true }) {
 
   const nudge = (dir, e) => {
     e.preventDefault();
+    e.stopPropagation();
     trackRef.current?.scrollBy({ left: dir * 420, behavior: 'smooth' });
   };
 
   const hold = (dir, e) => {
     e.preventDefault();
+    e.stopPropagation();
     holdingRef.current = true;
     speedRef.current = dir * FAST_SPEED;
   };
 
   const releaseHold = () => {
+    if (!holdingRef.current) return;
     holdingRef.current = false;
     speedRef.current = BASE_SPEED;
   };
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
+      {/* FADE (opcional, pero ayuda y no rompe nada) */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white to-transparent z-10" />
+
       {/* TRACK */}
       <div
         ref={trackRef}
         className={`
-          overflow-x-auto
+          w-full max-w-full min-w-0
+          overflow-x-auto overscroll-x-contain touch-pan-x
           [-ms-overflow-style:none] [scrollbar-width:none]
           [&::-webkit-scrollbar]:hidden
-          ${contained ? 'px-2' : '-mx-6 px-6'}
+          ${contained ? 'px-2' : 'px-2 md:-mx-6 md:px-6'}
         `}
-        style={{ WebkitOverflowScrolling: 'touch' }}
+        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-x' }}
         onMouseEnter={() => (hoverPausedRef.current = true)}
         onMouseLeave={() => (hoverPausedRef.current = false)}
+        onTouchStart={() => (hoverPausedRef.current = true)}
+        onTouchEnd={() => (hoverPausedRef.current = false)}
       >
-        <div
-          className="flex items-start gap-3"
-          style={{ width: 'max-content' }}
-        >
+        <div className="flex items-start gap-3 w-max">
           {loop.map((it, idx) => (
             <button
               key={`${it.src}-${idx}`}
+              type="button"
               onClick={() => setOpenIdx(idx % items.length)}
               className="group shrink-0 text-left"
             >
-              <div className="w-[320px] rounded-3xl overflow-hidden border border-cota-line bg-white shadow-soft group-hover:shadow-lift">
+              <div className="w-[280px] sm:w-[320px] rounded-3xl overflow-hidden border border-cota-line bg-white shadow-soft group-hover:shadow-lift">
                 <div className="aspect-[3/2] bg-black overflow-hidden">
                   <img
                     src={it.src}
@@ -195,13 +207,13 @@ export default function GalleryCases({ contained = true }) {
                     className="h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
-                    fetchpriority="low"
+                    fetchPriority="low"
                     draggable={false}
                   />
                 </div>
               </div>
 
-              <div className="mt-1 text-[11px] text-cota-muted/80 max-w-[320px] leading-snug">
+              <div className="mt-1 text-[11px] text-cota-muted/80 max-w-[280px] sm:max-w-[320px] leading-snug">
                 {it.caption}
               </div>
             </button>
@@ -212,11 +224,14 @@ export default function GalleryCases({ contained = true }) {
       {/* FLECHAS */}
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center z-10">
         <button
+          type="button"
           className="pointer-events-auto hidden md:inline-flex h-10 w-10 rounded-2xl border border-cota-line bg-white/80"
           onClick={(e) => nudge(-1, e)}
           onMouseDown={(e) => hold(-1, e)}
           onMouseUp={releaseHold}
           onMouseLeave={releaseHold}
+          onTouchStart={(e) => hold(-1, e)}
+          onTouchEnd={releaseHold}
         >
           ‹
         </button>
@@ -224,11 +239,14 @@ export default function GalleryCases({ contained = true }) {
 
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center z-10">
         <button
+          type="button"
           className="pointer-events-auto inline-flex h-10 w-10 rounded-2xl border border-cota-line bg-white/80"
           onClick={(e) => nudge(1, e)}
           onMouseDown={(e) => hold(1, e)}
           onMouseUp={releaseHold}
           onMouseLeave={releaseHold}
+          onTouchStart={(e) => hold(1, e)}
+          onTouchEnd={releaseHold}
         >
           ›
         </button>
