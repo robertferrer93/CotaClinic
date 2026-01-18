@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { loadDocplanner } from '../lib/docplanner';
 
 export default function DoctoraliaReviewsWidget({
   facility = 'grupo-cabot',
@@ -6,47 +7,65 @@ export default function DoctoraliaReviewsWidget({
   label = 'GRUPO CABOT',
   saasOnly = true,
   className = '',
+  type = 'certificate', // por si algún día quieres otro tipo de widget
 }) {
-  React.useEffect(() => {
-    const SCRIPT_ID = 'zl-widget-s';
-    const existing = document.getElementById(SCRIPT_ID);
+  const hostRef = React.useRef(null);
+  const [instanceKey, setInstanceKey] = React.useState(0);
+  const didInitRef = React.useRef(false);
 
-    const markLoaded = (el) => {
-      try {
-        el.dataset.loaded = 'true';
-      } catch {
-        // no-op
-      }
+  React.useEffect(() => {
+    const el = hostRef.current;
+    if (!el) return;
+
+    const init = async () => {
+      // 1) Fuerza recrear el <a> para que el script lo detecte
+      setInstanceKey((k) => k + 1);
+
+      // 2) Carga/reinyecta el script:
+      //    - primera vez: normal
+      //    - siguientes: force=true para que re-escanee el DOM (cuando hay 2 widgets)
+      await loadDocplanner({ force: didInitRef.current });
+      didInitRef.current = true;
     };
 
-    // Si no existe, lo añadimos
-    if (!existing) {
-      const s = document.createElement('script');
-      s.id = SCRIPT_ID;
-      s.src = 'https://platform.docplanner.com/js/widget.js';
-      s.async = true;
-      s.onload = () => markLoaded(s);
-      document.body.appendChild(s);
-      return;
-    }
+    // Inicializa cuando entra en pantalla (scroll)
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          init();
+          io.disconnect(); // solo una vez
+        }
+      },
+      { threshold: 0.15 }
+    );
 
-    // Si ya existe pero no sabemos si está "cargado", intentamos marcarlo al cargar
-    if (!existing.dataset?.loaded) {
-      existing.addEventListener('load', () => markLoaded(existing), { once: true });
-    }
+    io.observe(el);
 
-    // En la mayoría de casos el script ya “detecta” el nuevo anchor (SPA).
-    // Si alguna vez lo ves sin renderizar, un refresh de página lo fuerza.
+    // Fallback por si ya es visible al cargar (o iOS raro con observers)
+    const t = window.setTimeout(() => {
+      const r = el.getBoundingClientRect();
+      const visible = r.top < window.innerHeight && r.bottom > 0;
+      if (visible) {
+        init();
+        io.disconnect();
+      }
+    }, 50);
+
+    return () => {
+      window.clearTimeout(t);
+      io.disconnect();
+    };
   }, []);
 
   return (
-    <div className={className}>
+    <div ref={hostRef} className={className}>
       <a
+        key={instanceKey}
         className="zl-facility-url"
         href={url}
         rel="nofollow"
         data-zlw-facility={facility}
-        data-zlw-type="certificate"
+        data-zlw-type={type}
         data-zlw-saas-only={saasOnly ? 'true' : 'false'}
         data-zlw-a11y-title="Opiniones en Doctoralia"
       >
