@@ -57,6 +57,7 @@ export default function GalleryStrip({ contained = true }) {
     const el = trackRef.current;
     if (!el) return;
 
+    // empieza un poco desplazado para activar el "loop"
     el.scrollLeft = 1;
 
     const id = window.setInterval(() => {
@@ -128,7 +129,7 @@ export default function GalleryStrip({ contained = true }) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       {/* LIGHTBOX */}
       {openIdx !== null && (
         <div className="fixed inset-0 z-[80]">
@@ -295,25 +296,23 @@ export default function GalleryStrip({ contained = true }) {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-14 bg-gradient-to-r from-white to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-white to-transparent z-10" />
 
-      {/* TRACK (pausa si cursor encima) */}
+      {/* TRACK (scroll horizontal real, sin empujar el body) */}
       <div
         ref={trackRef}
         className={`
-          overflow-x-auto
+          w-full max-w-full min-w-0
+          overflow-x-auto overscroll-x-contain touch-pan-x
           [-ms-overflow-style:none] [scrollbar-width:none]
           [&::-webkit-scrollbar]:hidden
-          ${contained ? 'px-2' : '-mx-6 px-6'}
+          ${contained ? 'px-2' : 'px-2 md:-mx-6 md:px-6'}
         `}
-        style={{ WebkitOverflowScrolling: 'touch' }}
+        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-x' }}
         onMouseEnter={() => (hoverPausedRef.current = true)}
         onMouseLeave={() => (hoverPausedRef.current = false)}
         onTouchStart={() => (hoverPausedRef.current = true)}
         onTouchEnd={() => (hoverPausedRef.current = false)}
       >
-        <div
-          className="flex items-center gap-3"
-          style={{ width: 'max-content' }}
-        >
+        <div className="flex items-center gap-3 w-max">
           {loop.map((it, idx) => {
             const realIdx = idx % items.length;
 
@@ -347,13 +346,13 @@ export default function GalleryStrip({ contained = true }) {
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                       loading="lazy"
                       decoding="async"
-                      fetchpriority="low"
+                      fetchPriority="low"
                       draggable={false}
                     />
                   </div>
                 </div>
 
-                <div className="mt-1 text-[12px] font-medium text-cota-muted">
+                <div className="mt-1 text-[12px] font-medium text-cota-muted max-w-[16rem]">
                   {it.title}
                 </div>
               </button>
