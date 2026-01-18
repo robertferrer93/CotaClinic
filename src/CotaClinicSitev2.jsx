@@ -58,6 +58,9 @@ export default function CotaClinicSite() {
           <Route path="/rodilla/robotica" element={<RoboticaPage />} />
 
           <Route path="*" element={<HomePage />} />
+          <Route path="/rodilla" element={<HomePage />} />
+          <Route path="/equipo" element={<HomePage />} />
+          <Route path="/contacto" element={<HomePage />} />
         </Route>
       </Routes>
     </>
@@ -69,6 +72,25 @@ function HomePage() {
   const [activeDoctor, setActiveDoctor] = React.useState(null);
   const location = useLocation();
   const { doctorId } = useParams(); // ✅ /equipo/:doctorId
+  // ✅ Scroll automático si la URL es /rodilla, /equipo o /contacto
+  React.useEffect(() => {
+    const map = {
+      '/rodilla': '#rodilla',
+      '/equipo': '#equipo',
+      '/contacto': '#contacto',
+    };
+
+    const target = map[location.pathname];
+    if (!target) return;
+
+    // Espera a que el DOM esté pintado
+    const t = setTimeout(() => {
+      const el = document.querySelector(target);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+
+    return () => clearTimeout(t);
+  }, [location.pathname]);
 
   const doctors = [
     {
