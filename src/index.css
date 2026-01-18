@@ -6,7 +6,14 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply font-sans;
+  }
+
+  /* Evita overflow horizontal global sin romper carruseles */
+  #root {
+    width: 100%;
+    overflow-x: clip;
   }
 }
