@@ -6,6 +6,13 @@ import { ButtonPrimary, Section } from '../components/ui.jsx';
 
 export default function DoctorProfilePage() {
   const { doctorId } = useParams(); // 👈 coincide con /equipo/:doctorId
+  const legacyMap = {
+    ferrer: 'robert-ferrer-rivero',
+  };
+
+  if (legacyMap[doctorId]) {
+    return <Navigate to={`/equipo/${legacyMap[doctorId]}`} replace />;
+  }
   const doctor = doctors.find((d) => d.id === doctorId);
 
   React.useEffect(() => {
