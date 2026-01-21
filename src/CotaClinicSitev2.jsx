@@ -1,6 +1,13 @@
 // src/CotaClinicSitev2.jsx
 import * as React from 'react';
-import { Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useParams,
+  Navigate,
+} from 'react-router-dom';
 import Layout from './layout.jsx';
 
 import ScrollToTop from './components/ScrollToTop.jsx';
@@ -16,11 +23,12 @@ import ProtesisDolorosaRevisionPage from './protesis-dolorosa-revision.jsx';
 import RoboticaPage from './robotica.jsx';
 import DoctoraliaWidget from './components/DoctoraliaWidget.jsx';
 import DoctoraliaReviewsWidget from './components/DoctoraliaReviewsWidget.jsx';
-import clsx from 'clsx';
 import GalleryStrip from './components/GalleryStrip.jsx';
 import GalleryCases from './components/GalleryCases.jsx';
 import Subtle from './components/typography/Subtle.jsx';
 import DocplannerScript from './components/DocplannerScript';
+import { doctors } from './data/doctors.js';
+import DoctorProfilePage from './pages/DoctorProfilePage.jsx';
 
 import { ButtonPrimary, ButtonSecondary, Section } from './components/ui.jsx';
 
@@ -33,7 +41,9 @@ export default function CotaClinicSite() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/equipo/:doctorId" element={<HomePage />} />
+
+          {/* ✅ NUEVO: página real por doctor */}
+          <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} />
 
           <Route path="/rodilla/lca" element={<LCAPage />} />
           <Route path="/rodilla/menisco" element={<MeniscoPage />} />
@@ -57,11 +67,15 @@ export default function CotaClinicSite() {
           />
           <Route path="/rodilla/robotica" element={<RoboticaPage />} />
 
-          <Route path="*" element={<HomePage />} />
+          {/* Home + scroll */}
           <Route path="/rodilla" element={<HomePage />} />
           <Route path="/equipo" element={<HomePage />} />
           <Route path="/contacto" element={<HomePage />} />
+
+          {/* fallback */}
+          <Route path="*" element={<HomePage />} />
         </Route>
+        <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} />
       </Routes>
     </>
   );
@@ -69,9 +83,8 @@ export default function CotaClinicSite() {
 
 // ================== PÁGINA HOME ==================
 function HomePage() {
-  const [activeDoctor, setActiveDoctor] = React.useState(null);
   const location = useLocation();
-  const { doctorId } = useParams(); // ✅ /equipo/:doctorId
+
   // ✅ Scroll automático si la URL es /rodilla, /equipo o /contacto
   React.useEffect(() => {
     const map = {
@@ -83,7 +96,6 @@ function HomePage() {
     const target = map[location.pathname];
     if (!target) return;
 
-    // Espera a que el DOM esté pintado
     const t = setTimeout(() => {
       const el = document.querySelector(target);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -92,152 +104,16 @@ function HomePage() {
     return () => clearTimeout(t);
   }, [location.pathname]);
 
-  const doctors = [
-    {
-      id: 'cabot',
-      name: 'Dr. Joaquim Cabot Dalmau',
-      role: 'Cirugía de Rodilla',
-      imageCard: '/images/team/joaquim_cabot.png',
-      highlights: [
-        'Consultor de casos complejos',
-        '>10.000 cirugías de rodilla',
-        'Tratamientos biológicos',
-      ],
-      summary:
-        'Prestigioso traumatólogo especialista en rodilla y medicina regenerativa. Amplia trayectoria en artroscopia, preservación y cirugía protésica. Continuador del legado del Dr. Joaquín Cabot Boix y referente como consultor en casos complejos.',
-      experience: [
-        'Director/consultor Grupo COTA (rodilla)',
-        'Trayectoria destacada en artroscopia, ligamentos y artroplastia',
-      ],
-      education: ['Doctor en Medicina (Cum Laude)', 'Especialista en COT'],
-      publications: [
-        'Divulgación científica en patología de rodilla y biología',
-      ],
-      memberships: ['SECOT', 'SEROD'],
-    },
-    {
-      id: 'oliver',
-      name: 'Dr. Gabriel Oliver Far',
-      role: 'COT · Rodilla',
-      imageCard: '/images/team/gabriel_oliver.png',
-      imageProfile: '/images/team/oliver_quiro.png',
-      highlights: [
-        'Jefe de equipo de rodilla – H. U. Bellvitge',
-        'Cirugía protésica robótica',
-        'Lesiones multiligamentosas y de revisión',
-        'Casos de alta complejidad',
-      ],
-      summary:
-        'Especialista en cirugía reconstructiva y protésica de rodilla, referente en robótica y en lesiones multiligamentosas complejas. Lidera la Unidad de Rodilla del Hospital Universitario de Bellvitge y compagina asistencia, docencia e investigación.',
-      experience: [
-        'Jefe de la Unidad de Rodilla – H. U. Bellvitge',
-        'Revisiones protésicas y casos complejos',
-        'Actividad en medicina regenerativa y artroscopia',
-      ],
-      education: [
-        'Licenciado en Medicina',
-        'Especialista en COT',
-        'Formación en cirugía robótica',
-      ],
-      publications: ['Docencia y participación en congresos (nac. e int.)'],
-      memberships: ['SECOT', 'SEROD'],
-    },
-    {
-      id: 'llort',
-      name: 'Dr. Jaume Llort Buira',
-      role: 'COT · Rodilla',
-      imageCard: '/images/team/jaume_llort.png',
-      imageProfile: '/images/team/eco_llort.png',
-      highlights: [
-        'Medicina regenerativa: células madre, PRP, ozonoterapia, proloterapia',
-        'Tratamientos ecoguiados',
-        '>25 años de experiencia',
-      ],
-      summary:
-        'Más de 25 años dedicados a cirugía ortopédica con foco en rodilla y terapias biológicas. Integra cirugía de preservación con tratamientos regenerativos y técnicas mínimamente invasivas ecoguiadas.',
-      experience: [
-        'Grupo COTA – Área de rodilla y medicina regenerativa',
-        'Artroscopia y prótesis de rodilla',
-        'Enfoque integral para preservar la función articular',
-      ],
-      education: [
-        'Especialista en COT',
-        'Formación en terapias biológicas y ecografía',
-      ],
-      publications: ['Divulgación sobre tratamientos con células madre'],
-      memberships: ['SECOT', 'SEROD'],
-    },
-    {
-      id: 'ferrer',
-      name: 'Dr. Robert Ferrer Rivero',
-      role: 'Rodilla y Traumatología Deportiva',
-      imageCard: '/images/team/robert_ferrer.png',
-      imageProfile: '/images/team/robert_ferrer_quiro.png',
-      highlights: [
-        'Experto en preservación articular',
-        'Cirugía deportiva: menisco, LCA/LCP, cartílago',
-        'Preservación: osteotomía y prótesis unicompartimental',
-        'Cirugía protésica con realidad aumentada',
-      ],
-      summary:
-        '>200 cirugías/año. Especialista formado en el H. U. Bellvitge. Actualmente en la Unidad de Rodilla del H. Sant Rafael y Clínica Diagonal. Interés en osteotomías, biología y planificación 3D. Tesis doctoral en preservación articular.',
-      experience: [
-        'H. Sant Rafael – Unidad de Rodilla',
-        'Clínica Diagonal – Equipo de fracturas y rodilla',
-        'Rotación en Cirugía Deportiva – Rush (Chicago)',
-      ],
-      education: [
-        'Grado en Medicina (UB)',
-        'Especialista en COT – H. U. Bellvitge',
-        'Plan Nacional de Artroscopia (AEA)',
-      ],
-      publications: [
-        'KSSTA (2024): Evaluación económica osteotomía tibial',
-        'RECOT (2023): Osteotomía tibial cuña cerrada',
-        'J ISAKOS (2023): Instrumentación específica en osteotomía',
-        'Premio mejor comunicación SECOT 2024',
-      ],
-      memberships: ['SECOT', 'SEROD', 'SCCOT'],
-    },
-  ];
-
-  // ✅ Abre el modal si vienes de /equipo/:doctorId o ?doctor=...
-  React.useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const fromQuery = params.get('doctor');
-    const id = doctorId || fromQuery;
-
-    if (!id) return;
-
-    const found = doctors.find((d) => d.id === id);
-    if (found) setActiveDoctor(found);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [doctorId, location.search]);
-
   const Title = ({ children }) => (
     <h2 className="text-cota-slate text-2xl md:text-3xl font-semibold tracking-tight">
       {children}
     </h2>
   );
 
-  const closeDoctorModal = () => {
-    setActiveDoctor(null);
-
-    // Si venimos de /equipo/:id -> volvemos a home
-    if (window.location.pathname.startsWith('/equipo/')) {
-      window.history.replaceState({}, '', '/#equipo');
-      return;
-    }
-
-    // Compatibilidad: limpiar ?doctor=
-    const url = new URL(window.location.href);
-    url.searchParams.delete('doctor');
-    window.history.replaceState({}, '', url.toString());
-  };
-
   return (
     <>
       <DocplannerScript />
+
       {/* HERO */}
       <Section id="inicio" tone="plain" className="border-t-0">
         <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -290,8 +166,6 @@ function HomePage() {
                 alt="Equipo médico CotaClinic"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-
-              {/* marco sutil exterior, sin tapar la foto */}
               <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-cota-line/40" />
             </div>
           </div>
@@ -357,12 +231,13 @@ function HomePage() {
                 ))}
               </ul>
 
-              <button
-                onClick={() => setActiveDoctor(d)}
-                className="mt-5 w-full px-3 py-2.5 rounded-2xl border border-cota-line hover:bg-cota-mist transition-colors text-sm font-medium"
+              {/* ✅ CAMBIO: botón -> link a página */}
+              <Link
+                to={`/equipo/${d.id}`}
+                className="mt-5 block text-center w-full px-3 py-2.5 rounded-2xl border border-cota-line hover:bg-cota-mist transition-colors text-sm font-medium"
               >
                 Ver perfil
-              </button>
+              </Link>
             </article>
           ))}
         </div>
@@ -603,10 +478,8 @@ function HomePage() {
               </p>
             </div>
 
-            {/* 👇 Wrapper anti-desbordes */}
             <div className="w-full max-w-full overflow-x-hidden">
               <div className="w-full max-w-full flex justify-center">
-                {/* 👇 Limita el widget al ancho del contenedor */}
                 <div className="w-full max-w-full">
                   <DoctoraliaReviewsWidget />
                 </div>
@@ -652,7 +525,6 @@ function HomePage() {
         </Subtle>
 
         <div className="grid mt-8 items-start gap-10 md:gap-14 md:grid-cols-[auto_minmax(0,1fr)]">
-          {/* IZQUIERDA: Doctoralia (sin recuadro) */}
           <div className="max-w-full md:pl-6 lg:pl-10">
             <div className="font-semibold text-cota-ink">
               Reservar cita online
@@ -665,7 +537,6 @@ function HomePage() {
             </div>
           </div>
 
-          {/* DERECHA: formulario */}
           <form className="w-full max-w-3xl md:justify-self-end rounded-3xl p-6 border border-cota-line bg-white shadow-soft space-y-4">
             <div>
               <label className="text-sm text-cota-muted">
@@ -712,7 +583,6 @@ function HomePage() {
           </form>
         </div>
 
-        {/* Abajo: Localización */}
         <div className="mt-6 rounded-3xl p-6 border border-cota-line bg-white shadow-soft">
           <div className="font-semibold text-cota-ink">Localización</div>
           <ul className="mt-3 text-sm text-neutral-700 space-y-2">
@@ -731,261 +601,21 @@ function HomePage() {
           </ul>
         </div>
       </Section>
-
-      {/* Modal */}
-      <DoctorModal doctor={activeDoctor} onClose={closeDoctorModal} />
     </>
   );
 }
 
-// Modal de perfil (premium)
-function DoctorModal({ doctor, onClose, scrollToContact }) {
-  const [leaving, setLeaving] = React.useState(false);
-
-  const handleClose = React.useCallback(() => {
-    // evita dobles cierres
-    if (leaving) return;
-    setLeaving(true);
-    window.setTimeout(() => {
-      onClose?.();
-      setLeaving(false);
-    }, 220);
-  }, [leaving, onClose]);
-
-  // Bloquea scroll del body mientras el modal está abierto
-  React.useEffect(() => {
-    if (!doctor) return;
-
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [doctor]);
-
-  // Cerrar con ESC
-  React.useEffect(() => {
-    if (!doctor) return;
-
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') handleClose();
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [doctor, handleClose]);
-
-  // Si no hay doctor, no renderizamos nada
-  if (!doctor) return null;
-
-  return (
-    <div className="fixed inset-0 z-[80]">
-      {/* Backdrop */}
-      <div
-        className={[
-          'absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-200',
-          leaving ? 'opacity-0' : 'opacity-100',
-        ].join(' ')}
-        onClick={handleClose}
-      />
-
-      {/* Contenedor centrado */}
-      <div className="relative z-10 flex min-h-full items-center justify-center p-4">
-        {/* Panel */}
-        <div
-          className={[
-            'w-full max-w-5xl rounded-3xl border border-cota-line bg-white shadow-lift overflow-hidden',
-            'transition-transform duration-200',
-            leaving ? 'scale-[0.98]' : 'scale-100',
-          ].join(' ')}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Header */}
-          <div className="flex items-start justify-between gap-4 p-6 border-b border-cota-line">
-            <div>
-              <div className="text-lg font-semibold text-cota-ink">
-                {doctor.name}
-              </div>
-              <div className="text-sm text-cota-muted mt-1">{doctor.role}</div>
-            </div>
-
-            <button
-              type="button"
-              onClick={handleClose}
-              className="rounded-xl px-3 py-2 text-sm border border-cota-line hover:bg-cota-fog"
-              aria-label="Cerrar"
-            >
-              Cerrar
-            </button>
-          </div>
-
-          {/* Área scrolleable (solo el modal) */}
-          <div className="min-h-0 max-h-[80vh] overflow-y-auto overscroll-contain">
-            <div className="grid md:grid-cols-3 gap-6 p-6">
-              <div className="md:col-span-1">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-cota-mist border border-cota-line relative">
-                  {(() => {
-                    const src = doctor.imageProfile || doctor.imageCard;
-                    if (!src) return null;
-
-                    return (
-                      <DoctorModalImage
-                        src={src}
-                        alt={
-                          doctor.imageProfile
-                            ? `Actividad quirúrgica ${doctor.name}`
-                            : doctor.name
-                        }
-                        objectTop={!doctor.imageProfile}
-                      />
-                    );
-                  })()}
-                </div>
-
-                {doctor.highlights?.length ? (
-                  <ul className="mt-4 text-sm text-neutral-700 space-y-2">
-                    {doctor.highlights.map((h) => (
-                      <li key={h} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 rounded-full bg-cota-navy" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-
-                <div className="mt-6 text-center">
-                  <ButtonPrimary
-                    as="a"
-                    href="/#contacto"
-                    onClick={scrollToContact}
-                    className="text-sm rounded-2xl px-4 py-2.5"
-                  >
-                    Solicitar visita con {doctor.name}
-                  </ButtonPrimary>
-                </div>
-              </div>
-
-              <div className="md:col-span-2 space-y-6">
-                <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                  <div className="font-semibold text-cota-ink">Biografía</div>
-                  <p className="text-sm text-neutral-700 mt-2 leading-relaxed">
-                    {doctor.summary}
-                  </p>
-                </section>
-
-                {doctor.experience?.length ? (
-                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                    <div className="font-semibold text-cota-ink">
-                      Experiencia
-                    </div>
-                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                      {doctor.experience.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                ) : null}
-
-                {doctor.education?.length ? (
-                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                    <div className="font-semibold text-cota-ink">Formación</div>
-                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                      {doctor.education.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                ) : null}
-
-                {doctor.publications?.length ? (
-                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                    <div className="font-semibold text-cota-ink">
-                      Publicaciones y docencia
-                    </div>
-                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                      {doctor.publications.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                ) : null}
-
-                {doctor.memberships?.length ? (
-                  <section className="rounded-3xl border border-cota-line bg-white shadow-soft p-5">
-                    <div className="font-semibold text-cota-ink">
-                      Sociedades científicas
-                    </div>
-                    <ul className="text-sm text-neutral-700 mt-2 space-y-2">
-                      {doctor.memberships.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                ) : null}
-              </div>
-            </div>
-          </div>
-          {/* fin área scrolleable */}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Precarga de imágenes (antes de abrir el modal)
+// Precarga de imágenes (antes de navegar al perfil)
 function preloadImage(src) {
   if (!src) return;
   const img = new Image();
   img.src = src;
 }
 
-// Imagen con placeholder + fade-in
-function DoctorModalImage({ src, alt, objectTop }) {
-  const [loaded, setLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    setLoaded(false);
-  }, [src]);
-
-  return (
-    <>
-      {!loaded && (
-        <div className="absolute inset-0 animate-pulse bg-cota-mist" />
-      )}
-
-      <img
-        src={src}
-        alt={alt}
-        loading="eager"
-        decoding="async"
-        onLoad={() => setLoaded(true)}
-        className={[
-          'absolute inset-0 w-full h-full object-cover transition-opacity duration-300',
-          objectTop ? 'object-top' : '',
-          loaded ? 'opacity-100' : 'opacity-0',
-        ].join(' ')}
-      />
-    </>
-  );
-}
-
 // === Self-test simple para validar estructura ===
 export function _selfTest() {
   const isFunction = typeof CotaClinicSite === 'function';
   const paletteOk = ['navy', 'navyDark', 'sky', 'slate'].every(Boolean);
-  const doctorsExist = true;
+  const doctorsExist = Array.isArray(doctors) && doctors.length > 0;
   return { isFunction, paletteOk, doctorsExist };
 }
