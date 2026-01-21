@@ -1,6 +1,3 @@
-/** =========================
- *  DATA: Doctores (fuera para reutilizar en Home y en Perfil)
- *  ========================= */
 export const doctors = [
   {
     id: 'cabot',
