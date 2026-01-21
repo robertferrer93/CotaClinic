@@ -128,7 +128,7 @@ function HomePage() {
             </h1>
 
             <h2 className="mt-2 text-3xl md:text-4xl font-semibold leading-tight text-neutral-500">
-              Preservación articular y cirugía avanzada
+              Preservación articular y tratamientos biológicos
             </h2>
 
             <p className="mt-5 text-[17px] leading-relaxed text-cota-muted max-w-prose">
@@ -619,3 +619,4 @@ export function _selfTest() {
   const doctorsExist = Array.isArray(doctors) && doctors.length > 0;
   return { isFunction, paletteOk, doctorsExist };
 }
+
