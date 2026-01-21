@@ -85,8 +85,7 @@ export const doctors = [
     ],
 
     summary:
-      'Médico especialista en Cirugía Ortopédica y Traumatología, MIR
-       en el Hospital Universitari de Bellvitge. Miembro del equipo de rodilla de Grupo COTA y con actividad asistencial en la Unidad de Rodilla del Hospital Sant Rafael y en Clínica Diagonal. Especializado en cirugía de rodilla en pacientes activos, técnicas preservación articular (osteotomías, lesiones de cartílago), cirugía deportiva (menisco y ligamentos) y cirugía protésica unicompartimental y total. Participa en investigación clínica y formación continuada nacional e internacional.',
+      'Médico especialista en Cirugía Ortopédica y Traumatología, MIR en el Hospital Universitari de Bellvitge. Miembro del equipo de rodilla de Grupo COTA y con actividad asistencial en la Unidad de Rodilla del Hospital Sant Rafael y en Clínica Diagonal. Especializado en cirugía de rodilla en pacientes activos, técnicas preservación articular (osteotomías, lesiones de cartílago), cirugía deportiva (menisco y ligamentos), cirugía protésica unicompartimental y total. Participa en investigación clínica y formación continuada nacional e internacional.',
 
     experience: [
       'Especialista en Unidad de Rodilla, Hospital Sant Rafael (08/2023–Actualidad)',
