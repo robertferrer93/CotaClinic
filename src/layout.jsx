@@ -150,7 +150,7 @@ export default function Layout() {
 
             <div className="flex flex-col leading-tight min-w-0">
               <span className="font-semibold tracking-tight text-lg text-cota-navy truncate">
-                CotaClinic
+                CotaSport Clinic
               </span>
 
               {/* Subtítulo: en móvil fuerza salto y quita el · */}
@@ -548,16 +548,14 @@ export default function Layout() {
 
       {/* ================= MAIN ================= */}
       <main className="w-full">
-        <div className="max-w-7xl mx-auto px-6 py-10 w-full">
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
 
       {/* ================= FOOTER ================= */}
       <footer className="border-t">
         <div className="max-w-7xl mx-auto px-6 py-8 text-sm text-neutral-600 flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
           <div>
-            © {new Date().getFullYear()} CotaClinic · Todos los derechos
+            © {new Date().getFullYear()} CotaSport Clinic · Todos los derechos
             reservados
           </div>
           <div className="flex gap-4">
