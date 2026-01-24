@@ -1,4 +1,4 @@
-// src/CotaClinicSitev2.jsx
+// src/CotaClinicSite.jsx
 import * as React from 'react';
 import {
   Routes,
@@ -30,7 +30,12 @@ import DocplannerScript from './components/DocplannerScript';
 import { doctors } from './data/doctors.js';
 import DoctorProfilePage from './pages/DoctorProfilePage.jsx';
 
-import { ButtonPrimary, ButtonSecondary, Section } from './components/ui.jsx';
+import {
+  Section,
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonSecondaryDark,
+} from './components/ui';
 
 // === Componente principal con rutas ===
 export default function CotaClinicSite() {
@@ -115,29 +120,36 @@ function HomePage() {
       <DocplannerScript />
 
       {/* HERO */}
-      <Section id="inicio" tone="plain" className="border-t-0">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider rounded-full px-3 py-1 border border-cota-line text-cota-navy bg-white">
-              <span className="h-1.5 w-1.5 rounded-full bg-cota-navy" />
+      <Section
+        id="inicio"
+        tone="brand"
+        border={false}
+        className="relative overflow-hidden pt-12 md:pt-16 pb-8 md:pb-10 md:pb-0"
+      >
+        {/* 1 columna en mobile/tablet; 2 columnas solo en desktop */}
+        <div className="relative grid lg:grid-cols-2 gap-10 items-stretch">
+          {/* TEXTO */}
+          <div className="text-white">
+            <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider rounded-full px-3 py-1 border border-white/30 text-white bg-white/10">
+              <span className="h-1.5 w-1.5 rounded-full bg-white" />
               Centro especializado en rodilla · Barcelona
             </div>
 
-            <h1 className="mt-5 text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-cota-navy">
+            <h1 className="mt-5 text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight">
               Especialistas en rodilla
             </h1>
 
-            <h2 className="mt-2 text-3xl md:text-4xl font-semibold leading-tight text-neutral-500">
+            <h2 className="mt-2 text-3xl md:text-4xl font-semibold leading-tight text-white/70">
               Preservación articular y tratamientos biológicos
             </h2>
 
-            <p className="mt-5 text-[17px] leading-relaxed text-cota-muted max-w-prose">
+            <p className="mt-5 text-[17px] leading-relaxed text-white/80 max-w-prose">
               Equipo de traumatólogos especialistas en cirugía de rodilla en
               Barcelona, con experiencia en cirugía deportiva, preservación
               articular y cirugía protésica.
             </p>
 
-            <p className="mt-3 text-sm text-cota-muted">
+            <p className="mt-3 text-sm text-white/70">
               Más de 30 años dedicados a la cirugía de rodilla en Barcelona.
             </p>
 
@@ -145,29 +157,62 @@ function HomePage() {
               <ButtonPrimary
                 as="a"
                 href="/#contacto"
-                className="px-6 py-3 rounded-2xl"
+                className="px-6 py-3 rounded-2xl bg-white !text-[#0E2A47]"
               >
                 Solicitar visita
               </ButtonPrimary>
-              <ButtonSecondary
+
+              <ButtonSecondaryDark
                 as="a"
                 href="/#rodilla"
                 className="px-6 py-3 rounded-2xl"
               >
                 Tratamientos
-              </ButtonSecondary>
+              </ButtonSecondaryDark>
+            </div>
+
+            {/* IMAGEN (mobile + tablet) debajo de botones */}
+            <div className="mt-2 -mx-6 -mb-8 md:-mb-10 lg:hidden">
+              <img
+                src="/images/logo-cota-white.svg"
+                alt=""
+                className="pointer-events-none
+                absolute
+                right-[-40px] bottom-[-90px]
+                w-[420px] opacity-[0.04]
+            
+                sm:bottom-[-150px]
+                md:w-[520px] md:bottom-[-10px] md:right-[40px]"
+              />
+              <img
+                src="/images/equip_hero_ed_1.png"
+                alt="Equipo médico CotaClinic"
+                className="block w-full h-auto"
+              />
             </div>
           </div>
 
-          <div className="relative">
-            <div className="relative aspect-video rounded-3xl border border-cota-line shadow-lift overflow-hidden bg-cota-fog">
-              <img
-                src="/images/equip_medic.png"
-                alt="Equipo médico CotaClinic"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-cota-line/40" />
-            </div>
+          {/* VISUAL DERECHO (solo desktop) */}
+          <div className="relative hidden lg:flex flex-col -mr-6">
+            <img
+              src="/images/logo-cota-white.svg"
+              alt=""
+              className="pointer-events-none absolute right-[-80px] bottom-[-120px] w-[520px] opacity-[0.04]"
+            />
+
+            <img
+              src="/images/equip_hero_ed_1.png"
+              alt="Equipo médico CotaClinic"
+              className="
+          mt-auto
+          block
+          w-[126%] lg:w-[132%]
+          max-w-none
+          -mb-8 lg:-mb-10
+          ml-auto
+          translate-x-[-6%] lg:translate-x-[-8%]
+        "
+            />
           </div>
         </div>
       </Section>
@@ -181,7 +226,7 @@ function HomePage() {
 
           <div className="mt-2 text-base text-cota-muted">
             El proyecto COTA se inició hace más de cuatro décadas de la mano del
-            Dr. Joaquín Cabot Boix y ha sido continuado por el Dr. Joaquín Cabot
+            Dr. Joaquín Cabot Boix y ha sido continuado por el Dr. Joaquim Cabot
             Dalmau. Actualmente, el equipo se completa con el Dr. Gabriel
             Oliver, con amplia experiencia en patología deportiva y cirugía
             protésica, el Dr. Jaume Llort, especialista en terapias biológicas,
@@ -619,4 +664,3 @@ export function _selfTest() {
   const doctorsExist = Array.isArray(doctors) && doctors.length > 0;
   return { isFunction, paletteOk, doctorsExist };
 }
-
