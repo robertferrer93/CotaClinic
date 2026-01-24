@@ -38,14 +38,34 @@ export function ButtonSecondary({ as: As = 'button', className, ...props }) {
 }
 
 /**
- * Container
- * - Wrapper consistente para páginas/zonas de contenido
- * - Si mañana quieres cambiar padding/ancho global, lo haces aquí.
+ * ButtonSecondaryDark (outline para fondos oscuros)
+ * - Ideal para el botón "Tratamientos" en el HERO azul
+ * - Evita tener que forzar con !bg-transparent / !text-white
  */
-export function Container({ as: As = 'div', className, ...props }) {
+export function ButtonSecondaryDark({
+  as: As = 'button',
+  className,
+  ...props
+}) {
   return (
     <As
-      className={clsx('max-w-7xl mx-auto px-6 w-full', className)}
+      className={clsx(
+        'inline-flex items-center justify-center gap-2',
+        'px-6 py-3 rounded-2xl',
+        'font-semibold',
+        // Base: azul más oscuro que el fondo
+        'bg-[#0B223A] text-white',
+        // Borde muy sutil para definición
+        'border border-white/30',
+        // Hover: refuerza el azul
+        'hover:bg-[#081A2E]',
+        'hover:border-white/30',
+        'transition-colors transition-transform',
+        'active:translate-y-[0.5px]',
+        'focus:outline-none focus:ring-2 focus:ring-white/70',
+        'focus:ring-offset-2 focus:ring-offset-[#0E2A47]',
+        className
+      )}
       {...props}
     />
   );
@@ -63,7 +83,7 @@ export function Article({ as: As = 'article', className, ...props }) {
 
 /**
  * Section (clean)
- * - Alterna fondos a ancho completo: tone="plain" | "mist"
+ * - Alterna fondos a ancho completo: tone="plain" | "mist" | "brand"
  * - Contenido centrado (max-w-7xl) aquí, no en Layout
  * - scroll-mt para que los anchors no queden tapados por el header sticky
  */
@@ -75,7 +95,12 @@ export function Section({
   pad = 'normal', // 'tight' | 'normal' | 'loose'
   border = true,
 }) {
-  const toneClass = tone === 'mist' ? 'bg-cota-mist' : 'bg-white';
+  const toneClass =
+    tone === 'mist'
+      ? 'bg-cota-mist'
+      : tone === 'brand'
+      ? 'bg-gradient-to-br from-[#0E2A47] to-[#123B5A]'
+      : 'bg-white';
 
   const padClass =
     pad === 'tight'
