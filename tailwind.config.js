@@ -11,7 +11,7 @@ export default {
 
           // Premium light backgrounds (para alternar secciones)
           sky: '#E9F1FA', // el que ya tienes (bien para detalles)
-          mist: '#F4F7FA', // azul muy claro, más premium para fondos alternos
+          mist: '#E7F0F9', // azul muy claro, más premium para fondos alternos
           fog: '#FAFCFF', // casi blanco, útil para separar aún más
 
           // Text
@@ -58,3 +58,4 @@ export default {
   },
   plugins: [],
 };
+
