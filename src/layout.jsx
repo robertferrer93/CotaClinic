@@ -149,7 +149,7 @@ export default function Layout() {
             </div>
 
             <div className="flex flex-col leading-tight min-w-0">
-              <span className="font-semibold tracking-tight text-lg text-cota-navy truncate">
+              <span className="font-semibold tracking-tight text-[16px] sm:text-lg text-cota-navy truncate">
                 CotaSport Clinic
               </span>
 
@@ -359,7 +359,7 @@ export default function Layout() {
           </nav>
 
           {/* ================= RIGHT SIDE (MOBILE + CTA) ================= */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 ml-0 sm:ml-0">
             {/* Botón hamburguesa (móvil) */}
             <button
               type="button"
