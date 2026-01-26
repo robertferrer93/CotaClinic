@@ -630,20 +630,88 @@ function HomePage() {
 
         <div className="mt-6 rounded-3xl p-6 border border-cota-line bg-white shadow-soft">
           <div className="font-semibold text-cota-ink">Localización</div>
-          <ul className="mt-3 text-sm text-neutral-700 space-y-2">
-            <li className="flex gap-2">
-              <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-              Dirección y mapa
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-              Horarios
-            </li>
-            <li className="flex gap-2">
-              <span className="mt-2 h-1 w-1 rounded-full bg-cota-teal" />
-              Mutuas disponibles
-            </li>
-          </ul>
+
+          {/* Layout: mobile 1 columna (mapa primero), md+ 2 columnas con mapa a la derecha */}
+          <div className="mt-4 grid gap-6 md:grid-cols-[0.9fr_1.4fr] md:items-start">
+            {/* MAPA (mobile arriba, md+ derecha) */}
+            <div className="order-1 md:order-2">
+              <div className="rounded-3xl overflow-hidden border border-cota-line bg-white shadow-soft">
+                <iframe
+                  title="Mapa CotaClinic"
+                  className="w-full h-[260px] md:h-[320px]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=Carrer%20de%20la%20Mare%20de%20D%C3%A9u%20de%20la%20Salut%2078%204%C2%BAB%20Barcelona%2008024&output=embed"
+                />
+              </div>
+
+              <a
+                className="mt-3 inline-flex text-sm font-medium text-cota-navy hover:underline"
+                href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20la%20Mare%20de%20D%C3%A9u%20de%20la%20Salut%2078%204%C2%BAB%20Barcelona%2008024"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver en Google Maps →
+              </a>
+            </div>
+
+            {/* TEXTO (mobile debajo, md+ izquierda) */}
+            <div className="order-2 md:order-1">
+              <div className="space-y-5 text-sm text-neutral-700">
+                <div>
+                  <div className="font-semibold text-cota-ink">Dirección</div>
+                  <div className="mt-1">
+                    Carrer de la Mare de Déu de la Salut, 78 · 4ºB
+                    <br />
+                    08024 · Barcelona
+                  </div>
+                </div>
+
+                <div>
+                  <div className="font-semibold text-cota-ink">Teléfono</div>
+                  <a
+                    className="mt-1 inline-flex hover:underline"
+                    href="tel:+34932199451"
+                  >
+                    +34 932 19 94 51
+                  </a>
+                </div>
+
+                <div>
+                  <div className="font-semibold text-cota-ink">Horarios</div>
+                  <ul className="mt-2 space-y-1">
+                    <li>Lunes: 16:00 – 19:00 h</li>
+                    <li>Martes: 10:00 – 19:00 h</li>
+                    <li>Miércoles: 10:00 – 19:00 h</li>
+                    <li>Jueves: 10:00 – 13:00 h</li>
+                  </ul>
+                  <div className="mt-2 text-xs text-cota-muted">
+                    Atención con cita previa.
+                  </div>
+                </div>
+
+                <div>
+                  <div className="font-semibold text-cota-ink">
+                    Mutuas y aseguradoras
+                  </div>
+                  <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-y-1 gap-x-6">
+                    <li>Adeslas</li>
+                    <li>Aegon Salud</li>
+                    <li>Asistencia Sanitaria Colegial</li>
+                    <li>AXA</li>
+                    <li>Caser</li>
+                    <li>Cigna Healthcare España</li>
+                    <li>Cosalud</li>
+                    <li>DKV Seguros</li>
+                    <li>Mapfre</li>
+                    <li>Mutua General de Catalunya</li>
+                    <li>Occident</li>
+                    <li>Sanitas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
     </>
@@ -664,3 +732,4 @@ export function _selfTest() {
   const doctorsExist = Array.isArray(doctors) && doctors.length > 0;
   return { isFunction, paletteOk, doctorsExist };
 }
+
