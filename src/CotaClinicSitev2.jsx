@@ -563,7 +563,7 @@ function HomePage() {
       </Section>
 
       {/* CONTACTO */}
-      <Section id="contacto" tone="mist">
+      <Section id="contacto" tone="plain">
         <Title>Contacto</Title>
         <Subtle>
           Cuéntanos tu caso y te orientamos sobre el siguiente paso.
@@ -732,4 +732,5 @@ export function _selfTest() {
   const doctorsExist = Array.isArray(doctors) && doctors.length > 0;
   return { isFunction, paletteOk, doctorsExist };
 }
+
 
