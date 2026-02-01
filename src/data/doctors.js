@@ -20,33 +20,48 @@ export const doctors = [
     memberships: ['SECOT', 'SEROD'],
   },
   {
-    id: 'oliver',
+    id: 'gabriel-oliver-far',
     name: 'Dr. Gabriel Oliver Far',
-    role: 'COT · Rodilla',
+    role: 'Cirugía deportiva  y protésica compleja de rodilla',
     imageCard: '/images/team/gabriel_oliver.png',
     imageProfile: '/images/team/oliver_quiro.png',
+  
     highlights: [
-      'Jefe de equipo de rodilla – H. U. Bellvitge',
-      'Cirugía protésica robótica',
-      'Lesiones multiligamentosas y de revisión',
-      'Casos de alta complejidad',
+      'Jefe de la Unidad de Rodilla – Hospital Universitari de Bellvitge',
+      'Experto en lesiones de rodilla en deportistas de competición',
+      'Cirugía robótica aplicada a prótesis de rodilla',
+      'Lesiones multiligamentosas y casos complejos',
     ],
+  
     summary:
-      'Especialista en cirugía reconstructiva y protésica de rodilla, referente en robótica y en lesiones multiligamentosas complejas. Lidera la Unidad de Rodilla del Hospital Universitario de Bellvitge y compagina asistencia, docencia e investigación.',
+      'Médico especialista en Cirugía Ortopédica y Traumatología, doctor por la Universitat Autònoma de Barcelona y jefe de la Unidad de Rodilla del Hospital Universitari de Bellvitge. Referente en cirugía reconstructiva y protésica compleja de rodilla, con amplia experiencia en cirugía robótica, revisiones protésicas y lesiones multiligamentosas. Combina actividad asistencial de alta complejidad con docencia universitaria e investigación clínica.',
+  
     experience: [
-      'Jefe de la Unidad de Rodilla – H. U. Bellvitge',
-      'Revisiones protésicas y casos complejos',
-      'Actividad en medicina regenerativa y artroscopia',
+      'Jefe de la Unidad de Rodilla, Departamento de Cirugía Ortopédica y Medicina del Deporte – Hospital Universitari de Bellvitge (2015–Actualidad)',
+      'Especialista en Cirugía Ortopédica y Traumatología, Unidad de Rodilla – Hospital Universitari de Bellvitge (1996–Actualidad)',
+      'Investigador principal en múltiples estudios clínicos financiados por IDIBELL',
     ],
+  
     education: [
-      'Licenciado en Medicina',
-      'Especialista en COT',
-      'Formación en cirugía robótica',
+      'Licenciatura en Medicina – Universitat Autònoma de Barcelona (1990)',
+      'Especialidad en Cirugía Ortopédica y Traumatología – Hospital Universitari de Bellvitge (1996)',
+      'Doctorado (PhD) – Universitat Autònoma de Barcelona: propiocepción en cirugía del LCA de rodilla (2017)',
+      'Formación continuada nacional e internacional en cirugía de rodilla y cirugía robótica',
     ],
-    publications: ['Docencia y participación en congresos (nac. e int.)'],
-    memberships: ['SECOT', 'SEROD'],
-  },
-  {
+  
+    publications: [
+      'Autor de numerosas publicaciones científicas y ponencias en congresos nacionales e internacionales',
+      'Revisor del consejo editorial de Bone & Joint Journal',
+      'Revisor del consejo editorial de BMC Musculoskeletal Disorders',
+    ],
+  
+    memberships: [
+      'SECOT',
+      'SEROD',
+      'Asociación Española de Artroscopia',
+    ]
+    },
+    {
     id: 'llort',
     name: 'Dr. Jaume Llort Buira',
     role: 'COT · Rodilla',
@@ -74,7 +89,7 @@ export const doctors = [
   {
     id: 'robert-ferrer-rivero',
     name: 'Dr. Robert Ferrer Rivero',
-    role: 'Rodilla y Traumatología Deportiva',
+    role: 'Preservación articular y Traumatología Deportiva',
     imageCard: '/images/team/robert_ferrer.png',
     imageProfile: '/images/team/robert_ferrer_quiro.png',
 
