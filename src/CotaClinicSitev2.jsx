@@ -592,9 +592,12 @@ function HomePage() {
               e.preventDefault();
               if (status === 'sending') return;
 
+              const form = e.currentTarget; // ✅ guardamos referencia antes de awaits
+              if (!form) return;
+
               setStatus('sending');
 
-              const formData = new FormData(e.currentTarget);
+              const formData = new FormData(form);
               const payload = {
                 name: formData.get('name'),
                 email: formData.get('email'),
@@ -611,15 +614,11 @@ function HomePage() {
 
                 const data = await res.json().catch(() => ({}));
 
-                if (!res.ok || !data.ok) {
-                  console.error('Contact error:', res.status, data);
-                  throw new Error('Request failed');
-                }
+                if (!res.ok || !data.ok) throw new Error('Request failed');
 
-                e.currentTarget.reset(); // ✅ vacía el formulario
-                setStatus('ok'); // ✅ mensaje en pantalla
+                form.reset(); // ✅ ahora sí, no depende del evento
+                setStatus('ok');
               } catch (err) {
-                console.error(err);
                 setStatus('error');
               }
             }}
@@ -632,6 +631,7 @@ function HomePage() {
               <input
                 name="name"
                 required
+                onChange={() => status !== 'idle' && setStatus('idle')}
                 className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
                 placeholder="Tu nombre"
               />
@@ -643,6 +643,7 @@ function HomePage() {
                 <input
                   type="email"
                   name="email"
+                  onChange={() => status !== 'idle' && setStatus('idle')}
                   className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
                   placeholder="email@ejemplo.com"
                 />
@@ -653,6 +654,7 @@ function HomePage() {
                 <input
                   type="tel"
                   name="phone"
+                  onChange={() => status !== 'idle' && setStatus('idle')}
                   className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
                   placeholder="+34 600 000 000"
                 />
@@ -666,6 +668,7 @@ function HomePage() {
               <textarea
                 name="message"
                 required
+                onChange={() => status !== 'idle' && setStatus('idle')}
                 className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
                 rows={4}
                 placeholder="Cuéntanos tu caso"
