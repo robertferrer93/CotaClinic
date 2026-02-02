@@ -584,25 +584,66 @@ function HomePage() {
             </div>
           </div>
 
-          <form className="w-full max-w-3xl md:justify-self-end rounded-3xl p-6 border border-cota-line bg-white shadow-soft space-y-4">
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+
+              const formData = new FormData(e.currentTarget);
+
+              const payload = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message'),
+              };
+
+              const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+
+              if (res.ok) {
+                alert('Mensaje enviado correctamente');
+                e.currentTarget.reset();
+              } else {
+                alert('Error al enviar el mensaje');
+              }
+            }}
+            className="w-full max-w-3xl md:justify-self-end rounded-3xl p-6 border border-cota-line bg-white shadow-soft space-y-4"
+          >
             <div>
               <label className="text-sm text-cota-muted">
                 Nombre y apellidos
               </label>
               <input
+                name="name"
+                required
                 className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
                 placeholder="Tu nombre"
               />
             </div>
 
-            <div>
-              <label className="text-sm text-cota-muted">
-                Email o teléfono
-              </label>
-              <input
-                className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
-                placeholder="Contacto"
-              />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="text-sm text-cota-muted">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
+                  placeholder="email@ejemplo.com"
+                />
+              </div>
+
+              <div>
+                <label className="text-sm text-cota-muted">Teléfono</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
+                  placeholder="+34 600 000 000"
+                />
+              </div>
             </div>
 
             <div>
@@ -610,6 +651,8 @@ function HomePage() {
                 Motivo de consulta
               </label>
               <textarea
+                name="message"
+                required
                 className="mt-1 w-full border border-cota-line rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cota-navy bg-white"
                 rows={4}
                 placeholder="Cuéntanos tu caso"
@@ -618,7 +661,7 @@ function HomePage() {
 
             <ButtonPrimary
               as="button"
-              type="button"
+              type="submit"
               className="w-full rounded-2xl py-3"
             >
               Enviar
