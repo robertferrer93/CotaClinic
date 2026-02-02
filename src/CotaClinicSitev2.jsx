@@ -29,6 +29,7 @@ import Subtle from './components/typography/Subtle.jsx';
 import DocplannerScript from './components/DocplannerScript';
 import { doctors } from './data/doctors.js';
 import DoctorProfilePage from './pages/DoctorProfilePage.jsx';
+import LegalPage from './pages/legal.jsx';
 
 import {
   Section,
@@ -71,6 +72,7 @@ export default function CotaClinicSite() {
             element={<ProtesisDolorosaRevisionPage />}
           />
           <Route path="/rodilla/robotica" element={<RoboticaPage />} />
+          <Route path="/legal" element={<LegalPage />} />
 
           {/* Home + scroll */}
           <Route path="/rodilla" element={<HomePage />} />
@@ -732,5 +734,3 @@ export function _selfTest() {
   const doctorsExist = Array.isArray(doctors) && doctors.length > 0;
   return { isFunction, paletteOk, doctorsExist };
 }
-
-
