@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     }
 
     await resend.emails.send({
-      from: "CotaSport Clinic <onboarding@resend.dev>",
+      from: "CotaSport Clinic <contactoweb@cotasportclinic.com>",
       to: "consulta@drcabot.es",
       subject: `Nueva consulta web – ${name}`,
       replyTo: email && email.includes("@") ? email : undefined,
