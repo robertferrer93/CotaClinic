@@ -558,16 +558,17 @@ export default function Layout() {
             © {new Date().getFullYear()} CotaSport Clinic · Todos los derechos
             reservados
           </div>
+
           <div className="flex gap-4">
-            <a href="#" className="hover:opacity-70">
+            <Link to="/legal#privacidad" className="hover:opacity-70">
               Privacidad
-            </a>
-            <a href="#" className="hover:opacity-70">
+            </Link>
+            <Link to="/legal#aviso-legal" className="hover:opacity-70">
               Aviso legal
-            </a>
-            <a href="#" className="hover:opacity-70">
+            </Link>
+            <Link to="/legal#cookies" className="hover:opacity-70">
               Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </footer>
