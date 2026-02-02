@@ -1,26 +1,37 @@
 // src/pages/DoctorProfilePage.jsx
 import * as React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import { doctors } from '../data/doctors.js';
 import { ButtonPrimary, Section } from '../components/ui.jsx';
 
 export default function DoctorProfilePage() {
-  const { doctorId } = useParams(); // 👈 coincide con /equipo/:doctorId
+  const { doctorId } = useParams();
+  const navigate = useNavigate();
+
   const legacyMap = {
     ferrer: 'robert-ferrer-rivero',
+    oliver: 'gabriel-oliver-far', // ✅ corregido
   };
 
-  if (legacyMap[doctorId]) {
-    return <Navigate to={`/equipo/${legacyMap[doctorId]}`} replace />;
-  }
-  const doctor = doctors.find((d) => d.id === doctorId);
+  const resolvedId = legacyMap[doctorId] ?? doctorId;
+  const doctor = doctors.find((d) => d.id === resolvedId);
 
+  // Redirección legacy SIN romper hooks
+  React.useEffect(() => {
+    if (legacyMap[doctorId]) {
+      navigate(`/equipo/${legacyMap[doctorId]}`, { replace: true });
+    }
+  }, [doctorId, navigate]);
+
+  // Title dinámico
   React.useEffect(() => {
     if (!doctor) return;
     document.title = `${doctor.name} | Traumatólogo especialista en rodilla | CotaClinic Barcelona`;
   }, [doctor]);
 
-  if (!doctor) return <Navigate to="/equipo" replace />;
+  if (!doctor) {
+    return <Navigate to="/equipo" replace />;
+  }
 
   const src = doctor.imageProfile || doctor.imageCard;
 
@@ -94,10 +105,7 @@ export default function DoctorProfilePage() {
               title="Sociedades científicas"
               items={doctor.memberships}
             />
-             <ListCard
-              title="Becas y premios"
-              items={doctor.premios}
-            />
+            <ListCard title="Becas y premios" items={doctor.premios} />
           </div>
         </div>
       </div>
