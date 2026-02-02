@@ -609,11 +609,17 @@ function HomePage() {
                   body: JSON.stringify(payload),
                 });
 
-                if (!res.ok) throw new Error('Request failed');
+                const data = await res.json().catch(() => ({}));
+
+                if (!res.ok || !data.ok) {
+                  console.error('Contact error:', res.status, data);
+                  throw new Error('Request failed');
+                }
 
                 e.currentTarget.reset(); // ✅ vacía el formulario
                 setStatus('ok'); // ✅ mensaje en pantalla
               } catch (err) {
+                console.error(err);
                 setStatus('error');
               }
             }}
