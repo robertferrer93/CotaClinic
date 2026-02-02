@@ -30,6 +30,7 @@ import DocplannerScript from './components/DocplannerScript';
 import { doctors } from './data/doctors.js';
 import DoctorProfilePage from './pages/DoctorProfilePage.jsx';
 import LegalPage from './pages/legal.jsx';
+import { useState } from 'react';
 
 import {
   Section,
@@ -91,6 +92,8 @@ export default function CotaClinicSite() {
 // ================== PÁGINA HOME ==================
 function HomePage() {
   const location = useLocation();
+  const [status, setStatus] = useState('idle');
+  // idle | sending | ok | error
 
   // ✅ Scroll automático si la URL es /rodilla, /equipo o /contacto
   React.useEffect(() => {
@@ -587,9 +590,11 @@ function HomePage() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
+              if (status === 'sending') return;
+
+              setStatus('sending');
 
               const formData = new FormData(e.currentTarget);
-
               const payload = {
                 name: formData.get('name'),
                 email: formData.get('email'),
@@ -597,17 +602,19 @@ function HomePage() {
                 message: formData.get('message'),
               };
 
-              const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-              });
+              try {
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(payload),
+                });
 
-              if (res.ok) {
-                alert('Mensaje enviado correctamente');
-                e.currentTarget.reset();
-              } else {
-                alert('Error al enviar el mensaje');
+                if (!res.ok) throw new Error('Request failed');
+
+                e.currentTarget.reset(); // ✅ vacía el formulario
+                setStatus('ok'); // ✅ mensaje en pantalla
+              } catch (err) {
+                setStatus('error');
               }
             }}
             className="w-full max-w-3xl md:justify-self-end rounded-3xl p-6 border border-cota-line bg-white shadow-soft space-y-4"
@@ -662,10 +669,22 @@ function HomePage() {
             <ButtonPrimary
               as="button"
               type="submit"
-              className="w-full rounded-2xl py-3"
+              disabled={status === 'sending'}
+              className="w-full rounded-2xl py-3 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Enviar
+              {status === 'sending' ? 'Enviando...' : 'Enviar'}
             </ButtonPrimary>
+
+            {status === 'ok' && (
+              <p className="text-sm text-green-700">
+                Enviado. Hemos recibido tu consulta.
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="text-sm text-red-700">
+                No se pudo enviar. Revisa los datos e inténtalo de nuevo.
+              </p>
+            )}
 
             <p className="text-xs text-cota-muted">
               Al enviar aceptas nuestra política de privacidad.
