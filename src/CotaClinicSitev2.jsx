@@ -618,6 +618,10 @@ function HomePage() {
 
                 form.reset(); // ✅ ahora sí, no depende del evento
                 setStatus('ok');
+                // 👇 ocultar mensaje tras 6 segundos
+                setTimeout(() => {
+                  setStatus('idle');
+                }, 6000);
               } catch (err) {
                 setStatus('error');
               }
@@ -685,9 +689,12 @@ function HomePage() {
             </ButtonPrimary>
 
             {status === 'ok' && (
-              <p className="text-sm text-green-700">
-                Enviado. Hemos recibido tu consulta.
-              </p>
+              <div className="text-sm text-green-700 space-y-1">
+                <p>Enviado. Hemos recibido tu consulta.</p>
+                <p className="text-xs text-cota-muted">
+                  Te responderemos lo antes posible.
+                </p>
+              </div>
             )}
             {status === 'error' && (
               <p className="text-sm text-red-700">
