@@ -31,6 +31,7 @@ import { doctors } from './data/doctors.js';
 import DoctorProfilePage from './pages/DoctorProfilePage.jsx';
 import LegalPage from './pages/legal.jsx';
 import { useState } from 'react';
+import { trackEvent } from './analytics';
 
 import {
   Section,
@@ -618,6 +619,13 @@ function HomePage() {
 
                 form.reset(); // ✅ ahora sí, no depende del evento
                 setStatus('ok');
+                // ✅ GA4: lead enviado correctamente
+                trackEvent('generate_lead', {
+                  event_category: 'form',
+                  event_label: 'contacto',
+                  has_email: Boolean(payload.email),
+                  has_phone: Boolean(payload.phone),
+                });
                 // 👇 ocultar mensaje tras 6 segundos
                 setTimeout(() => {
                   setStatus('idle');
