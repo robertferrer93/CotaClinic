@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     const safeMessage = escapeHtml(cleanMessage);
 
     const from = "CotaSport Clinic <contactoweb@cotasportclinic.com>";
-    const toClinic = "consulta@drcabot.es";
+    const toClinic = "contactoweb@cotasportclinic.com";
 
     // 1) Email interno (despacho) - CRÍTICO
     const internal = await resend.emails.send({
