@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import CotaClinicSite from './CotaClinicSite_alt.jsx';
+import CotaClinicSite from './CotaClinicSitev2.jsx';
 import AnalyticsTracker from './AnalyticsTracker.jsx';
 import './index.css';
 
