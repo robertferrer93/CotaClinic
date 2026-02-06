@@ -548,7 +548,13 @@ export default function Layout() {
 
       {/* ================= MAIN ================= */}
       <main className="w-full">
-        <Outlet />
+        {location.pathname === '/' ? (
+          <Outlet />
+        ) : (
+          <div className="max-w-7xl mx-auto px-6 py-10">
+            <Outlet />
+          </div>
+        )}
       </main>
 
       {/* ================= FOOTER ================= */}
