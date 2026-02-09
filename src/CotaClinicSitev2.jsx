@@ -191,8 +191,13 @@ function HomePage() {
                 md:w-[520px] md:bottom-[-10px] md:right-[40px]"
               />
               <img
-                src="/images/equip_hero_ed_1.png"
+                src="/images/equip_hero-mobile.webp"
                 alt="Equipo médico CotaClinic"
+                width="900"
+                height="506"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
                 className="block w-full h-auto"
               />
             </div>
@@ -207,17 +212,14 @@ function HomePage() {
             />
 
             <img
-              src="/images/equip_hero_ed_1.png"
+              src="/images/equip_hero-desktop.webp"
               alt="Equipo médico CotaClinic"
-              className="
-          mt-auto
-          block
-          w-[126%] lg:w-[132%]
-          max-w-none
-          -mb-8 lg:-mb-10
-          ml-auto
-          translate-x-[-6%] lg:translate-x-[-8%]
-        "
+              width="1600"
+              height="900"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              className="mt-auto block w-[126%] lg:w-[132%] max-w-none -mb-8 lg:-mb-10 ml-auto translate-x-[-6%] lg:translate-x-[-8%]"
             />
           </div>
         </div>
