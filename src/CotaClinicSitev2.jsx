@@ -1,50 +1,43 @@
 // src/CotaClinicSite.jsx
-import * as React from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Layout from './layout.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 
 import { doctors } from './data/doctors.js';
-import { useState } from 'react';
 import { trackEvent } from './analytics';
 
 import { Section, ButtonPrimary, ButtonSecondaryDark } from './components/ui';
 
 // ✅ Lazy routes (code-splitting)
-const DoctorProfilePage = React.lazy(() =>
-  import('./pages/DoctorProfilePage.jsx')
-);
-const LegalPage = React.lazy(() => import('./pages/legal.jsx'));
+const DoctorProfilePage = lazy(() => import('./pages/DoctorProfilePage.jsx'));
+const LegalPage = lazy(() => import('./pages/legal.jsx'));
 
-const LCAPage = React.lazy(() => import('./lca.jsx'));
-const MeniscoPage = React.lazy(() => import('./menisco.jsx'));
-const InestabilidadRotulianaPage = React.lazy(() =>
+const LCAPage = lazy(() => import('./lca.jsx'));
+const MeniscoPage = lazy(() => import('./menisco.jsx'));
+const InestabilidadRotulianaPage = lazy(() =>
   import('./inestabilidad-rotuliana.jsx')
 );
-const OsteotomiasPage = React.lazy(() => import('./osteotomias.jsx'));
-const CartilagoPage = React.lazy(() => import('./cartilago.jsx'));
-const TerapiasbiologicasPage = React.lazy(() =>
-  import('./terapias-biologicas.jsx')
-);
-const ProtesisRodillaPage = React.lazy(() => import('./protesis-rodilla.jsx'));
-const ProtesisDolorosaRevisionPage = React.lazy(() =>
+const OsteotomiasPage = lazy(() => import('./osteotomias.jsx'));
+const CartilagoPage = lazy(() => import('./cartilago.jsx'));
+const TerapiasbiologicasPage = lazy(() => import('./terapias-biologicas.jsx'));
+const ProtesisRodillaPage = lazy(() => import('./protesis-rodilla.jsx'));
+const ProtesisDolorosaRevisionPage = lazy(() =>
   import('./protesis-dolorosa-revision.jsx')
 );
-const RoboticaPage = React.lazy(() => import('./robotica.jsx'));
+const RoboticaPage = lazy(() => import('./robotica.jsx'));
 
 // ✅ También conviene lazy en componentes pesados de la Home (opcional pero recomendable)
-const DoctoraliaWidget = React.lazy(() =>
+const DoctoraliaWidget = lazy(() =>
   import('./components/DoctoraliaWidget.jsx')
 );
-const DoctoraliaReviewsWidget = React.lazy(() =>
+const DoctoraliaReviewsWidget = lazy(() =>
   import('./components/DoctoraliaReviewsWidget.jsx')
 );
-const GalleryStrip = React.lazy(() => import('./components/GalleryStrip.jsx'));
-const GalleryCases = React.lazy(() => import('./components/GalleryCases.jsx'));
-const Subtle = React.lazy(() => import('./components/typography/Subtle.jsx'));
-const DocplannerScript = React.lazy(() =>
-  import('./components/DocplannerScript')
-);
+const GalleryStrip = lazy(() => import('./components/GalleryStrip.jsx'));
+const GalleryCases = lazy(() => import('./components/GalleryCases.jsx'));
+const Subtle = lazy(() => import('./components/typography/Subtle.jsx'));
+const DocplannerScript = lazy(() => import('./components/DocplannerScript'));
 
 // === Componente principal con rutas ===
 export default function CotaClinicSite() {
@@ -52,7 +45,7 @@ export default function CotaClinicSite() {
     <>
       <ScrollToTop />
 
-      <React.Suspense fallback={null}>
+      <Suspense fallback={null}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
@@ -96,7 +89,7 @@ export default function CotaClinicSite() {
           {/* ❌ Este duplicado sobra (ya lo tienes dentro del Layout) */}
           {/* <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} /> */}
         </Routes>
-      </React.Suspense>
+      </Suspense>
     </>
   );
 }
@@ -104,11 +97,46 @@ export default function CotaClinicSite() {
 // ================== PÁGINA HOME ==================
 function HomePage() {
   const location = useLocation();
-  const [status, setStatus] = useState('idle');
-  // idle | sending | ok | error
+  const [status, setStatus] = useState('idle'); // idle | sending | ok | error
+
+  // Doctoralia: cargar al llegar a Contacto + reviews 5s después
+  const [loadDoctoralia, setLoadDoctoralia] = useState(false);
+  const [loadDoctoraliaReviews, setLoadDoctoraliaReviews] = useState(false);
+  const [loadDocplanner, setLoadDocplanner] = useState(false);
+
+  useEffect(() => {
+    const target = document.getElementById('contacto');
+    if (!target) return;
+
+    let timer = null;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry && entry.isIntersecting) {
+          setLoadDoctoralia(true);
+          setLoadDocplanner(true);
+
+          timer = window.setTimeout(() => {
+            setLoadDoctoraliaReviews(true);
+          }, 5000);
+
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '0px 0px -20% 0px' }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      if (timer) window.clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   // ✅ Scroll automático si la URL es /rodilla, /equipo o /contacto
-  React.useEffect(() => {
+  useEffect(() => {
     const map = {
       '/rodilla': '#rodilla',
       '/equipo': '#equipo',
@@ -207,7 +235,7 @@ function HomePage() {
                 width="900"
                 height="506"
                 loading="eager"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="async"
                 className="block w-full h-auto"
               />
@@ -228,7 +256,7 @@ function HomePage() {
               width="1600"
               height="900"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async"
               className="mt-auto block w-[126%] lg:w-[132%] max-w-none -mb-8 lg:-mb-10 ml-auto translate-x-[-6%] lg:translate-x-[-8%]"
             />
@@ -546,7 +574,15 @@ function HomePage() {
             <div className="w-full max-w-full overflow-x-hidden">
               <div className="w-full max-w-full flex justify-center">
                 <div className="w-full max-w-full">
-                  <DoctoraliaReviewsWidget />
+                  {loadDoctoraliaReviews && (
+                    <Suspense
+                      fallback={
+                        <div className="h-[240px] rounded-3xl border border-cota-line bg-white" />
+                      }
+                    >
+                      <DoctoraliaReviewsWidget />
+                    </Suspense>
+                  )}
                 </div>
               </div>
             </div>
@@ -598,7 +634,17 @@ function HomePage() {
               Reserva directamente aquí, en el horario disponible.
             </p>
             <div className="mt-4 max-w-full overflow-hidden">
-              <DoctoraliaWidget />
+              {loadDoctoralia ? (
+                <Suspense
+                  fallback={
+                    <div className="h-[420px] rounded-3xl border border-cota-line bg-white" />
+                  }
+                >
+                  <DoctoraliaWidget />
+                </Suspense>
+              ) : (
+                <div className="h-[420px] rounded-3xl border border-cota-line bg-white" />
+              )}
             </div>
           </div>
 
