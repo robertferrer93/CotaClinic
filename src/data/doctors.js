@@ -3,7 +3,7 @@ export const doctors = [
     id: 'cabot',
     name: 'Dr. Joaquim Cabot Dalmau',
     role: 'Cirugía de Rodilla',
-    imageCard: '/images/team/joaquim_cabot.png',
+    imageCard: '/images/team/joaquim_cabot.webp',
     highlights: [
       'Consultor de casos complejos',
       '>10.000 cirugías de rodilla',
@@ -23,49 +23,45 @@ export const doctors = [
     id: 'gabriel-oliver-far',
     name: 'Dr. Gabriel Oliver Far',
     role: 'Cirugía deportiva  y protésica compleja de rodilla',
-    imageCard: '/images/team/gabriel_oliver.png',
+    imageCard: '/images/team/gabriel_oliver.webp',
     imageProfile: '/images/team/oliver_quiro.png',
-  
+
     highlights: [
       'Jefe de la Unidad de Rodilla – Hospital Universitari de Bellvitge',
       'Experto en lesiones de rodilla en deportistas de competición',
       'Cirugía robótica aplicada a prótesis de rodilla',
       'Lesiones multiligamentosas y casos complejos',
     ],
-  
+
     summary:
       'Médico especialista en Cirugía Ortopédica y Traumatología, doctor por la Universitat Autònoma de Barcelona y jefe de la Unidad de Rodilla del Hospital Universitari de Bellvitge. Referente en cirugía reconstructiva y protésica compleja de rodilla, con amplia experiencia en cirugía robótica, revisiones protésicas y lesiones multiligamentosas. Combina actividad asistencial de alta complejidad con docencia universitaria e investigación clínica.',
-  
+
     experience: [
       'Jefe de la Unidad de Rodilla, Departamento de Cirugía Ortopédica y Medicina del Deporte – Hospital Universitari de Bellvitge (2015–Actualidad)',
       'Especialista en Cirugía Ortopédica y Traumatología, Unidad de Rodilla – Hospital Universitari de Bellvitge (1996–Actualidad)',
       'Investigador principal en múltiples estudios clínicos financiados por IDIBELL',
     ],
-  
+
     education: [
       'Licenciatura en Medicina – Universitat Autònoma de Barcelona (1990)',
       'Especialidad en Cirugía Ortopédica y Traumatología – Hospital Universitari de Bellvitge (1996)',
       'Doctorado (PhD) – Universitat Autònoma de Barcelona: propiocepción en cirugía del LCA de rodilla (2017)',
       'Formación continuada nacional e internacional en cirugía de rodilla y cirugía robótica',
     ],
-  
+
     publications: [
       'Autor de numerosas publicaciones científicas y ponencias en congresos nacionales e internacionales',
       'Revisor del consejo editorial de Bone & Joint Journal',
       'Revisor del consejo editorial de BMC Musculoskeletal Disorders',
     ],
-  
-    memberships: [
-      'SECOT',
-      'SEROD',
-      'Asociación Española de Artroscopia',
-    ]
-    },
-    {
+
+    memberships: ['SECOT', 'SEROD', 'Asociación Española de Artroscopia'],
+  },
+  {
     id: 'llort',
     name: 'Dr. Jaume Llort Buira',
     role: 'COT · Rodilla',
-    imageCard: '/images/team/jaume_llort.png',
+    imageCard: '/images/team/jaume_llort.webp',
     imageProfile: '/images/team/eco_llort.png',
     highlights: [
       'Medicina regenerativa: células madre, PRP, ozonoterapia, proloterapia',
@@ -90,7 +86,7 @@ export const doctors = [
     id: 'robert-ferrer-rivero',
     name: 'Dr. Robert Ferrer Rivero',
     role: 'Preservación articular y Traumatología Deportiva',
-    imageCard: '/images/team/robert_ferrer.png',
+    imageCard: '/images/team/robert_ferrer.webp',
     imageProfile: '/images/team/robert_ferrer_quiro.png',
 
     highlights: [
