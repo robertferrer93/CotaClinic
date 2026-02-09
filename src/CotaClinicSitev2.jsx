@@ -1,44 +1,50 @@
 // src/CotaClinicSite.jsx
 import * as React from 'react';
-import {
-  Routes,
-  Route,
-  Link,
-  useLocation,
-  useParams,
-  Navigate,
-} from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Layout from './layout.jsx';
-
 import ScrollToTop from './components/ScrollToTop.jsx';
 
-import LCAPage from './lca.jsx';
-import MeniscoPage from './menisco.jsx';
-import InestabilidadRotulianaPage from './inestabilidad-rotuliana.jsx';
-import OsteotomiasPage from './osteotomias.jsx';
-import CartilagoPage from './cartilago.jsx';
-import TerapiasbiologicasPage from './terapias-biologicas.jsx';
-import ProtesisRodillaPage from './protesis-rodilla.jsx';
-import ProtesisDolorosaRevisionPage from './protesis-dolorosa-revision.jsx';
-import RoboticaPage from './robotica.jsx';
-import DoctoraliaWidget from './components/DoctoraliaWidget.jsx';
-import DoctoraliaReviewsWidget from './components/DoctoraliaReviewsWidget.jsx';
-import GalleryStrip from './components/GalleryStrip.jsx';
-import GalleryCases from './components/GalleryCases.jsx';
-import Subtle from './components/typography/Subtle.jsx';
-import DocplannerScript from './components/DocplannerScript';
 import { doctors } from './data/doctors.js';
-import DoctorProfilePage from './pages/DoctorProfilePage.jsx';
-import LegalPage from './pages/legal.jsx';
 import { useState } from 'react';
 import { trackEvent } from './analytics';
 
-import {
-  Section,
-  ButtonPrimary,
-  ButtonSecondary,
-  ButtonSecondaryDark,
-} from './components/ui';
+import { Section, ButtonPrimary, ButtonSecondaryDark } from './components/ui';
+
+// ✅ Lazy routes (code-splitting)
+const DoctorProfilePage = React.lazy(() =>
+  import('./pages/DoctorProfilePage.jsx')
+);
+const LegalPage = React.lazy(() => import('./pages/legal.jsx'));
+
+const LCAPage = React.lazy(() => import('./lca.jsx'));
+const MeniscoPage = React.lazy(() => import('./menisco.jsx'));
+const InestabilidadRotulianaPage = React.lazy(() =>
+  import('./inestabilidad-rotuliana.jsx')
+);
+const OsteotomiasPage = React.lazy(() => import('./osteotomias.jsx'));
+const CartilagoPage = React.lazy(() => import('./cartilago.jsx'));
+const TerapiasbiologicasPage = React.lazy(() =>
+  import('./terapias-biologicas.jsx')
+);
+const ProtesisRodillaPage = React.lazy(() => import('./protesis-rodilla.jsx'));
+const ProtesisDolorosaRevisionPage = React.lazy(() =>
+  import('./protesis-dolorosa-revision.jsx')
+);
+const RoboticaPage = React.lazy(() => import('./robotica.jsx'));
+
+// ✅ También conviene lazy en componentes pesados de la Home (opcional pero recomendable)
+const DoctoraliaWidget = React.lazy(() =>
+  import('./components/DoctoraliaWidget.jsx')
+);
+const DoctoraliaReviewsWidget = React.lazy(() =>
+  import('./components/DoctoraliaReviewsWidget.jsx')
+);
+const GalleryStrip = React.lazy(() => import('./components/GalleryStrip.jsx'));
+const GalleryCases = React.lazy(() => import('./components/GalleryCases.jsx'));
+const Subtle = React.lazy(() => import('./components/typography/Subtle.jsx'));
+const DocplannerScript = React.lazy(() =>
+  import('./components/DocplannerScript')
+);
 
 // === Componente principal con rutas ===
 export default function CotaClinicSite() {
@@ -46,46 +52,51 @@ export default function CotaClinicSite() {
     <>
       <ScrollToTop />
 
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
+      <React.Suspense fallback={null}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
 
-          {/* ✅ NUEVO: página real por doctor */}
-          <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} />
+            {/* página real por doctor */}
+            <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} />
 
-          <Route path="/rodilla/lca" element={<LCAPage />} />
-          <Route path="/rodilla/menisco" element={<MeniscoPage />} />
-          <Route
-            path="/rodilla/inestabilidad-rotuliana"
-            element={<InestabilidadRotulianaPage />}
-          />
-          <Route path="/rodilla/osteotomias" element={<OsteotomiasPage />} />
-          <Route path="/rodilla/cartilago" element={<CartilagoPage />} />
-          <Route
-            path="/rodilla/terapias-biologicas"
-            element={<TerapiasbiologicasPage />}
-          />
-          <Route
-            path="/rodilla/protesis-rodilla"
-            element={<ProtesisRodillaPage />}
-          />
-          <Route
-            path="/rodilla/protesis-dolorosa-revision"
-            element={<ProtesisDolorosaRevisionPage />}
-          />
-          <Route path="/rodilla/robotica" element={<RoboticaPage />} />
-          <Route path="/legal" element={<LegalPage />} />
+            <Route path="/rodilla/lca" element={<LCAPage />} />
+            <Route path="/rodilla/menisco" element={<MeniscoPage />} />
+            <Route
+              path="/rodilla/inestabilidad-rotuliana"
+              element={<InestabilidadRotulianaPage />}
+            />
+            <Route path="/rodilla/osteotomias" element={<OsteotomiasPage />} />
+            <Route path="/rodilla/cartilago" element={<CartilagoPage />} />
+            <Route
+              path="/rodilla/terapias-biologicas"
+              element={<TerapiasbiologicasPage />}
+            />
+            <Route
+              path="/rodilla/protesis-rodilla"
+              element={<ProtesisRodillaPage />}
+            />
+            <Route
+              path="/rodilla/protesis-dolorosa-revision"
+              element={<ProtesisDolorosaRevisionPage />}
+            />
+            <Route path="/rodilla/robotica" element={<RoboticaPage />} />
 
-          {/* Home + scroll */}
-          <Route path="/rodilla" element={<HomePage />} />
-          <Route path="/equipo" element={<HomePage />} />
-          <Route path="/contacto" element={<HomePage />} />
+            <Route path="/legal" element={<LegalPage />} />
 
-          {/* fallback */}
-          <Route path="*" element={<HomePage />} />
-        </Route>
-        <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} />
-      </Routes>
+            {/* Home + scroll */}
+            <Route path="/rodilla" element={<HomePage />} />
+            <Route path="/equipo" element={<HomePage />} />
+            <Route path="/contacto" element={<HomePage />} />
+
+            {/* fallback */}
+            <Route path="*" element={<HomePage />} />
+          </Route>
+
+          {/* ❌ Este duplicado sobra (ya lo tienes dentro del Layout) */}
+          {/* <Route path="/equipo/:doctorId" element={<DoctorProfilePage />} /> */}
+        </Routes>
+      </React.Suspense>
     </>
   );
 }
@@ -255,9 +266,6 @@ function HomePage() {
           {doctors.map((d) => (
             <article
               key={d.id}
-              onMouseEnter={() => preloadImage(d.imageProfile || d.imageCard)}
-              onFocus={() => preloadImage(d.imageProfile || d.imageCard)}
-              onTouchStart={() => preloadImage(d.imageProfile || d.imageCard)}
               className="rounded-3xl p-4 border border-cota-line bg-white shadow-soft hover:shadow-lift transition-shadow"
             >
               <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-cota-line mb-4 bg-cota-mist">
@@ -265,6 +273,10 @@ function HomePage() {
                   <img
                     src={d.imageCard}
                     alt={d.name}
+                    loading="lazy"
+                    decoding="async"
+                    width="512"
+                    height="682"
                     className="w-full h-full object-cover object-top"
                   />
                 ) : null}
