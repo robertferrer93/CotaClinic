@@ -190,25 +190,25 @@ export default function Layout() {
                         id: 'cabot',
                         name: 'Dr. Joaquim Cabot Dalmau',
                         role: 'Cirugía de Rodilla',
-                        photo: '/images/team/joaquim_cabot.png',
+                        photo: '/images/team/joaquim_cabot.webp',
                       },
                       {
                         id: 'oliver',
                         name: 'Dr. Gabriel Oliver Far',
                         role: 'COT · Rodilla',
-                        photo: '/images/team/gabriel_oliver.png',
+                        photo: '/images/team/gabriel_oliver.webp',
                       },
                       {
                         id: 'llort',
                         name: 'Dr. Jaume Llort Buira',
                         role: 'COT · Rodilla',
-                        photo: '/images/team/jaume_llort.png',
+                        photo: '/images/team/jaume_llort.webp',
                       },
                       {
                         id: 'ferrer',
                         name: 'Dr. Robert Ferrer Rivero',
                         role: 'Rodilla y Deportiva',
-                        photo: '/images/team/robert_ferrer.png',
+                        photo: '/images/team/robert_ferrer.webp',
                       },
                     ].map((d) => (
                       <Link
@@ -581,3 +581,4 @@ export default function Layout() {
     </div>
   );
 }
+
