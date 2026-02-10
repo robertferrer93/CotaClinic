@@ -2,23 +2,33 @@ export const doctors = [
   {
     id: 'cabot',
     name: 'Dr. Joaquim Cabot Dalmau',
-    role: 'Cirugía de Rodilla',
+    role: 'Segunda opinión y tratiamientos biológicos',
     imageCard: '/images/team/joaquim_cabot.webp',
     highlights: [
-      'Consultor de casos complejos',
-      '>10.000 cirugías de rodilla',
-      'Tratamientos biológicos',
+      'Segunda opinión en patología de rodilla',
+      'Consultor en casos complejos',
+      '+10.000 cirugías de rodilla',
+      'Tratamientos biológicos y regenerativos',
     ],
     summary:
-      'Prestigioso traumatólogo especialista en rodilla y medicina regenerativa. Amplia trayectoria en artroscopia, preservación y cirugía protésica. Continuador del legado del Dr. Joaquín Cabot Boix y referente como consultor en casos complejos.',
+      'El Dr. Joaquim Cabot Dalmau es traumatólogo especialista en patología de la rodilla, artroscopia y artrosis, con una trayectoria de referencia a nivel nacional e internacional. Doctor en Medicina con calificación Cum Laude, ha dedicado su carrera al diagnóstico y tratamiento de lesiones complejas de rodilla, combinando cirugía avanzada y terapias biológicas. Es continuador del legado científico de la Escola Catalana de Genoll y actúa habitualmente como consultor y segunda opinión en casos complejos.',
     experience: [
-      'Director/consultor Grupo COTA (rodilla)',
-      'Trayectoria destacada en artroscopia, ligamentos y artroplastia',
+      'Coordinador y consultor del Grupo COTA (patología de rodilla)',
+      'Ex Jefe Clínico del Área de Artroscopia y Cirugía de la Rodilla en el Hospital de Bellvitge',
+      'Amplia experiencia en artroscopia, ligamentos, artrosis y cirugía protésica',
     ],
-    education: ['Doctor en Medicina (Cum Laude)', 'Especialista en COT'],
-    publications: ['Divulgación científica en patología de rodilla y biología'],
-    memberships: ['SECOT', 'SEROD'],
+    education: [
+      'Doctor en Medicina y Cirugía (Sobresaliente Cum Laude)',
+      'Especialista en Cirugía Ortopédica y Traumatología',
+      'Formación internacional en centros de referencia en rodilla y medicina deportiva',
+    ],
+    publications: [
+      'Autor de múltiples publicaciones científicas en patología de rodilla',
+      'Más de 300 comunicaciones y ponencias en congresos nacionales e internacionales',
+    ],
+    memberships: ['SECOT', 'SEROD', 'AEA', 'ISAKOS'],
   },
+
   {
     id: 'gabriel-oliver-far',
     name: 'Dr. Gabriel Oliver Far',
