@@ -272,21 +272,22 @@ function HomePage() {
           </div>
 
           <div className="mt-2 text-base text-cota-muted">
-            El proyecto COTA se inició hace más de cuatro décadas de la mano del
-            Dr. Joaquín Cabot Boix y ha sido continuado por el Dr. Joaquim Cabot
-            Dalmau. Actualmente, el equipo se completa con el Dr. Gabriel
-            Oliver, con amplia experiencia en patología deportiva y cirugía
-            protésica, el Dr. Jaume Llort, especialista en terapias biológicas,
-            y el Dr. Robert Ferrer, experto en técnicas de preservación
-            articular.
+            El proyecto COTA nace impulsado por el Dr. Joaquim Cabot Dalmau,
+            recogiendo el legado de la Escola Catalana de Genoll, fundada en los
+            años 70 por el Prof. Joaquim Ricard Cabot Boix en el Hospital de
+            Bellvitge. Desde entonces, el equipo ha mantenido una clara vocación
+            asistencial, docente y científica centrada en la patología de la
+            rodilla.
           </div>
 
           <div className="mt-3 text-base text-cota-muted">
-            Nuestro enfoque se basa en dedicar tiempo a cada paciente y analizar
-            cada caso de forma individualizada, priorizando los tratamientos
-            conservadores siempre que son una opción adecuada. Cuando la cirugía
-            es necesaria, utilizamos técnicas avaladas por la evidencia
-            científica y tecnología avanzada.
+            Actualmente, CotaSport está dirigido por el Dr. Gabriel Oliver,
+            junto a los doctores Joaquim Cabot, Jaume Llort i Robert Ferrer
+            reúne a un equipo con amplia experiencia en patología deportiva,
+            cirugía de rodilla, tratamientos regenerativos y preservación
+            articular. Nuestro enfoque se basa en una atención personalizada,
+            priorizando siempre opciones conservadoras y, cuando es necesaria la
+            cirugía, técnicas contrastadas y tecnología avanzada.
           </div>
         </div>
 
