@@ -36,7 +36,7 @@ export default function DrCabotWeb() {
           {/* Imagen nueva debajo del texto */}
           <div className="mt-10">
             <img
-              src="/public/legacy/screencapture_webnova.png"
+              src="/legacy/screencapture_webnova.png"
               alt="Equipo CotaSport Clinic"
               className="mx-auto w-full rounded-2xl shadow-lg"
             />
