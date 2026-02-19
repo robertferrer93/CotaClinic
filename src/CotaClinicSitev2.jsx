@@ -26,6 +26,7 @@ const ProtesisDolorosaRevisionPage = lazy(() =>
   import('./protesis-dolorosa-revision.jsx')
 );
 const RoboticaPage = lazy(() => import('./robotica.jsx'));
+const DrCabotWeb = lazy(() => import('./pages/DrCabotWeb.jsx'));
 
 // ✅ También conviene lazy en componentes pesados de la Home (opcional pero recomendable)
 const DoctoraliaWidget = lazy(() =>
@@ -76,6 +77,7 @@ export default function CotaClinicSite() {
             <Route path="/rodilla/robotica" element={<RoboticaPage />} />
 
             <Route path="/legal" element={<LegalPage />} />
+            <Route path="/drcabotweb" element={<DrCabotWeb />} />
 
             {/* Home + scroll */}
             <Route path="/rodilla" element={<HomePage />} />
