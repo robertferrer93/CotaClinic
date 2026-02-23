@@ -1,9 +1,23 @@
 // src/pages/menisco.jsx
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from './components/ui.jsx';
+import { useHead } from './hooks/useHead';
 
 export default function MeniscoPage() {
+  // OBJETIVO SEO
+  // Keyword principal: rotura de menisco Barcelona
+  // Keywords secundarias: lesión meniscal rodilla, cirugía de menisco (artroscopia) Barcelona,
+  // sutura meniscal, meniscectomía parcial, rotura menisco degenerativa, rotura menisco traumática
+  // Localización: Barcelona
+  // Tipo de paciente: con diagnóstico previo (RMN), dolor/bloqueo o síntomas mecánicos, busca plan claro (conservador vs cirugía)
+
+  useHead({
+    title: 'Rotura de menisco en Barcelona | CotaSport Clinic',
+    description:
+      'Especialistas en lesiones meniscales. Cuándo operar, cuándo no, opciones (sutura vs meniscectomía), recuperación y resultados. Valoración en Barcelona.',
+  });
+
   return (
     <Article>
       <header className="mb-10">
@@ -12,254 +26,319 @@ export default function MeniscoPage() {
         </p>
 
         <h1 className="mt-2 text-3xl md:text-4xl font-bold text-cota-slate">
-          Lesiones meniscales
+          Rotura de menisco en Barcelona
         </h1>
 
         <p className="mt-4 text-neutral-600">
-          Explicamos de forma sencilla qué son los meniscos, qué tipos de
-          lesiones existen y cómo se tratan, siguiendo las recomendaciones de la
-          ESSKA (Sociedad Europea de Traumatología Deportiva, Rodilla y
-          Artroscopia).
+          Las lesiones meniscales son una causa frecuente de dolor, chasquidos o
+          bloqueo de rodilla. En CotaSport Clinic (Barcelona) valoramos tu caso
+          con un enfoque práctico: confirmar el tipo de rotura (traumática o
+          degenerativa), decidir si el tratamiento debe ser conservador o
+          quirúrgico y, si se opera, priorizar la preservación del menisco
+          cuando es posible.
         </p>
 
-        <div className="mt-5">
-          <Link to="/" className="text-sm text-cota-navy hover:underline">
-            ← Volver al inicio
+        <div className="mt-5 flex flex-wrap gap-4">
+          <Link
+            to="/contacto"
+            className="text-sm font-medium text-cota-navy hover:underline"
+          >
+            Solicitar valoración por menisco →
           </Link>
         </div>
       </header>
 
-      {/* 1. Anatomía y función */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold text-cota-slate mb-3">
-          1. Anatomía y función del menisco
+      {/* 1) Introducción clara */}
+      <section className="mb-10 space-y-3">
+        <p className="text-neutral-700">
+          Si ya tienes una resonancia o te han dicho que tienes una “rotura de
+          menisco”, la pregunta clave no es solo qué tipo de rotura es, sino
+          <strong> si realmente explica tus síntomas</strong> y qué estrategia
+          ofrece el mejor resultado a medio-largo plazo.
+        </p>
+        <p className="text-neutral-700">
+          En muchas roturas (sobre todo degenerativas), la primera opción suele
+          ser un tratamiento conservador bien dirigido. En roturas traumáticas
+          inestables o con bloqueo, la cirugía puede ser necesaria, y cuando se
+          opera intentamos <strong>preservar el menisco</strong> siempre que sea
+          reparable.
+        </p>
+      </section>
+
+      {/* 2) ¿Qué es? */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Qué es el menisco y para qué sirve?
         </h2>
-        <p className="text-neutral-700 mb-3">
+        <p className="text-neutral-700">
           Los meniscos son dos estructuras fibrocartilaginosas situadas entre el
           fémur y la tibia. Su función principal es{' '}
           <strong>repartir cargas</strong>,{' '}
-          <strong>proteger el cartílago</strong>,{' '}
-          <strong>mejorar la estabilidad</strong> y{' '}
-          <strong>contribuir a la propiocepción</strong> de la rodilla.
+          <strong>proteger el cartílago</strong>,
+          <strong>mejorar la estabilidad</strong> y contribuir a la{' '}
+          <strong>propiocepción</strong> de la rodilla.
         </p>
         <p className="text-neutral-700">
-          Cuando se lesionan, aumenta el estrés sobre el cartílago y, a largo
-          plazo, se incrementa el riesgo de artrosis.
+          Cuando el menisco se lesiona o se pierde tejido, aumenta el estrés
+          sobre el cartílago y, a largo plazo, puede incrementarse el riesgo de
+          artrosis.
         </p>
       </section>
 
-      {/* 2. Incidencia y mecanismo lesional */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold text-cota-slate mb-3">
-          2. Incidencia y mecanismo lesional
+      {/* 3) ¿Cuándo está indicado? */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Cuándo una rotura de menisco requiere tratamiento específico?
         </h2>
-        <p className="text-neutral-700 mb-3">
-          Las roturas meniscales pueden ser <strong>traumáticas</strong>{' '}
-          (habituales en pacientes jóvenes durante giros o torsiones bruscas) o{' '}
-          <strong>degenerativas</strong> (propias de personas a partir de los
-          35–40 años sin un trauma claro).
+        <p className="text-neutral-700">
+          Depende del tipo de rotura y de tus síntomas. Hay roturas que se
+          encuentran en la RMN y no son el origen principal del dolor, sobre
+          todo en lesiones degenerativas asociadas a cambios de cartílago.
         </p>
 
-        <ul className="list-disc list-inside text-neutral-700 mb-3 space-y-1">
+        <h3 className="text-lg font-semibold text-cota-slate">
+          Situaciones en las que suele tener más peso la lesión meniscal
+        </h3>
+        <ul className="list-disc list-inside space-y-1 text-neutral-700">
           <li>
-            En lesiones traumáticas, la ESSKA estima una incidencia aproximada
-            del <strong>6%</strong> de las lesiones agudas de rodilla en
-            población general, siendo más frecuente el{' '}
-            <strong>menisco medial (75%)</strong>.
+            <strong>Bloqueo real</strong> (la rodilla se queda “enganchada” y no
+            se puede extender o flexionar).
           </li>
           <li>
-            En rodillas con rotura del <strong>LCA</strong>, las roturas
-            meniscales son aún más frecuentes, especialmente en el{' '}
-            <strong>menisco lateral</strong>.
+            <strong>Síntomas mecánicos</strong> claros (fallos, enganches
+            repetidos) con correlación en la exploración.
+          </li>
+          <li>
+            <strong>Roturas traumáticas</strong> en pacientes jóvenes/activos,
+            sobre todo si son inestables o tipo “asa de cubo”.
           </li>
         </ul>
 
-        <h3 className="text-lg font-semibold text-cota-slate mb-2">
-          Mecanismos típicos
+        <h3 className="text-lg font-semibold text-cota-slate">
+          Lesiones degenerativas: matiz importante
         </h3>
-        <ul className="list-disc list-inside text-neutral-700 space-y-1">
-          <li>Giro brusco con el pie fijo.</li>
-          <li>Flexión forzada.</li>
-          <li>
-            En degenerativos: microtraumatismos repetitivos y desgaste
-            progresivo.
-          </li>
-        </ul>
+        <p className="text-neutral-700">
+          En roturas degenerativas (habituales a partir de 35–40 años), muchas
+          veces el dolor se relaciona más con el entorno articular (cartílago,
+          sinovitis, artrosis incipiente) que con la rotura en sí. Por eso, la
+          artroscopia no suele ser el primer paso si no hay bloqueo o síntomas
+          mecánicos significativos.
+        </p>
       </section>
 
-      {/* 3. Tipos de roturas meniscales */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold text-cota-slate mb-3">
-          3. Tipos de roturas meniscales
+      {/* 4) Opciones de tratamiento */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Opciones de tratamiento para una rotura de menisco
         </h2>
 
-        <p className="text-neutral-700 mb-4">
-          La ESSKA diferencia claramente entre roturas{' '}
-          <strong>traumáticas</strong> y <strong>degenerativas</strong>, por su
-          manejo muy distinto.
-        </p>
-
-        <h3 className="text-xl font-semibold text-cota-slate mb-2">
-          3.1. Roturas traumáticas
+        <h3 className="text-lg font-semibold text-cota-slate">
+          Tratamiento conservador
         </h3>
-        <p className="text-neutral-700 mb-2">Las más habituales son:</p>
-        <ul className="list-disc list-inside text-neutral-700 mb-4 space-y-1">
-          <li>Longitudinales (incluye rotura en asa de cubo).</li>
-          <li>Radiales.</li>
-          <li>Flap.</li>
+        <p className="text-neutral-700">
+          En muchas lesiones (especialmente degenerativas), el primer enfoque es
+          no quirúrgico. El objetivo es reducir dolor, mejorar fuerza y control
+          de carga, y recuperar función.
+        </p>
+        <ul className="list-disc list-inside space-y-1 text-neutral-700">
+          <li>Fisioterapia: fuerza, movilidad y control neuromuscular.</li>
+          <li>Modificación temporal de actividades y progresión de carga.</li>
+          <li>Medicación antiinflamatoria si no hay contraindicaciones.</li>
           <li>
-            Lesión de la raíz meniscal posterior (especialmente lateral en
-            lesiones de LCA).
-          </li>
-          <li>
-            Lesión de la rampa meniscal (zona posterior del menisco medial, no
-            siempre afecta al menisco propiamente dicho).
+            Infiltraciones en casos seleccionados (por ejemplo, cuando hay
+            componente inflamatorio intraarticular).
           </li>
         </ul>
-        <p className="text-neutral-700 mb-4">
-          Son roturas con mejor pronóstico de reparación y deben intentarse{' '}
-          <strong>preservar</strong>.
+
+        <h3 className="text-lg font-semibold text-cota-slate">
+          Tratamiento quirúrgico (artroscopia)
+        </h3>
+        <p className="text-neutral-700">
+          La cirugía se plantea cuando hay roturas traumáticas inestables,
+          bloqueo o persistencia de síntomas pese a un tratamiento conservador
+          bien realizado.
         </p>
 
-        <h3 className="text-xl font-semibold text-cota-slate mb-2">
-          3.2. Roturas degenerativas
-        </h3>
-        <ul className="list-disc list-inside text-neutral-700 mb-3 space-y-1">
-          <li>Típicamente horizontales.</li>
-          <li>Se asocian a degeneración del menisco y del cartílago.</li>
+        <ul className="list-disc list-inside space-y-1 text-neutral-700">
           <li>
-            A menudo son un marcador de <strong>artrosis incipiente</strong>,
-            más que la causa principal del dolor.
+            <strong>Sutura / reparación meniscal:</strong> opción preferente si
+            la rotura es reparable. Preservar menisco protege mejor la rodilla a
+            largo plazo.
+          </li>
+          <li>
+            <strong>Meniscectomía parcial:</strong> se reserva para roturas
+            irreparables o fallos de reparación. Se intenta retirar lo mínimo
+            imprescindible.
+          </li>
+        </ul>
+
+        <p className="text-neutral-700">
+          La decisión se basa en: patrón de rotura, zona vascular, calidad del
+          tejido, estabilidad, edad/actividad y lesiones asociadas (por ejemplo,
+          LCA).
+        </p>
+      </section>
+
+      {/* 5) Cómo es la cirugía/procedimiento */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Cómo es la cirugía del menisco?
+        </h2>
+        <p className="text-neutral-700">
+          La cirugía suele realizarse por artroscopia (incisiones pequeñas) y el
+          objetivo es tratar la rotura minimizando la pérdida de tejido. Cuando
+          es posible, se repara (sutura). Si no es reparable, se realiza una
+          meniscectomía parcial conservando el máximo menisco sano.
+        </p>
+        <p className="text-neutral-700">
+          En el mismo acto se valoran y tratan lesiones asociadas si procede
+          (cartílago, sinovitis, estabilidad, etc.).
+        </p>
+      </section>
+
+      {/* 6) Recuperación */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">Recuperación</h2>
+        <p className="text-neutral-700">
+          La recuperación depende del tipo de tratamiento:
+        </p>
+        <ul className="list-disc list-inside space-y-1 text-neutral-700">
+          <li>
+            <strong>Meniscectomía parcial:</strong> suele permitir una
+            recuperación más rápida, con progresión de actividad en semanas.
+          </li>
+          <li>
+            <strong>Sutura meniscal:</strong> requiere un protocolo más
+            protector (por la cicatrización), con progresión más lenta de carga
+            y flexión según el caso.
           </li>
         </ul>
         <p className="text-neutral-700">
-          En estos casos, la{' '}
-          <strong>meniscectomía no debe ser el primer tratamiento</strong>.
+          En ambos casos, la fisioterapia (fuerza, movilidad y control de carga)
+          es clave para un buen resultado.
         </p>
       </section>
 
-      {/* 4. Opciones de tratamiento */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold text-cota-slate mb-3">
-          4. Opciones de tratamiento
+      {/* 7) Resultados */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Resultados esperables
+        </h2>
+        <p className="text-neutral-700">
+          En roturas traumáticas reparables, la sutura puede ofrecer muy buenos
+          resultados y mejor protección articular a largo plazo. En lesiones
+          degenerativas, el objetivo suele ser mejorar dolor y función con el
+          mínimo tratamiento necesario, y muchas evolucionan bien sin cirugía.
+        </p>
+        <p className="text-neutral-700">
+          Si hay artrosis asociada, el pronóstico depende más del estado del
+          cartílago y de la estrategia global de carga y fuerza que de la rotura
+          meniscal aislada.
+        </p>
+      </section>
+
+      {/* 8) FAQ – estilo obligatorio */}
+      <section className="border-t border-neutral-200 pt-6 mt-6">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Preguntas frecuentes sobre rotura de menisco
         </h2>
 
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold text-cota-slate mb-2">
-            4.1. Tratamiento conservador
-          </h3>
-          <p className="text-neutral-700 mb-3">
-            La mayoría de lesiones, especialmente las{' '}
-            <strong>degenerativas</strong>, deben empezar con manejo no
-            quirúrgico:
-          </p>
-          <ul className="list-disc list-inside text-neutral-700 mb-3 space-y-1">
-            <li>Fisioterapia para control del dolor y fortalecimiento.</li>
-            <li>Modificación de actividades.</li>
-            <li>AINEs si no hay contraindicaciones.</li>
-            <li>
-              <strong>Infiltraciones en casos seleccionados:</strong> el{' '}
-              <strong>plasma rico en plaquetas (PRP)</strong> puede ayudar a
-              disminuir la inflamación intraarticular, mejorar el dolor y
-              potenciar la biología de cicatrización cuando la zona tiene cierto
-              potencial de curación.
-            </li>
-          </ul>
-
-          <p className="text-neutral-700 font-semibold mb-2">
-            Recomendaciones ESSKA:
-          </p>
-          <ul className="list-disc list-inside text-neutral-700 space-y-1">
-            <li>
-              En roturas degenerativas, la artroscopia <strong>NO</strong> debe
-              ser el tratamiento inicial porque no ha demostrado superioridad
-              sobre la fisioterapia u otras medidas conservadoras.
-            </li>
-            <li>
-              En roturas traumáticas pequeñas y estables, especialmente del
-              menisco lateral, algunas pueden <strong>dejarse in situ</strong>{' '}
-              con buenos resultados.
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold text-cota-slate mb-2">
-            4.2. Tratamiento quirúrgico
-          </h3>
-          <p className="text-neutral-700 mb-4">Según los consensos ESSKA:</p>
-
-          <div className="mb-4 border-l-4 border-cota-navy pl-4 py-2 bg-cota-sky/60 rounded-md">
-            <h4 className="text-lg font-semibold text-cota-slate mb-1">
-              A. Reparación meniscal (suturar el menisco) – opción preferente
-            </h4>
-            <p className="text-neutral-700 mb-2">
-              <span className="font-semibold">
-                La preservación del menisco debe ser siempre la primera opción
-              </span>{' '}
-              siempre que sea técnicamente posible.
-            </p>
-            <p className="text-neutral-700 font-semibold mb-1">
-              Indicaciones típicas:
-            </p>
-            <ul className="list-disc list-inside text-neutral-700 mb-2 space-y-1">
-              <li>
-                Roturas traumáticas longitudinales, verticales o tipo{' '}
-                <strong>asa de cubo</strong>.
-              </li>
-              <li>Roturas radiales en zonas 1–2.</li>
-              <li>Lesiones de raíz meniscal (posterior medial o lateral).</li>
-              <li>Pacientes jóvenes o activos.</li>
-            </ul>
-            <p className="text-neutral-700 font-semibold mb-1">Ventajas:</p>
-            <ul className="list-disc list-inside text-neutral-700 mb-2 space-y-1">
-              <li>Mejor protección articular a largo plazo.</li>
-              <li>Menor riesgo de artrosis futura.</li>
-            </ul>
-            <p className="text-neutral-700">
-              La evidencia muestra mejores resultados si la reparación se
-              realiza de forma <strong>precoz</strong> tras la lesión.
+        <div className="mt-6 space-y-6 text-neutral-700">
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuándo hay que operar una rotura de menisco?
+            </h3>
+            <p className="mt-2">
+              Se plantea sobre todo si hay bloqueo real, rotura traumática
+              inestable o síntomas que persisten pese a un tratamiento
+              conservador bien realizado. En roturas degenerativas, la cirugía
+              no suele ser el primer paso.
             </p>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-cota-slate mb-1">
-              B. Meniscectomía parcial – última opción
-            </h4>
-            <p className="text-neutral-700 mb-2">Debe reservarse para:</p>
-            <ul className="list-disc list-inside text-neutral-700 mb-2 space-y-1">
-              <li>
-                Roturas irreparables (degenerativas complejas, menisco muy
-                degenerado, flap no reducible, rotura en asa de cubo no
-                reducible).
-              </li>
-              <li>Fallo de una reparación previa.</li>
-              <li>Síntomas mecánicos intensos (bloqueo real).</li>
-            </ul>
-            <p className="text-neutral-700 font-semibold">
-              Advertencia: las meniscectomías se asocian a{' '}
-              <strong>mayor riesgo de artrosis</strong> y peor evolución
-              funcional a largo plazo comparado con reparar o conservar.
+            <h3 className="font-semibold text-cota-slate">
+              ¿Qué es mejor: sutura meniscal o meniscectomía parcial?
+            </h3>
+            <p className="mt-2">
+              Cuando la rotura es reparable, la sutura suele ser preferible
+              porque preserva el menisco y protege mejor la rodilla a largo
+              plazo. La meniscectomía parcial se reserva para roturas
+              irreparables y se intenta retirar lo mínimo imprescindible.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Se puede curar una rotura de menisco sin operar?
+            </h3>
+            <p className="mt-2">
+              Muchas lesiones, especialmente degenerativas, mejoran con
+              fisioterapia y control de carga. La posibilidad de “cicatrizar”
+              depende del tipo de rotura y de la zona (hay áreas con mejor
+              irrigación que otras).
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuándo puedo volver a correr o hacer deporte tras una lesión de
+              menisco?
+            </h3>
+            <p className="mt-2">
+              Depende de síntomas y del tratamiento. Tras meniscectomía parcial,
+              la vuelta suele ser más rápida; tras sutura, el plan es más
+              protector. En ambos casos, se decide por criterios de fuerza,
+              movilidad y tolerancia, no solo por el calendario.
             </p>
           </div>
         </div>
+
+        {/* Preparado para futura implementación de Schema FAQPage (JSON-LD) */}
+        {/*
+          const schemaFaq = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ...
+            ]
+          };
+        */}
       </section>
 
-      {/* 5. Nuestro enfoque */}
-      <section className="border-t border-neutral-200 pt-6 mt-6">
-        <h2 className="text-2xl font-semibold text-cota-slate mb-3">
-          5. Nuestro enfoque en CotaClinic
+      {/* 9) Enfoque del equipo */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Nuestro enfoque en CotaSport Clinic
         </h2>
-        <p className="text-neutral-700 mb-2">
-          En nuestra práctica seguimos las recomendaciones de la{' '}
-          <strong>ESSKA</strong>, tanto para lesiones traumáticas (consenso
-          2019) como para degenerativas (consenso 2016).
-        </p>
         <p className="text-neutral-700">
-          Esto significa que siempre intentamos{' '}
-          <strong>preservar el menisco</strong> cuando es posible, ya que es lo
-          que mejor protege la rodilla a largo plazo.
+          En lesiones meniscales, la decisión clave es indicar bien. Priorizamos
+          un diagnóstico funcional (síntomas + exploración + imagen) y un plan
+          progresivo. Cuando operamos, intentamos preservar el menisco siempre
+          que sea técnicamente posible, porque es lo que mejor protege la
+          rodilla a largo plazo.
         </p>
+      </section>
+
+      {/* 10) CTA final */}
+      <section className="mb-4 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Quieres saber cuál es la mejor opción para tu menisco?
+        </h2>
+        <p className="text-neutral-700">
+          Si tienes una rotura diagnosticada y dudas entre tratamiento
+          conservador o cirugía, podemos valorar tu caso y explicarte
+          alternativas con claridad.
+        </p>
+
+        <div className="mt-5">
+          <Link
+            to="/contacto"
+            className="inline-flex items-center justify-center rounded-md bg-cota-navy px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+          >
+            Solicitar valoración
+          </Link>
+        </div>
       </section>
     </Article>
   );
