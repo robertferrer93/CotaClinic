@@ -1,355 +1,318 @@
 // src/pages/terapias-biologicas.jsx
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Article } from './components/ui.jsx';
+import { useHead } from './hooks/useHead';
 
-export default function TerapiasbiologicasPage() {
+export default function TerapiasBiologicasPage() {
+  // OBJETIVO SEO
+  // Keyword principal: terapias biológicas rodilla Barcelona
+  // Keywords secundarias: PRP rodilla Barcelona, ácido hialurónico rodilla Barcelona,
+  // infiltraciones rodilla, artrosis de rodilla, lesión de cartílago, dolor de rodilla
+  // Localización: Barcelona
+  // Tipo de paciente: con diagnóstico previo / segunda opinión / busca opciones no quirúrgicas
+
+  useHead({
+    title: 'Terapias biológicas para rodilla en Barcelona | CotaSport Clinic',
+    description:
+      'Ácido hialurónico y PRP para artrosis y lesiones de rodilla. Indicaciones, procedimiento, recuperación y resultados. Solicita valoración en Barcelona.',
+  });
+
   return (
-    <article className="max-w-3xl">
+    <Article>
       <header className="mb-10">
         <p className="text-sm font-semibold uppercase tracking-wide text-cota-navy">
-          Tratamientos
+          Rodilla
         </p>
 
         <h1 className="mt-2 text-3xl md:text-4xl font-bold text-cota-slate">
-          Terapias biológicas en CotaClinic
+          Terapias biológicas para la rodilla en Barcelona
         </h1>
 
         <p className="mt-4 text-neutral-600">
-          Utilizamos tratamientos biológicos mínimamente invasivos para reducir
-          el dolor, modular la inflamación y favorecer la reparación de tejidos
-          en artrosis, lesiones de cartílago, menisco y tendón.
+          En CotaSport Clinic (Barcelona) utilizamos terapias biológicas como el
+          ácido hialurónico y el PRP para reducir el dolor y modular la
+          inflamación en artrosis de rodilla y en algunas lesiones de cartílago,
+          menisco o tendón. Si ya tienes un diagnóstico (radiografía o
+          resonancia) y quieres saber si una infiltración tiene sentido en tu
+          caso, te ayudamos a decidir con criterio y con un plan claro de
+          recuperación.
         </p>
 
-        <div className="mt-5">
-          <Link to="/" className="text-sm text-cota-navy hover:underline">
-            ← Volver al inicio
+        <div className="mt-5 flex flex-wrap gap-4">
+          <Link
+            to="/contacto"
+            className="text-sm font-medium text-cota-navy hover:underline"
+          >
+            Solicitar valoración por terapias biológicas →
+          </Link>
+          <Link
+            to="/contacto"
+            className="text-sm font-medium text-cota-navy hover:underline"
+          >
+            Segunda opinión con RMN/Rx →
           </Link>
         </div>
       </header>
 
-      {/* Introducción */}
+      {/* 1. Introducción clara */}
       <section className="mb-10 space-y-3">
         <p className="text-neutral-700">
-          Las terapias biológicas se basan en sustancias del propio organismo o
-          biomateriales avanzados. Bien indicadas, pueden ayudar a mejorar la
-          función y retrasar, cuando es posible, la necesidad de cirugías más
-          agresivas.
+          Las terapias biológicas son tratamientos mínimamente invasivos que se
+          integran en una estrategia global: control de carga, fuerza, movilidad
+          y, cuando procede, infiltraciones para mejorar el entorno de la
+          articulación o del tendón. No son “milagrosas” ni sirven para todos,
+          pero en los casos adecuados pueden mejorar dolor y función y ayudar a
+          retrasar opciones más agresivas.
         </p>
         <p className="text-neutral-700">
-          En CotaClinic aplicamos estas técnicas de forma personalizada,
-          especialmente en:
+          En rodilla las consideramos sobre todo cuando hay síntomas
+          persistentes pese a fisioterapia bien planteada, o cuando buscas una
+          opción “puente” antes de plantear cirugía mayor.
         </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>Artrosis de rodilla leve o moderada.</li>
-          <li>Lesiones de cartílago y menisco.</li>
-          <li>Tendinopatías (rotuliana, Aquiles, epicondilitis, etc.).</li>
-        </ul>
       </section>
 
-      {/* 1. Ácido hialurónico */}
-      <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          1. Ácido hialurónico (AH)
+      {/* 2. ¿Qué es? */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Qué son las terapias biológicas?
         </h2>
         <p className="text-neutral-700">
-          El ácido hialurónico es una sustancia natural del líquido sinovial,
-          que actúa como lubricante y amortiguador dentro de la articulación.
-          Con la artrosis su calidad disminuye, y la rodilla pierde capacidad de
-          deslizamiento.
+          Son tratamientos que utilizan componentes del propio organismo (por
+          ejemplo, derivados sanguíneos) o biomateriales biocompatibles para
+          modular la inflamación y optimizar el entorno articular. Su objetivo
+          principal suele ser reducir dolor y mejorar función, especialmente en
+          artrosis leve-moderada o en lesiones degenerativas seleccionadas.
+        </p>
+      </section>
+
+      {/* 3. ¿Cuándo está indicado? */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Cuándo están indicadas en la rodilla?
+        </h2>
+        <p className="text-neutral-700">
+          La indicación depende del diagnóstico, el grado de artrosis y tus
+          objetivos. En consulta valoramos exploración, mecánica y pruebas de
+          imagen (Rx y/o RMN) para elegir la opción más razonable.
+        </p>
+
+        <ul className="list-disc list-inside space-y-1 text-neutral-700">
+          <li>Artrosis de rodilla leve o moderada con dolor persistente.</li>
+          <li>Lesiones de cartílago (condrales) seleccionadas.</li>
+          <li>Menisco degenerativo en casos concretos.</li>
+          <li>
+            Tendinopatías (rotuliana, Aquiles, etc.) que no mejoran con carga
+            progresiva.
+          </li>
+        </ul>
+
+        <p className="text-neutral-700">
+          En artrosis avanzada o con deformidad importante, el beneficio suele
+          ser más limitado y conviene valorar alternativas.
+        </p>
+      </section>
+
+      {/* 4. Opciones de tratamiento */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Opciones de tratamiento: principales terapias biológicas
+        </h2>
+
+        <h3 className="text-lg font-semibold text-cota-slate">
+          1) Ácido hialurónico (AH)
+        </h3>
+        <p className="text-neutral-700">
+          El ácido hialurónico es una sustancia natural del líquido sinovial que
+          actúa como lubricante y amortiguador. Con la artrosis, su calidad
+          disminuye y la articulación pierde capacidad de deslizamiento.
         </p>
         <p className="text-neutral-700">
-          Las infiltraciones de AH ayudan a reducir el dolor, mejorar la
-          movilidad y disminuir la sensación de fricción articular.
+          En pacientes bien indicados, las infiltraciones de AH pueden reducir
+          el dolor y mejorar la movilidad, especialmente en artrosis
+          leve-moderada.
         </p>
 
         <h3 className="text-lg font-semibold text-cota-slate">
-          Peso molecular y reticulación: por qué importa la calidad
+          2) PRP (plasma rico en plaquetas)
         </h3>
         <p className="text-neutral-700">
-          No todos los ácidos hialurónicos son iguales. Dos características
-          clave son:
+          El PRP se obtiene de una muestra de sangre del propio paciente y se
+          procesa para concentrar plaquetas y factores de crecimiento. Su
+          objetivo es modular la inflamación y mejorar el entorno biológico del
+          tejido.
         </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>
-            <span className="font-semibold">Peso molecular alto:</span>{' '}
-            productos más viscosos, que permanecen más tiempo en la articulación
-            y suelen ofrecer un efecto más prolongado, especialmente en artrosis
-            leve-moderada.
-          </li>
-          <li>
-            <span className="font-semibold">Reticulación:</span> las moléculas
-            se &quot;entrelazan&quot; para hacer el producto más estable y
-            duradero, de forma que mantiene su viscosidad durante más tiempo.
-          </li>
-        </ul>
-
         <p className="text-neutral-700">
-          En CotaClinic utilizamos principalmente{' '}
-          <span className="font-semibold">
-            ácidos hialurónicos de alta viscosidad y con reticulación
-          </span>
-          , que ofrecen una mayor duración del efecto, mejor tolerancia y menos
-          necesidad de repetir infiltraciones. No empleamos productos de baja
-          viscosidad por su menor beneficio y duración.
-        </p>
-      </section>
-
-      {/* 2. PRP */}
-      <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          2. PRP – Plasma rico en plaquetas
-        </h2>
-        <p className="text-neutral-700">
-          El PRP se obtiene de una pequeña muestra de sangre del propio
-          paciente, que se procesa para concentrar las plaquetas y los factores
-          de crecimiento. Estos factores ayudan a modular la inflamación y a
-          mejorar el entorno biológico de la articulación o del tendón.
+          Lo consideramos sobre todo en artrosis leve-moderada, lesiones
+          condrales y algunas situaciones degenerativas, especialmente si se
+          combina con un programa de ejercicio terapéutico y control de factores
+          mecánicos.
         </p>
 
         <h3 className="text-lg font-semibold text-cota-slate">
-          ¿En qué casos lo utilizamos?
-        </h3>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>Artrosis de rodilla leve o moderada.</li>
-          <li>Lesiones condrales y meniscales degenerativas.</li>
-          <li>Tendinopatías (rotuliana, Aquiles, epicondilitis, etc.).</li>
-        </ul>
-        <p className="text-neutral-700">
-          En muchos pacientes el PRP permite reducir el dolor y mejorar la
-          función, sobre todo si se acompaña de un buen programa de ejercicio
-          terapéutico y control de factores mecánicos.
-        </p>
-
-        <h3 className="text-lg font-semibold text-cota-slate">
-          PRP pobre vs rico en leucocitos
+          3) Opciones avanzadas en casos seleccionados
         </h3>
         <p className="text-neutral-700">
-          No todos los PRP son iguales. Una diferencia importante es la cantidad
-          de leucocitos (glóbulos blancos):
-        </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>
-            <span className="font-semibold">
-              PRP pobre en leucocitos (LP-PRP):
-            </span>{' '}
-            ideal para articulaciones (cartílago, menisco, artrosis), ya que
-            genera menos inflamación postinfiltración.
-          </li>
-          <li>
-            <span className="font-semibold">
-              PRP rico en leucocitos (LR-PRP):
-            </span>{' '}
-            puede ser útil en algunas tendinopatías donde buscamos un estímulo
-            biológico más intenso.
-          </li>
-        </ul>
-        <p className="text-neutral-700">
-          En CotaClinic seleccionamos el tipo de PRP en función de la lesión
-          (articular o tendinosa) y del perfil de cada paciente.
+          En situaciones concretas, y tras valorar alternativas y expectativas,
+          pueden considerarse opciones más avanzadas (por ejemplo, terapias
+          celulares o derivados del tejido adiposo). Se indican con prudencia,
+          tras explicar claramente objetivos y límites.
         </p>
       </section>
 
-      {/* 3. Monocitos */}
-      <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          3. Terapia con monocitos (PBMNCs)
+      {/* 5. Cómo es el procedimiento */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Cómo es el procedimiento?
         </h2>
         <p className="text-neutral-700">
-          Los monocitos son células de la sangre con capacidad para modular la
-          inflamación y participar en procesos de reparación tisular. La terapia
-          con monocitos consiste en concentrar las células mononucleares del
-          propio paciente e infiltrarlas en la articulación.
+          La mayoría de terapias biológicas se realizan en consulta de forma
+          ambulatoria. Tras confirmar la indicación, se realiza asepsia estricta
+          y la infiltración se efectúa con técnica mínimamente invasiva. En
+          casos seleccionados puede utilizarse guía ecográfica para mejorar la
+          precisión.
         </p>
         <p className="text-neutral-700">
-          En CotaClinic consideramos esta opción en casos seleccionados,
-          especialmente cuando{' '}
-          <span className="font-semibold">
-            tratamientos estándar como el ácido hialurónico o el PRP no han sido
-            suficientes
-          </span>{' '}
-          y el paciente mantiene dolor o limitación.
-        </p>
-        <p className="text-neutral-700">
-          Es una opción avanzada, con un buen perfil de seguridad, que se indica
-          tras una valoración cuidadosa del caso.
+          En PRP, además, se realiza la extracción y el procesado de la muestra
+          antes de la infiltración.
         </p>
       </section>
 
-      {/* 4. Células madre adiposas */}
-      <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          4. Células madre derivadas del tejido adiposo
-        </h2>
+      {/* 6. Recuperación */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">Recuperación</h2>
         <p className="text-neutral-700">
-          El tejido adiposo (grasa) contiene células mesenquimales con capacidad
-          antiinflamatoria y moduladora del entorno articular. En artrosis o
-          lesiones condrales pueden ayudar a reducir el dolor y mejorar la
-          función.
+          La recuperación suele ser rápida. Es frecuente notar molestias leves
+          durante 24–72 horas. En general recomendamos ajustar la carga y
+          retomar progresivamente la actividad según síntomas.
         </p>
         <p className="text-neutral-700">
-          En CotaClinic valoramos estas terapias en pacientes muy seleccionados,
-          sobre todo cuando{' '}
-          <span className="font-semibold">
-            el tratamiento con ácido hialurónico y PRP no ha dado el resultado
-            esperado
-          </span>
-          . Son técnicas avanzadas, con evidencia científica prometedora, que se
-          indican dentro de protocolos controlados y con una explicación clara
-          al paciente.
+          El resultado mejora cuando se acompaña de un plan de ejercicio
+          terapéutico (fuerza, control neuromuscular y movilidad) y corrección
+          de factores mecánicos.
         </p>
       </section>
 
-      {/* 5. Proloterapia y ozonoterapia */}
-      <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          5. Proloterapia y ozonoterapia
+      {/* 7. Resultados */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Resultados esperables
         </h2>
         <p className="text-neutral-700">
-          También disponemos de tratamientos complementarios como la
-          proloterapia y la ozonoterapia, que pueden utilizarse de forma aislada
-          o combinados con otras terapias biológicas.
+          El objetivo habitual es mejorar dolor y función y aumentar la
+          tolerancia a la carga. La duración del efecto varía según el
+          diagnóstico, el grado de artrosis y el plan de rehabilitación.
         </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>
-            <span className="font-semibold">Proloterapia:</span> infiltración
-            con dextrosa en ligamentos o zonas dolorosas para estimular
-            mecanismos locales de reparación.
-          </li>
-          <li>
-            <span className="font-semibold">Ozonoterapia:</span> mezcla de
-            oxígeno-ozono con efecto modulador del dolor y la inflamación en
-            determinadas articulaciones.
-          </li>
-        </ul>
         <p className="text-neutral-700">
-          Se plantean siempre dentro de una estrategia global que incluye
-          ejercicio, corrección de factores mecánicos y, cuando es necesario),
-          otras terapias biológicas.
+          En consulta te orientamos sobre qué puedes esperar de forma realista y
+          qué alternativa tiene más sentido si el beneficio probable es bajo.
         </p>
       </section>
 
-      {/* Comparativa de terapias */}
-      <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          Comparativa orientativa de las terapias biológicas
+      {/* 8. FAQ – estilo obligatorio (Nivel 1 + 2 SEO) */}
+      <section className="border-t border-neutral-200 pt-6 mt-6">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Preguntas frecuentes sobre terapias biológicas para rodilla
+        </h2>
+
+        <div className="mt-6 space-y-6 text-neutral-700">
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Las terapias biológicas para rodilla en Barcelona evitan la
+              cirugía?
+            </h3>
+            <p className="mt-2">
+              No siempre. En casos bien indicados pueden mejorar dolor y función
+              y ayudar a retrasar tratamientos más agresivos, pero si existe
+              artrosis muy avanzada o una lesión mecánica clara, la cirugía
+              puede ser la opción más efectiva.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Qué es mejor para la artrosis: PRP o ácido hialurónico en la
+              rodilla?
+            </h3>
+            <p className="mt-2">
+              Depende del grado de artrosis y del objetivo. El ácido hialurónico
+              se orienta más al alivio sintomático y lubricación; el PRP busca
+              modular inflamación. La decisión se individualiza tras valorar
+              Rx/RMN, síntomas y nivel de actividad.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuándo se nota el efecto de una infiltración biológica en la
+              rodilla?
+            </h3>
+            <p className="mt-2">
+              Suele ser progresivo en semanas y varía según la técnica y el
+              caso. Más allá de los primeros días, se valora la respuesta con un
+              plan de ejercicio y control de carga.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuántas sesiones o infiltraciones de terapias biológicas
+              necesito?
+            </h3>
+            <p className="mt-2">
+              No existe un número universal. Depende de la técnica, del
+              diagnóstico y de la respuesta. Tras la valoración, proponemos un
+              protocolo razonable y revisiones para decidir si repetir o ajustar
+              la estrategia.
+            </p>
+          </div>
+        </div>
+
+        {/* Preparado para futura implementación de Schema FAQPage (JSON-LD) */}
+        {/*
+          const schemaFaq = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ...
+            ]
+          };
+        */}
+      </section>
+
+      {/* 9. Enfoque del equipo */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Enfoque del equipo
         </h2>
         <p className="text-neutral-700">
-          De forma resumida, estas son las características aproximadas de cada
-          tratamiento. La indicación final siempre se decide de forma individual
-          tras la valoración médica.
+          Somos un equipo centrado en patología de rodilla y en pacientes que ya
+          vienen con diagnóstico o pruebas de imagen. Indicamos terapias
+          biológicas cuando aportan valor real y siempre dentro de un plan
+          global (rehabilitación, control de carga y objetivos funcionales).
+        </p>
+      </section>
+
+      {/* 10. CTA final */}
+      <section className="mb-4 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Quieres saber si una terapia biológica es adecuada para tu caso?
+        </h2>
+        <p className="text-neutral-700">
+          Si tienes artrosis leve-moderada o una lesión ya diagnosticada y
+          quieres valorar PRP o ácido hialurónico con criterio, podemos
+          ayudarte.
         </p>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-neutral-200 text-sm">
-            <thead className="bg-neutral-50">
-              <tr>
-                <th className="border-b border-neutral-200 px-3 py-2 text-left font-semibold">
-                  Terapia
-                </th>
-                <th className="border-b border-neutral-200 px-3 py-2 text-left font-semibold">
-                  Ideal para
-                </th>
-                <th className="border-b border-neutral-200 px-3 py-2 text-left font-semibold">
-                  Duración orientativa del efecto
-                </th>
-                <th className="border-b border-neutral-200 px-3 py-2 text-left font-semibold">
-                  Tiempo de recuperación
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="odd:bg-white even:bg-neutral-50">
-                <td className="border-b border-neutral-200 px-3 py-2 font-medium">
-                  Ácido hialurónico alta viscosidad
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Artrosis de rodilla leve-moderada
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Aproximadamente 6–12 meses
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Actividad habitual en 24–48 horas
-                </td>
-              </tr>
-              <tr className="odd:bg-white even:bg-neutral-50">
-                <td className="border-b border-neutral-200 px-3 py-2 font-medium">
-                  PRP (plasma rico en plaquetas)
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Cartílago, menisco, tendinopatías
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Aproximadamente 6–24 meses
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Molestias leves 24–72 horas
-                </td>
-              </tr>
-              <tr className="odd:bg-white even:bg-neutral-50">
-                <td className="border-b border-neutral-200 px-3 py-2 font-medium">
-                  Monocitos (PBMNCs)
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Artrosis cuando AH/PRP no han funcionado
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Habitualmente 6–12 meses
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Actividad ligera en 24–48 horas
-                </td>
-              </tr>
-              <tr className="odd:bg-white even:bg-neutral-50">
-                <td className="border-b border-neutral-200 px-3 py-2 font-medium">
-                  Células madre de tejido adiposo
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Artrosis y lesiones condrales seleccionadas
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  12 meses o más (variable según el caso)
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Actividad ligera en pocos días
-                </td>
-              </tr>
-              <tr className="odd:bg-white even:bg-neutral-50">
-                <td className="border-b border-neutral-200 px-3 py-2 font-medium">
-                  Proloterapia / ozonoterapia
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Dolor articular o tendinoso, complemento a otras terapias
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Variable según protocolo y paciente
-                </td>
-                <td className="border-b border-neutral-200 px-3 py-2">
-                  Recuperación rápida, actividad habitual en 24–48 horas
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="mt-5">
+          <Link
+            to="/contacto"
+            className="inline-flex items-center justify-center rounded-md bg-cota-navy px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+          >
+            Solicitar valoración
+          </Link>
         </div>
       </section>
-
-      {/* CTA final */}
-      <section className="mb-4 space-y-3">
-        <h2 className="text-xl font-semibold text-cota-slate">
-          ¿Qué terapia biológica es la mejor para tu caso?
-        </h2>
-        <p className="text-neutral-700">
-          No existe un tratamiento único que sirva para todos los pacientes. En
-          CotaClinic estudiamos cada caso de forma individual para ofrecer la
-          combinación más adecuada de ejercicio, control mecánico y terapias
-          biológicas.
-        </p>
-        <p className="text-neutral-700">
-          Si tienes dolor de rodilla, una lesión de cartílago, menisco o una
-          tendinopatía que no mejora, podemos ayudarte a valorar si alguna de
-          estas opciones es adecuada para ti.
-        </p>
-      </section>
-    </article>
+    </Article>
   );
 }
