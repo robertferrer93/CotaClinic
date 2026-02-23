@@ -39,12 +39,6 @@ export default function LCAPage() {
           >
             Solicitar valoración por LCA →
           </Link>
-          <Link
-            to="/#contacto"
-            className="text-sm font-medium text-cota-navy hover:underline"
-          >
-            Segunda opinión con RMN →
-          </Link>
         </div>
       </header>
 
@@ -243,3 +237,4 @@ export default function LCAPage() {
     </Article>
   );
 }
+
