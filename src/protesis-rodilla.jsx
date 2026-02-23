@@ -1,245 +1,124 @@
-// src/pages/protesis-rodilla.jsx
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Article } from './components/ui.jsx';
+CotaClinic
+CotaSport Clinic
+Grupo Cabot · Expertos en rodilla
+Inicio
+Equipo
+Dr. Joaquim Cabot Dalmau
+Dr. Joaquim Cabot Dalmau
+Cirugía de Rodilla
+Dr. Gabriel Oliver Far
+Dr. Gabriel Oliver Far
+COT · Rodilla
+Dr. Jaume Llort Buira
+Dr. Jaume Llort Buira
+COT · Rodilla
+Dr. Robert Ferrer Rivero
+Dr. Robert Ferrer Rivero
+Rodilla y Deportiva
+Rodilla
+Lesiones deportivas
+Rotura LCA/LCP
+Lesiones meniscales
+Inestabilidad rotuliana
+Preservación articular
+Osteotomías
+Cartílago
+Terapias biológicas
+Cirugía protésica
+Prótesis de rodilla
+Prótesis dolorosa / revisión
+Asistencia tecnológica
+Contacto
+Solicitar visita
+Rodilla
 
-export default function ProtesisRodillaPage() {
-  return (
-    <Article>
-      <header className="mb-10">
-        <p className="text-sm font-semibold uppercase tracking-wide text-cota-navy">
-          Rodilla
-        </p>
+Prótesis de rodilla en Barcelona: parcial (unicompartimental) y total
+Guía práctica sobre la cirugía de prótesis de rodilla (artroplastia): cuándo está indicada en artrosis de rodilla, diferencias entre prótesis parcial y prótesis total, en qué consiste la operación y qué esperar de la recuperación.
 
-        <h1 className="mt-2 text-3xl md:text-4xl font-bold text-cota-slate">
-          Prótesis de rodilla: parcial y total
-        </h1>
+← Volver al inicio
+¿Qué es una prótesis de rodilla?
+La prótesis de rodilla (artroplastia) sustituye las superficies articulares desgastadas por implantes que buscan reducir el dolor y recuperar función. Se indica cuando los tratamientos conservadores ya no controlan los síntomas y la limitación afecta al día a día.
 
-        <p className="mt-4 text-neutral-600">
-          Información clara sobre la <strong>prótesis de rodilla</strong>:
-          cuándo está indicada, diferencias entre{' '}
-          <strong>prótesis parcial</strong> y <strong>prótesis total</strong>,
-          cómo es la cirugía y qué esperar de la recuperación.
-        </p>
+El objetivo es volver a caminar, subir escaleras y realizar actividades cotidianas con más autonomía y menos dolor.
 
-        <div className="mt-5">
-          <Link to="/" className="text-sm text-cota-navy hover:underline">
-            ← Volver al inicio
-          </Link>
-        </div>
-      </header>
+¿Cuándo está indicada una prótesis de rodilla?
+La indicación más frecuente es la artrosis de rodilla avanzada, aunque también puede estar indicada en otras situaciones.
 
-      {/* ✅ Contenido */}
-      <section className="space-y-10">
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            ¿Qué es una prótesis de rodilla?
-          </h2>
-          <p className="mt-3 text-neutral-700">
-            La <strong>prótesis de rodilla</strong> es una solución quirúrgica
-            indicada cuando el <strong>dolor</strong> y la{' '}
-            <strong>limitación funcional</strong> no mejoran con tratamientos
-            conservadores. Consiste en sustituir las superficies articulares
-            dañadas por implantes que permiten recuperar movilidad y reducir el
-            dolor.
-          </p>
-          <p className="mt-3 text-neutral-700">
-            El objetivo principal es <strong>mejorar la calidad de vida</strong>
-            : caminar con menos dolor, subir escaleras y realizar actividades
-            cotidianas con mayor autonomía.
-          </p>
-        </section>
+Dolor persistente que limita la vida diaria
+Rigidez y pérdida de movilidad
+Deformidad progresiva (varo o valgo)
+Artrosis localizada o generalizada
+Secuelas de fracturas o lesiones previas
+Falta de respuesta a fisioterapia, medicación o infiltraciones
+Importante: no decidimos solo por la radiografía. Valoramos tu dolor real, estabilidad, movilidad, objetivos y expectativas.
 
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            ¿Cuándo está indicada una prótesis de rodilla?
-          </h2>
-          <p className="mt-3 text-neutral-700">
-            La indicación más frecuente es la{' '}
-            <strong>artrosis de rodilla</strong> avanzada, aunque también puede
-            estar indicada en otros casos.
-          </p>
+Tipos de prótesis de rodilla
+Prótesis parcial (unicompartimental)
+La prótesis parcial sustituye solo el compartimento dañado (habitualmente el interno). Es una opción cuando la artrosis está bien localizada y el resto de la rodilla conserva buen estado.
 
-          <ul className="mt-4 list-disc pl-5 text-neutral-700 space-y-2">
-            <li>Artrosis localizada o generalizada</li>
-            <li>Deformidad progresiva (varo o valgo)</li>
-            <li>Secuelas de fracturas</li>
-            <li>
-              Dolor persistente que limita la vida diaria pese a fisioterapia,
-              medicación o infiltraciones
-            </li>
-          </ul>
+Suele ser posible si:
 
-          <div className="mt-5 rounded-2xl bg-cota-sky p-5">
-            <p className="text-neutral-700">
-              <strong>Importante:</strong> la decisión no depende solo de la
-              radiografía. Valoramos el impacto real del dolor en tu día a día,
-              la movilidad y tus objetivos.
-            </p>
-          </div>
-        </section>
+Artrosis localizada en un único compartimento
+Ligamentos estables
+Buena alineación y movilidad
+Ventajas frecuentes
 
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            Tipos de prótesis de rodilla
-          </h2>
+Cirugía menos invasiva
+Recuperación más rápida en muchos pacientes
+Sensación de rodilla más “natural”
+Prótesis total de rodilla
+La prótesis total sustituye las superficies articulares principales de la rodilla. Es la opción más fiable cuando la artrosis afecta a varios compartimentos, existe deformidad importante o rigidez marcada.
 
-          <div className="mt-5 space-y-8">
-            <div className="rounded-2xl border border-neutral-200 p-5">
-              <h3 className="text-lg font-semibold text-cota-slate">
-                Prótesis parcial de rodilla
-              </h3>
-              <p className="mt-2 text-neutral-700">
-                La <strong>prótesis parcial</strong> (o unicompartimental)
-                sustituye solo la parte dañada de la rodilla (interna, externa o
-                femoropatelar).
-              </p>
+Indicada cuando:
 
-              <p className="mt-4 text-sm font-semibold text-cota-slate">
-                ¿Cuándo es posible?
-              </p>
-              <ul className="mt-2 list-disc pl-5 text-neutral-700 space-y-2">
-                <li>Artrosis localizada en un solo compartimento</li>
-                <li>Ligamentos estables</li>
-                <li>Buena alineación y movilidad de la rodilla</li>
-              </ul>
+La artrosis afecta a más de un compartimento
+Hay deformidad significativa
+El dolor y la rigidez limitan claramente la vida diaria
+¿Cómo es la cirugía de prótesis de rodilla?
+La intervención se realiza en quirófano con anestesia regional o general. Se preparan las superficies dañadas y se colocan los implantes buscando restaurar el eje, la estabilidad y la movilidad de la rodilla.
 
-              <p className="mt-4 text-sm font-semibold text-cota-slate">
-                Ventajas frecuentes
-              </p>
-              <ul className="mt-2 list-disc pl-5 text-neutral-700 space-y-2">
-                <li>Cirugía menos invasiva</li>
-                <li>Recuperación más rápida</li>
-                <li>Sensación de rodilla más “natural”</li>
-              </ul>
-            </div>
+La duración habitual es de 60 a 90 minutos, aunque varía según el caso.
 
-            <div className="rounded-2xl border border-neutral-200 p-5">
-              <h3 className="text-lg font-semibold text-cota-slate">
-                Prótesis total de rodilla
-              </h3>
-              <p className="mt-2 text-neutral-700">
-                La <strong>prótesis total</strong> sustituye todas las
-                superficies articulares dañadas. Es una opción muy fiable cuando
-                la artrosis afecta a varios compartimentos o existe deformidad
-                importante.
-              </p>
+Recuperación y rehabilitación
+La recuperación es progresiva. El objetivo al inicio es controlar dolor e inflamación y recuperar movilidad; después, fuerza y función para volver a caminar con normalidad.
 
-              <p className="mt-4 text-sm font-semibold text-cota-slate">
-                Indicada cuando:
-              </p>
-              <ul className="mt-2 list-disc pl-5 text-neutral-700 space-y-2">
-                <li>La artrosis afecta a más de un compartimento</li>
-                <li>Existe deformidad significativa</li>
-                <li>El dolor y la rigidez limitan claramente la vida diaria</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+Deambulación precoz: caminar en las primeras horas o al día siguiente
+Ingreso corto: habitualmente 2–4 días
+Rehabilitación: movilidad, fuerza y reeducación de la marcha
+En general, la mayoría de pacientes nota una mejoría clara del dolor en las primeras semanas, con recuperación funcional progresiva durante los siguientes meses.
 
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            ¿Cómo es la cirugía de prótesis de rodilla?
-          </h2>
-          <p className="mt-3 text-neutral-700">
-            La intervención se realiza en quirófano con anestesia regional o
-            general. Durante la cirugía se eliminan las superficies dañadas, se
-            colocan los implantes y se busca restaurar el eje, la estabilidad y
-            la movilidad.
-          </p>
-          <p className="mt-3 text-neutral-700">
-            La duración habitual es de <strong>60 a 90 minutos</strong>, aunque
-            puede variar según el caso.
-          </p>
-        </section>
+Resultados y durabilidad
+La prótesis de rodilla suele lograr una reducción significativa del dolor y una mejora de la movilidad y la autonomía.
 
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            Recuperación y rehabilitación
-          </h2>
-          <ul className="mt-4 list-disc pl-5 text-neutral-700 space-y-2">
-            <li>
-              <strong>Deambulación precoz:</strong> caminar en las primeras
-              horas o al día siguiente
-            </li>
-            <li>
-              <strong>Ingreso corto:</strong> habitualmente 2–4 días
-            </li>
-            <li>
-              <strong>Rehabilitación progresiva:</strong> movilidad, fuerza y
-              función
-            </li>
-          </ul>
+Las prótesis actuales suelen ofrecer durabilidad media superior a 15–20 años, dependiendo del paciente, el tipo de implante y el uso.
 
-          <div className="mt-5 rounded-2xl bg-neutral-50 border border-neutral-200 p-5">
-            <p className="text-neutral-700">
-              En general, la mayoría de pacientes nota una{' '}
-              <strong>mejoría clara del dolor en las primeras semanas</strong>,
-              con una recuperación funcional progresiva durante los siguientes
-              meses.
-            </p>
-          </div>
-        </section>
+Preguntas frecuentes sobre la prótesis de rodilla
+¿Cuánto dura una prótesis de rodilla?
+Una prótesis de rodilla suele tener una durabilidad media superior a 15–20 años. La duración depende del tipo de implante, la técnica quirúrgica, el peso del paciente y el nivel de actividad.
 
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            Resultados y durabilidad
-          </h2>
-          <p className="mt-3 text-neutral-700">
-            La prótesis de rodilla suele lograr una reducción significativa del
-            dolor y una mejora de la movilidad y la autonomía.
-          </p>
-          <p className="mt-3 text-neutral-700">
-            Las prótesis actuales tienen una durabilidad media superior a{' '}
-            <strong>15–20 años</strong>, dependiendo del paciente, el tipo de
-            implante y el uso.
-          </p>
-        </section>
+¿Cuánto tiempo se tarda en caminar después de una prótesis de rodilla?
+La mayoría de pacientes comienzan a caminar con ayuda en las primeras 24 horas tras la cirugía. La recuperación es progresiva y suele permitir una marcha funcional en pocas semanas.
 
-        <section>
-          <h2 className="text-xl md:text-2xl font-semibold text-cota-slate">
-            Nuestro enfoque como especialistas en rodilla
-          </h2>
-          <ul className="mt-4 list-disc pl-5 text-neutral-700 space-y-2">
-            <li>Valoración individualizada</li>
-            <li>Priorizamos la preservación articular cuando es posible</li>
-            <li>Indicamos prótesis parcial o total solo si está justificado</li>
-            <li>Protocolos actuales de cirugía y recuperación</li>
-          </ul>
-        </section>
+¿Es muy dolorosa la operación de prótesis de rodilla?
+La cirugía puede producir molestias iniciales, pero actualmente utilizamos protocolos modernos de control del dolor que permiten una recuperación más confortable y una movilización precoz.
 
-        <section className="rounded-2xl bg-cota-sky p-6">
-          <h2 className="text-lg md:text-xl font-semibold text-cota-slate">
-            ¿Necesitas una valoración?
-          </h2>
-          <p className="mt-2 text-neutral-700">
-            Si tienes <strong>dolor de rodilla</strong> por artrosis y te limita
-            en tu día a día, podemos ayudarte a decidir si una{' '}
-            <strong>prótesis parcial</strong>, una{' '}
-            <strong>prótesis total</strong> u otras opciones son lo más adecuado
-            para ti.
-          </p>
+¿Qué es mejor, una prótesis parcial o una prótesis total?
+Depende del patrón de artrosis y de la estabilidad de la rodilla. Si la artrosis está localizada y los ligamentos son estables, la prótesis parcial puede ser una buena opción. En casos más avanzados, la prótesis total ofrece resultados muy fiables.
 
-          <div className="mt-4">
-            <a
-              href="/#contacto"
-              className="inline-flex items-center justify-center rounded-xl bg-cota-navy px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
-            >
-              Solicitar valoración
-            </a>
-          </div>
+¿Cuándo podré conducir después de una prótesis de rodilla?
+La conducción suele retomarse cuando el paciente tiene buen control muscular, movilidad suficiente y ausencia de dolor relevante, habitualmente entre las 4 y 6 semanas. La decisión se individualiza en función del lado operado y la evolución clínica.
 
-          <p className="mt-3 text-xs text-neutral-600">
-            Te llevará al formulario de contacto de la página principal.
-          </p>
-        </section>
+Nuestro enfoque como especialistas en rodilla
+Valoración individualizada y objetivos realistas
+Priorizamos preservación articular cuando es posible
+Indicamos prótesis parcial o total solo si está justificado
+Protocolos actuales de cirugía y recuperación
+¿Necesitas una valoración?
+Si tienes dolor de rodilla por artrosis y te limita en tu día a día, podemos ayudarte a decidir si una prótesis parcial, una prótesis total u otras opciones son lo más adecuado para ti.
 
-        <div className="pt-2">
-          <Link to="/" className="text-sm text-cota-navy hover:underline">
-            ← Volver al inicio
-          </Link>
-        </div>
-      </section>
-    </Article>
-  );
-}
+Solicitar valoración
+← Volver al inicio
+© 2026 CotaSport Clinic · Todos los derechos reservados
+Privacidad
+Aviso legal
+Cookies
