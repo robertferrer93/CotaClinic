@@ -350,8 +350,8 @@ export default function Layout() {
             </div>
 
             <Link
-              to="/#contacto"
-              onClick={(e) => onHashNav(e, '#contacto')}
+              to="/contacto"
+              onClick={closeMobile}
               className="hover:text-cota-navy transition-colors"
             >
               Contacto
@@ -378,8 +378,8 @@ export default function Layout() {
             {/* CTA */}
             <ButtonPrimary
               as={Link}
-              to="/#contacto"
-              onClick={(e) => onHashNav(e, '#contacto')}
+              to="/contacto"
+              onClick={closeMobile}
               className="px-3 py-2 text-sm sm:px-4"
             >
               <span className="inline sm:hidden">Visita</span>
@@ -534,8 +534,8 @@ export default function Layout() {
                 )}
 
                 <Link
-                  to="/#contacto"
-                  onClick={(e) => onHashNav(e, '#contacto')}
+                  to="/contacto"
+                  onClick={closeMobile}
                   className="block rounded-2xl px-4 py-3 text-sm font-medium text-cota-slate hover:bg-cota-mist transition"
                 >
                   Contacto
@@ -581,5 +581,3 @@ export default function Layout() {
     </div>
   );
 }
-
-
