@@ -172,54 +172,71 @@ export default function LCAPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-neutral-200 pt-6 mt-6 space-y-4">
+      <section className="border-t border-neutral-200 pt-6 mt-6">
         <h2 className="text-2xl font-semibold text-cota-slate">
-          Preguntas frecuentes
+          Preguntas frecuentes sobre la rotura del ligamento cruzado anterior
+          (LCA)
         </h2>
 
-        <div className="space-y-3 text-neutral-700">
+        <div className="mt-6 space-y-6 text-neutral-700">
           <div>
-            <div className="font-semibold">
-              ¿Cuándo puedo volver a conducir o trabajar?
-            </div>
-            <div>
-              Habitualmente entre 3 y 6 semanas, según el lado operado y el tipo
-              de trabajo.
-            </div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuándo puedo conducir o trabajar después de una cirugía de LCA?
+            </h3>
+            <p className="mt-2">
+              Tras una reconstrucción del ligamento cruzado anterior, la
+              conducción y el regreso al trabajo suelen ser posibles entre las 3
+              y 6 semanas, dependiendo del lado operado, el control muscular y
+              el tipo de actividad laboral.
+            </p>
           </div>
 
           <div>
-            <div className="font-semibold">¿Cuándo puedo volver a correr?</div>
-            <div>
-              Generalmente tras varios meses de rehabilitación y una adecuada
-              recuperación de fuerza y estabilidad.
-            </div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuándo se puede volver a correr después de una rotura de LCA?
+            </h3>
+            <p className="mt-2">
+              La carrera suele iniciarse de forma progresiva a partir de los 3–4
+              meses, siempre que exista buena fuerza, estabilidad y control
+              neuromuscular. El calendario se individualiza según evolución.
+            </p>
           </div>
 
           <div>
-            <div className="font-semibold">
-              ¿Se puede volver al mismo nivel deportivo?
-            </div>
-            <div>
-              En muchos casos sí, siempre que se complete la rehabilitación y se
-              superen pruebas funcionales de retorno seguro.
-            </div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Se puede volver al mismo nivel deportivo tras una rotura de LCA?
+            </h3>
+            <p className="mt-2">
+              En muchos casos sí. El retorno al deporte competitivo suele
+              plantearse alrededor de los 6–9 meses, tras completar la
+              rehabilitación y superar pruebas funcionales específicas que
+              garanticen estabilidad y seguridad.
+            </p>
           </div>
 
           <div>
-            <div className="font-semibold">¿Qué pasa si no me opero?</div>
-            <div>
-              Algunas rodillas se adaptan, pero otras quedan inestables y pueden
-              aumentar el riesgo de lesiones meniscales o del cartílago.
-            </div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Qué ocurre si no me opero una rotura del ligamento cruzado
+              anterior?
+            </h3>
+            <p className="mt-2">
+              Algunas rodillas pueden adaptarse con tratamiento conservador,
+              pero en pacientes activos la inestabilidad puede aumentar el
+              riesgo de lesiones meniscales y del cartílago a medio y largo
+              plazo.
+            </p>
           </div>
 
           <div>
-            <div className="font-semibold">¿Qué injerto es mejor para mí?</div>
-            <div>
-              Depende de edad, tipo de deporte y características individuales.
-              La decisión se toma de forma personalizada en consulta.
-            </div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Qué injerto es mejor en la cirugía de LCA?
+            </h3>
+            <p className="mt-2">
+              No existe un injerto “mejor” universal. La elección entre tendón
+              rotuliano, isquiotibiales o tendón cuadricipital depende de la
+              edad, el tipo de deporte y las características individuales del
+              paciente.
+            </p>
           </div>
         </div>
       </section>
