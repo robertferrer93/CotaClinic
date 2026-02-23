@@ -1,9 +1,23 @@
 // src/pages/osteotomias.jsx
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from './components/ui.jsx';
+import { useHead } from './hooks/useHead';
 
 export default function OsteotomiasPage() {
+  // OBJETIVO SEO
+  // Keyword principal: osteotomía de rodilla Barcelona
+  // Keywords secundarias: osteotomía tibial alta (HTO) Barcelona, osteotomía femoral distal (DFO) Barcelona,
+  // rodilla en varo, rodilla en valgo, artrosis localizada rodilla, cirugía para corregir eje rodilla
+  // Localización: Barcelona
+  // Tipo de paciente: con diagnóstico previo (Rx/RMN), dolor por desgaste localizado, paciente joven/activo que busca alternativa a prótesis
+
+  useHead({
+    title: 'Osteotomía de rodilla en Barcelona | CotaSport Clinic',
+    description:
+      'Cirugía para corregir el eje (varo/valgo) y descargar la zona desgastada. Indicaciones, tipos (HTO/DFO), recuperación y resultados. Solicita valoración.',
+  });
+
   return (
     <Article>
       <header className="mb-10">
@@ -12,277 +26,274 @@ export default function OsteotomiasPage() {
         </p>
 
         <h1 className="mt-2 text-3xl md:text-4xl font-bold text-cota-slate">
-          Osteotomías de rodilla
+          Osteotomía de rodilla en Barcelona
         </h1>
 
         <p className="mt-4 text-neutral-600">
-          Explicamos de forma sencilla en qué consisten las osteotomías de
-          rodilla, cuándo se recomiendan y qué puedes esperar de la cirugía.
+          La osteotomía de rodilla es una cirugía diseñada para corregir el eje
+          de la pierna (varo o valgo) y redistribuir las cargas dentro de la
+          articulación. En pacientes bien seleccionados puede aliviar el dolor,
+          mejorar la función y retrasar la necesidad de una prótesis. Si ya
+          tienes radiografías o resonancia y quieres saber si eres candidato, te
+          ayudamos a decidir con criterio.
         </p>
 
-        <p className="mt-3 text-neutral-700">
-          En CotaClinic seguimos las recomendaciones de la sociedad
-          internacional ISAKOS para la planificación de este tipo de cirugías.
-        </p>
-
-        <div className="mt-5">
-          <Link to="/" className="text-sm text-cota-navy hover:underline">
-            ← Volver al inicio
+        <div className="mt-5 flex flex-wrap gap-4">
+          <Link
+            to="/contacto"
+            className="text-sm font-medium text-cota-navy hover:underline"
+          >
+            Solicitar valoración por osteotomía →
           </Link>
         </div>
       </header>
 
-      {/* 1. ¿Qué es una osteotomía de rodilla? */}
+      {/* 1) Introducción clara */}
       <section className="mb-10 space-y-3">
-        <h2 className="text-2xl font-semibold text-cota-slate">
-          1. ¿Qué es una osteotomía de rodilla?
-        </h2>
         <p className="text-neutral-700">
-          La osteotomía es una cirugía en la que se realiza un corte controlado
-          en el hueso para{' '}
-          <strong>cambiar ligeramente el eje de la pierna</strong>. El objetivo
-          es redistribuir las cargas de la rodilla para que la zona más
-          desgastada sufra menos y disminuya el dolor.
+          Cuando el desgaste del cartílago está localizado (por ejemplo, más en
+          el compartimento interno o externo) y existe una desviación del eje,
+          la rodilla “carga” de forma repetida siempre en la misma zona. En ese
+          contexto, una osteotomía puede ser una alternativa razonable a una
+          prótesis, especialmente en pacientes jóvenes o activos.
         </p>
         <p className="text-neutral-700">
-          No se trata de “poner una prótesis”, sino de{' '}
-          <strong>conservar tu propia rodilla</strong>, modificando de forma
-          precisa la alineación del fémur o la tibia.
-        </p>
-        <p className="text-neutral-700">
-          Es una opción especialmente interesante en pacientes{' '}
-          <strong>jóvenes o activos</strong>, cuando el desgaste está localizado
-          y queremos retrasar al máximo la necesidad de una prótesis de rodilla.
+          El objetivo no es “poner una rodilla nueva”, sino{' '}
+          <strong>conservar tu propia rodilla</strong> corrigiendo de forma
+          precisa la alineación para descargar el compartimento más dañado.
         </p>
       </section>
 
-      {/* 2. ¿En qué casos se recomienda? */}
+      {/* 2) ¿Qué es? */}
       <section className="mb-10 space-y-3">
         <h2 className="text-2xl font-semibold text-cota-slate">
-          2. ¿En qué casos se recomienda una osteotomía?
+          ¿Qué es una osteotomía de rodilla?
         </h2>
         <p className="text-neutral-700">
-          La indicación se valora siempre de forma individual, pero en general
-          la osteotomía se plantea en situaciones como:
+          Una osteotomía es un corte controlado en el hueso (tibia o fémur) para
+          cambiar el eje de la pierna y redistribuir las cargas en la rodilla.
+          Tras la corrección, la posición se fija con una{' '}
+          <strong>placa y tornillos</strong> específicos para mantener la nueva
+          alineación mientras el hueso consolida.
         </p>
+      </section>
+
+      {/* 3) ¿Cuándo está indicado? */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Cuándo está indicada una osteotomía?
+        </h2>
+        <p className="text-neutral-700">
+          Se valora de forma individual, pero suele considerarse cuando el
+          desgaste es localizado y existe un eje en varo o en valgo que
+          sobrecarga una zona concreta.
+        </p>
+
         <ul className="list-disc list-inside space-y-1 text-neutral-700">
           <li>
-            <strong>Desgaste localizado del cartílago</strong> en la parte
-            interna o externa de la rodilla, mientras el resto de la
-            articulación está relativamente conservada.
+            <strong>Artrosis localizada</strong> (compartimento interno o
+            externo) con el resto de la rodilla relativamente conservado.
           </li>
           <li>
-            <strong>Rodilla en varo o en valgo</strong> (piernas en “paréntesis”
-            o en “X”) que sobrecarga una zona concreta de la rodilla.
+            <strong>Rodilla en varo</strong> (piernas en “paréntesis”) o{' '}
+            <strong>rodilla en valgo</strong> (piernas en “X”) con sobrecarga de
+            un compartimento.
           </li>
           <li>
-            <strong>Pacientes jóvenes o activos</strong> en los que una prótesis
-            completa no es todavía la mejor opción.
+            <strong>Paciente joven o activo</strong> en el que una prótesis
+            total no es la mejor opción todavía.
           </li>
           <li>
-            Dolor que limita la vida diaria, el trabajo o la práctica deportiva
-            a pesar de haber probado otros tratamientos conservadores.
+            Dolor y limitación pese a tratamiento conservador (ejercicio,
+            fisioterapia, control de carga, infiltraciones si se han probado).
           </li>
         </ul>
+
         <p className="text-neutral-700">
-          Para decidir si eres candidato a una osteotomía, valoramos tu historia
-          clínica, exploración física y pruebas de imagen (radiografías de toda
-          la pierna, RMN, etc.).
+          Para decidir si eres candidato, valoramos exploración, síntomas y
+          pruebas de imagen: especialmente{' '}
+          <strong>radiografías de miembros inferiores en carga</strong> para
+          medir el eje, y RMN cuando aporta información adicional.
         </p>
       </section>
 
-      {/* 3. Objetivos de la cirugía */}
+      {/* 4) Opciones de tratamiento (si aplica) */}
       <section className="mb-10 space-y-3">
         <h2 className="text-2xl font-semibold text-cota-slate">
-          3. ¿Qué se busca con la osteotomía?
+          Alternativas y opciones de tratamiento
         </h2>
         <p className="text-neutral-700">
-          El objetivo de la osteotomía no es únicamente “enderezar la pierna”,
-          sino sobre todo <strong>mejorar tu calidad de vida</strong>.
+          La osteotomía no es la única opción. Según el caso, puede tener más
+          sentido insistir en tratamiento conservador, plantear cirugía
+          artroscópica en indicaciones concretas o, si el desgaste es avanzado,
+          valorar prótesis (parcial o total).
+        </p>
+        <p className="text-neutral-700">
+          La clave es elegir la opción que mejor encaje con tu diagnóstico,
+          edad, nivel de actividad y expectativas realistas.
+        </p>
+      </section>
+
+      {/* 5) Cómo es la cirugía/procedimiento */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Cómo es la cirugía de osteotomía?
+        </h2>
+        <p className="text-neutral-700">
+          La intervención se realiza en quirófano con anestesia raquídea o
+          general, en coordinación con Anestesia. Se corrige el eje según la
+          planificación y se fija con una placa y tornillos. En algunos casos se
+          utiliza injerto/biomaterial para favorecer la consolidación,
+          dependiendo del tipo de corrección.
+        </p>
+        <p className="text-neutral-700">
+          La estancia hospitalaria suele ser de pocos días. Se inicia movilidad
+          según protocolo, control del dolor y prevención de complicaciones.
+        </p>
+      </section>
+
+      {/* 6) Recuperación */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">Recuperación</h2>
+        <p className="text-neutral-700">
+          La recuperación es progresiva y depende del tipo de osteotomía y del
+          grado de corrección. Como es una cirugía sobre el hueso, es normal que
+          se requiera un periodo de consolidación antes de aumentar cargas.
         </p>
         <ul className="list-disc list-inside space-y-1 text-neutral-700">
           <li>
-            <strong>Aliviar el dolor</strong> al descargar la zona de cartílago
-            más dañada y repartir mejor las fuerzas.
+            Rehabilitación por fases: movilidad, control de inflamación y
+            fortalecimiento progresivo.
           </li>
           <li>
-            <strong>Retrasar la necesidad de una prótesis de rodilla</strong>,
-            ganando años de buena función con tu articulación propia.
+            La carga (apoyo) se pauta de forma individual según estabilidad de
+            la fijación y evolución radiográfica.
           </li>
           <li>
-            <strong>Mejorar la función</strong>: poder caminar más, subir y
-            bajar escaleras con menos molestias y, en algunos casos, volver a
-            realizar deporte de bajo impacto.
-          </li>
-        </ul>
-      </section>
-
-      {/* 4. Tipos de osteotomía de rodilla */}
-      <section className="mb-10 space-y-3">
-        <h2 className="text-2xl font-semibold text-cota-slate">
-          4. Tipos de osteotomía de rodilla
-        </h2>
-        <p className="text-neutral-700">
-          Existen varios tipos de osteotomía. La elección depende del tipo de
-          desviación de la pierna, de qué zona de la rodilla está más afectada y
-          de las características del paciente.
-        </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>
-            <strong>Osteotomía tibial</strong>: el corte se realiza en la tibia,
-            por debajo de la rodilla. Es la más frecuente cuando la pierna está
-            en varo y está más desgastada la parte interna.
-          </li>
-          <li>
-            <strong>Osteotomía femoral</strong>: el corte se hace en el fémur,
-            por encima de la rodilla. Se utiliza sobre todo en valgos marcados o
-            en determinadas deformidades del fémur.
-          </li>
-          <li>
-            <strong>Osteotomías combinadas o personalizadas</strong>: en
-            deformidades complejas puede ser necesario combinar correcciones o
-            planificar cortes muy específicos adaptados a cada paciente.
-          </li>
-        </ul>
-        <p className="text-neutral-700">
-          En todos los casos, una vez corregido el eje, la posición se mantiene
-          con una <strong>placa y tornillos específicos</strong> para
-          osteotomías.
-        </p>
-      </section>
-
-      {/* 5. Nuestro protocolo y planificación (ISAKOS) */}
-      <section className="mb-10 space-y-3">
-        <h2 className="text-2xl font-semibold text-cota-slate">
-          5. Nuestro enfoque en CotaClinic
-        </h2>
-        <p className="text-neutral-700">
-          En CotaClinic seguimos las <strong>recomendaciones de ISAKOS</strong>{' '}
-          para la planificación de las osteotomías de rodilla. Esto se traduce
-          en una planificación cuidadosa y personalizada.
-        </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>
-            Realizamos <strong>radiografías de toda la pierna</strong> para
-            medir con precisión el eje y decidir cuántos grados hay que
-            corregir.
-          </li>
-          <li>
-            Valoramos la <strong>alineación global de la extremidad</strong>, no
-            solo la rodilla de forma aislada.
-          </li>
-          <li>
-            Buscamos el{' '}
-            <strong>equilibrio entre descargar la zona dañada</strong> y
-            mantener una biomecánica lo más natural posible.
-          </li>
-        </ul>
-        <p className="text-neutral-700">
-          El objetivo es ofrecer una cirugía{' '}
-          <strong>segura, precisa y adaptada</strong> a las necesidades de cada
-          paciente.
-        </p>
-      </section>
-
-      {/* 6. ¿Cómo es la cirugía? */}
-      <section className="mb-10 space-y-3">
-        <h2 className="text-2xl font-semibold text-cota-slate">
-          6. ¿Cómo es la cirugía de osteotomía?
-        </h2>
-        <p className="text-neutral-700">
-          La intervención se realiza en quirófano, habitualmente con anestesia
-          raquídea (de cintura para abajo) o general, según el caso y en
-          coordinación con el equipo de Anestesia.
-        </p>
-        <p className="text-neutral-700">
-          Tras realizar el corte controlado en el hueso, se corrige el eje hasta
-          la posición planificada y se fija con una{' '}
-          <strong>placa y tornillos</strong>.
-        </p>
-        <p className="text-neutral-700">
-          La estancia en el hospital suele ser de pocos días. Durante este
-          tiempo se controla el dolor, se vigila la herida y se inicia la
-          movilización según el plan establecido para cada paciente.
-        </p>
-      </section>
-
-      {/* 7. Riesgos y posibles complicaciones */}
-      <section className="mb-10 space-y-3">
-        <h2 className="text-2xl font-semibold text-cota-slate">
-          7. Riesgos y posibles complicaciones
-        </h2>
-        <p className="text-neutral-700">
-          Como cualquier cirugía, la osteotomía tiene riesgos, aunque la mayoría
-          de los pacientes evoluciona de forma favorable. Entre las posibles
-          complicaciones se incluyen:
-        </p>
-        <ul className="list-disc list-inside space-y-1 text-neutral-700">
-          <li>
-            <strong>Dolor e inflamación</strong> en las primeras semanas.
-          </li>
-          <li>
-            <strong>Hematomas o problemas de la herida</strong> (sangrado,
-            infección), que se tratan con curas y medicación específica si es
-            necesario.
-          </li>
-          <li>
-            <strong>Retraso en la consolidación del hueso</strong>, que puede
-            requerir controles más prolongados hasta comprobar que el hueso ha
-            cerrado por completo.
-          </li>
-          <li>
-            <strong>Necesidad futura de prótesis de rodilla</strong>: aunque la
-            osteotomía puede retrasar muchos años esta cirugía, en algunos
-            pacientes con el tiempo puede ser necesario colocar una prótesis.
+            El retorno a deporte se individualiza; suele priorizarse bajo
+            impacto y progresión según fuerza y tolerancia.
           </li>
         </ul>
       </section>
 
-      {/* 8. Preguntas frecuentes */}
-      <section className="border-t border-neutral-200 pt-6 mt-6 space-y-3">
+      {/* 7) Resultados */}
+      <section className="mb-10 space-y-3">
         <h2 className="text-2xl font-semibold text-cota-slate">
-          8. Preguntas frecuentes
+          Resultados esperables
+        </h2>
+        <p className="text-neutral-700">
+          En pacientes bien seleccionados, la osteotomía suele mejorar el dolor
+          y la función al descargar el compartimento más afectado. El objetivo
+          es ganar años de buena calidad de vida con tu rodilla y retrasar (no
+          “garantizar evitar”) una prótesis.
+        </p>
+        <p className="text-neutral-700">
+          El pronóstico depende del grado de desgaste, la corrección del eje, el
+          estado del resto de compartimentos y la adherencia a la
+          rehabilitación.
+        </p>
+      </section>
+
+      {/* 8) FAQ – estilo obligatorio (H2 + H3 + respuesta visible) */}
+      <section className="border-t border-neutral-200 pt-6 mt-6">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Preguntas frecuentes sobre osteotomía de rodilla
         </h2>
 
-        <div className="space-y-1">
-          <p className="text-neutral-700 font-semibold">
-            ¿Voy a llevar tornillos para siempre?
-          </p>
-          <p className="text-neutral-700">
-            La placa y los tornillos pueden permanecer de forma definitiva si no
-            dan molestias. En algunos casos se recomienda retirarlos pasado un
-            tiempo, según la evolución y la actividad del paciente.
-          </p>
+        <div className="mt-6 space-y-6 text-neutral-700">
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿La osteotomía de rodilla evita una prótesis?
+            </h3>
+            <p className="mt-2">
+              Puede retrasarla muchos años en pacientes bien seleccionados, pero
+              no lo garantiza. El objetivo es aliviar dolor y mejorar función
+              descargando el compartimento más desgastado.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Voy a llevar placa y tornillos para siempre tras una osteotomía?
+            </h3>
+            <p className="mt-2">
+              Pueden quedarse de forma definitiva si no dan molestias. En
+              algunos pacientes se retiran más adelante si hay irritación local
+              o por motivos funcionales, una vez el hueso ha consolidado.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Cuándo notaré mejoría después de una osteotomía de rodilla?
+            </h3>
+            <p className="mt-2">
+              La mejoría es progresiva y se nota a medida que consolida el hueso
+              y avanza la rehabilitación. No es una cirugía de “resultado
+              inmediato”: requiere semanas a meses de recuperación estructurada.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-cota-slate">
+              ¿Podré volver a hacer deporte tras una osteotomía?
+            </h3>
+            <p className="mt-2">
+              En muchos casos sí, especialmente actividades de bajo impacto. El
+              tipo de deporte y el calendario se individualizan según tu caso,
+              la consolidación y los criterios de fuerza y control.
+            </p>
+          </div>
         </div>
 
-        <div className="space-y-1">
-          <p className="text-neutral-700 font-semibold">
-            ¿Podré volver a hacer deporte?
-          </p>
-          <p className="text-neutral-700">
-            El objetivo de la osteotomía es mejorar el dolor y la función.
-            Muchos pacientes pueden volver a realizar{' '}
-            <strong>deporte de bajo impacto</strong>. Las recomendaciones se
-            adaptan de forma individual.
-          </p>
-        </div>
+        {/* Preparado para futura implementación de Schema FAQPage (JSON-LD) */}
+        {/*
+          const schemaFaq = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ...
+            ]
+          };
+        */}
+      </section>
 
-        <div className="space-y-1">
-          <p className="text-neutral-700 font-semibold">
-            ¿Cuándo notaré mejoría?
-          </p>
-          <p className="text-neutral-700">
-            La mejoría suele ser progresiva. Hay que tener en cuenta que se
-            trata de una cirugía sobre el hueso y la rodilla necesita tiempo
-            para adaptarse a la nueva distribución de cargas.
-          </p>
-        </div>
-
+      {/* 9) Enfoque del equipo */}
+      <section className="mb-10 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          Nuestro enfoque en CotaSport Clinic
+        </h2>
         <p className="text-neutral-700">
-          Si tienes dudas sobre si una osteotomía puede ser una opción en tu
-          caso, en CotaClinic valoraremos tu situación de forma individual y te
-          explicaremos claramente las alternativas disponibles.
+          Planificamos las osteotomías con mediciones precisas del eje y una
+          visión global de la extremidad. Buscamos el equilibrio entre descargar
+          la zona dañada y mantener una biomecánica lo más natural posible.
         </p>
+        <p className="text-neutral-700">
+          Si ya dispones de radiografías en carga de toda la pierna o
+          resonancia, podemos orientarte con una segunda opinión y explicarte
+          alternativas.
+        </p>
+      </section>
+
+      {/* 10) CTA final con botón a /contacto */}
+      <section className="mb-4 space-y-3">
+        <h2 className="text-2xl font-semibold text-cota-slate">
+          ¿Quieres valorar si eres candidato a una osteotomía?
+        </h2>
+        <p className="text-neutral-700">
+          Si tienes dolor con desgaste localizado y te han hablado de
+          varo/valgo, podemos revisar tu caso y ayudarte a elegir la opción más
+          adecuada.
+        </p>
+
+        <div className="mt-5">
+          <Link
+            to="/contacto"
+            className="inline-flex items-center justify-center rounded-md bg-cota-navy px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+          >
+            Solicitar valoración
+          </Link>
+        </div>
       </section>
     </Article>
   );
