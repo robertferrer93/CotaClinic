@@ -3,11 +3,10 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Layout from './layout.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
-
 import { doctors } from './data/doctors.js';
 import { trackEvent } from './analytics';
-
 import { Section, ButtonPrimary, ButtonSecondaryDark } from './components/ui';
+import ContactSection from './components/ContactSection.jsx';
 
 // ✅ Lazy routes (code-splitting)
 const DoctorProfilePage = lazy(() => import('./pages/DoctorProfilePage.jsx'));
@@ -27,6 +26,8 @@ const ProtesisDolorosaRevisionPage = lazy(() =>
 );
 const RoboticaPage = lazy(() => import('./robotica.jsx'));
 const DrCabotWeb = lazy(() => import('./pages/DrCabotWeb.jsx'));
+const ContactoPage = lazy(() => import('./pages/contacto.jsx'));
+const GraciasPage = lazy(() => import('./pages/gracias.jsx'));
 
 // ✅ También conviene lazy en componentes pesados de la Home (opcional pero recomendable)
 const DoctoraliaWidget = lazy(() =>
@@ -82,7 +83,8 @@ export default function CotaClinicSite() {
             {/* Home + scroll */}
             <Route path="/rodilla" element={<HomePage />} />
             <Route path="/equipo" element={<HomePage />} />
-            <Route path="/contacto" element={<HomePage />} />
+            <Route path="/contacto" element={<ContactoPage />} />
+            <Route path="/gracias" element={<GraciasPage />} />
 
             {/* fallback */}
             <Route path="*" element={<HomePage />} />
