@@ -46,12 +46,6 @@ export default function TerapiasBiologicasPage() {
           >
             Solicitar valoración por terapias biológicas →
           </Link>
-          <Link
-            to="/contacto"
-            className="text-sm font-medium text-cota-navy hover:underline"
-          >
-            Segunda opinión con RMN/Rx →
-          </Link>
         </div>
       </header>
 
