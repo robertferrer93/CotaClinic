@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ButtonPrimary } from './components/ui.jsx';
+import JsonLd from './components/JsonLd.jsx';
 
 function IconMenu(props) {
   return (
@@ -48,6 +49,27 @@ function IconArrowRight(props) {
     </svg>
   );
 }
+const CLINIC_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  name: 'CotaSport Clinic',
+  url: 'https://cotasportclinic.com',
+  telephone: '+34 932 19 94 51',
+  email: 'admin@cotasportclinic.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Carrer de la Mare de Déu de la Salut, 78',
+    addressLocality: 'Barcelona',
+    addressRegion: 'Barcelona',
+    postalCode: '08024',
+    addressCountry: 'ES',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Barcelona',
+  },
+  medicalSpecialty: ['Orthopedic', 'SportsMedicine'],
+};
 
 export default function Layout() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -132,6 +154,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 font-sans">
+      <JsonLd id="ld-clinic" data={CLINIC_SCHEMA} />
       {/* ================= HEADER ================= */}
       <header className="sticky top-0 z-50 bg-cota-mist/90 backdrop-blur border-b border-cota-line">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
