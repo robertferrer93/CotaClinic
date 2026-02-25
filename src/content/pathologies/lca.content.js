@@ -24,6 +24,15 @@ export const LCA_CONTENT = {
     to: '/contacto',
   },
 
+  related: [
+    { to: '/rodilla/menisco', label: 'Lesión de menisco' },
+    {
+      to: '/rodilla/terapias-biologicas',
+      label: 'Terapias biológicas en rodilla',
+    },
+    { to: '/rodilla/cartilago', label: 'Lesiones osteocondrales y cartílago' },
+    { to: '/rodilla/osteotomias', label: 'Osteotomías de rodilla' },
+  ],
   sections: [
     {
       id: 'sintomas',
