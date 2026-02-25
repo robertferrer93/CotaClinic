@@ -7,31 +7,12 @@ import JsonLd from './components/JsonLd.jsx';
 
 export default function LCAPage() {
   useHead({
-    title: 'Cirugía de Ligamento Cruzado Anterior (LCA) en Barcelona',
+    title:
+      'Cirugía de Ligamento Cruzado Anterior (LCA) en Barcelona | CotaSport Clinic',
     description:
       'Especialistas en cirugía del ligamento cruzado anterior (LCA) en Barcelona. Diagnóstico, indicación quirúrgica, opciones de injerto y recuperación. Solicita valoración o segunda opinión.',
     canonical: 'https://cotasportclinic.com/rodilla/lca',
-    ogTitle: 'Cirugía de Ligamento Cruzado Anterior (LCA) en Barcelona',
-    ogDescription:
-      'Especialistas en cirugía del ligamento cruzado anterior (LCA) en Barcelona. Diagnóstico, indicación quirúrgica, opciones de injerto y recuperación.',
-    ogImage: 'https://cotasportclinic.com/og-image.png',
-    ogType: 'website',
   });
-  const LCA_SCHEMA = {
-    '@context': 'https://schema.org',
-    '@type': 'MedicalWebPage',
-    name: 'Cirugía de Ligamento Cruzado Anterior (LCA) en Barcelona',
-    url: 'https://cotasportclinic.com/rodilla/lca',
-    about: {
-      '@type': 'MedicalCondition',
-      name: 'Rotura del ligamento cruzado anterior (LCA)',
-    },
-    publisher: {
-      '@type': 'MedicalClinic',
-      name: 'CotaSport Clinic',
-      url: 'https://cotasportclinic.com',
-    },
-  };
   return (
     <Article>
       <JsonLd id="ld-lca" data={LCA_SCHEMA} />
