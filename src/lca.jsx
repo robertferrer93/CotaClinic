@@ -131,6 +131,26 @@ export default function LCAPage() {
           ))}
         </div>
       </section>
+      {/* Relacionado */}
+      {PAGE.related?.length ? (
+        <section className="border-t border-neutral-200 pt-8 mt-10">
+          <h2 className="text-2xl font-semibold text-cota-slate">
+            Patologías y tratamientos relacionados
+          </h2>
+
+          <div className="mt-6 grid sm:grid-cols-2 gap-4">
+            {PAGE.related.map((item, index) => (
+              <Link
+                key={index}
+                to={item.to}
+                className="block rounded-xl border border-neutral-200 p-4 hover:shadow-sm transition"
+              >
+                <span className="font-medium text-cota-navy">{item.label}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </Article>
   );
 }
