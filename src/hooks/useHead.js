@@ -6,6 +6,12 @@ export function useHead({
   description,
   canonical,
   image = 'https://cotasportclinic.com/og-image.png',
+
+  // extras opcionales
+  author, // string (solo para meta tag)
+  type = 'website', // 'article' o 'website'
+  publishedTime, // ISO yyyy-mm-dd o ISO completo
+  modifiedTime, // ISO
 }) {
   useEffect(() => {
     if (title) document.title = title;
@@ -21,6 +27,17 @@ export function useHead({
       meta.setAttribute('content', description);
     }
 
+    // --- Meta author (opcional) ---
+    if (author) {
+      let meta = document.querySelector('meta[name="author"]');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'author');
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', author);
+    }
+
     // --- Canonical ---
     if (canonical) {
       let link = document.querySelector('link[rel="canonical"]');
@@ -32,7 +49,7 @@ export function useHead({
       link.setAttribute('href', canonical);
     }
 
-    // Helper para OG y Twitter
+    // Helper para OG
     const setMetaProperty = (attr, key, content) => {
       if (!content) return;
       let tag = document.querySelector(`meta[${attr}="${key}"]`);
@@ -49,13 +66,23 @@ export function useHead({
     setMetaProperty('property', 'og:description', description);
     setMetaProperty('property', 'og:url', canonical);
     setMetaProperty('property', 'og:image', image);
-    setMetaProperty('property', 'og:type', 'website');
+    setMetaProperty('property', 'og:type', type);
     setMetaProperty('property', 'og:site_name', 'CotaSport Clinic');
 
-    // --- Twitter ---
-    setMetaProperty('name', 'twitter:card', 'summary_large_image');
-    setMetaProperty('name', 'twitter:title', title);
-    setMetaProperty('name', 'twitter:description', description);
-    setMetaProperty('name', 'twitter:image', image);
-  }, [title, description, canonical, image]);
+    // --- Article times (solo si type === 'article') ---
+    // (Google no lo exige en OG, pero es útil y consistente)
+    if (type === 'article') {
+      setMetaProperty('property', 'article:published_time', publishedTime);
+      setMetaProperty('property', 'article:modified_time', modifiedTime);
+    }
+  }, [
+    title,
+    description,
+    canonical,
+    image,
+    author,
+    type,
+    publishedTime,
+    modifiedTime,
+  ]);
 }
