@@ -155,6 +155,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen bg-white text-neutral-900 font-sans">
       <JsonLd id="ld-clinic" data={CLINIC_SCHEMA} />
+      <SeoClinicJsonLd />
       {/* ================= HEADER ================= */}
       <header className="sticky top-0 z-50 bg-cota-mist/90 backdrop-blur border-b border-cota-line">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
