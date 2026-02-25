@@ -95,6 +95,7 @@ export const doctors = [
   {
     id: 'robert-ferrer-rivero',
     name: 'Dr. Robert Ferrer Rivero',
+    colegiado: '54839',
     role: 'Preservación articular y Traumatología Deportiva',
     imageCard: '/images/team/robert_ferrer.webp',
     imageProfile: '/images/team/robert_ferrer_quiro.png',
