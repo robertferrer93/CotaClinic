@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from './components/ui.jsx';
 import { useHead } from './hooks/useHead';
+import JsonLd from './components/JsonLd.jsx';
 
 export default function LCAPage() {
   useHead({
@@ -16,9 +17,24 @@ export default function LCAPage() {
     ogImage: 'https://cotasportclinic.com/og-image.png',
     ogType: 'website',
   });
-
+  const LCA_SCHEMA = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: 'Cirugía de Ligamento Cruzado Anterior (LCA) en Barcelona',
+    url: 'https://cotasportclinic.com/rodilla/lca',
+    about: {
+      '@type': 'MedicalCondition',
+      name: 'Rotura del ligamento cruzado anterior (LCA)',
+    },
+    publisher: {
+      '@type': 'MedicalClinic',
+      name: 'CotaSport Clinic',
+      url: 'https://cotasportclinic.com',
+    },
+  };
   return (
     <Article>
+      <JsonLd id="ld-lca" data={LCA_SCHEMA} />
       <header className="mb-10">
         <p className="text-sm font-semibold uppercase tracking-wide text-cota-navy">
           Rodilla
