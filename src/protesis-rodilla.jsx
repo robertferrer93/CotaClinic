@@ -1,18 +1,86 @@
-// src/pages/protesis-rodilla.jsx
+// src/protesis-rodilla.jsx
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from './components/ui.jsx';
 import { useHead } from './hooks/useHead';
+import JsonLd from './components/JsonLd.jsx';
+
+import { buildMedicalWebPage } from './seo/buildMedicalWebPage';
+import { buildArticle } from './seo/buildArticle';
+import { buildFAQPage } from './seo/buildFAQPage';
+import { buildAuthorFromDoctors } from './seo/buildAuthorFromDoctors';
+
+const PAGE = {
+  url: 'https://cotasportclinic.com/rodilla/protesis-rodilla',
+  title:
+    'Prótesis de rodilla en Barcelona: parcial (unicompartimental) y total',
+  description:
+    'Especialistas en prótesis de rodilla en Barcelona. Indicaciones de prótesis parcial y total, cirugía, recuperación y valoración individualizada por expertos en rodilla.',
+  image: 'https://cotasportclinic.com/og-image.png',
+  condition: 'Artrosis de rodilla',
+  published: '2026-02-25',
+  modified: '2026-02-25',
+  doctorId: 'robert-ferrer-rivero',
+  faqs: [
+    {
+      q: '¿Cuánto dura una prótesis de rodilla?',
+      a: 'Una prótesis de rodilla suele tener una durabilidad media superior a 15–20 años. La duración depende del tipo de implante, la técnica quirúrgica, el peso del paciente y el nivel de actividad.',
+    },
+    {
+      q: '¿Cuánto tiempo se tarda en caminar después de una prótesis de rodilla?',
+      a: 'La mayoría de pacientes comienzan a caminar con ayuda en las primeras 24 horas tras la cirugía. La recuperación es progresiva y suele permitir una marcha funcional en pocas semanas.',
+    },
+    {
+      q: '¿Es muy dolorosa la operación de prótesis de rodilla?',
+      a: 'La cirugía puede producir molestias iniciales, pero actualmente utilizamos protocolos modernos de control del dolor que permiten una recuperación más confortable y una movilización precoz.',
+    },
+    {
+      q: '¿Qué es mejor, una prótesis parcial o una prótesis total?',
+      a: 'Depende del patrón de artrosis y de la estabilidad de la rodilla. Si la artrosis está localizada y los ligamentos son estables, la prótesis parcial puede ser una buena opción. En casos más avanzados, la prótesis total ofrece resultados muy fiables.',
+    },
+    {
+      q: '¿Cuándo podré conducir después de una prótesis de rodilla?',
+      a: 'La conducción suele retomarse cuando el paciente tiene buen control muscular, movilidad suficiente y ausencia de dolor relevante, habitualmente entre las 4 y 6 semanas. La decisión se individualiza en función del lado operado y la evolución clínica.',
+    },
+  ],
+};
+
+const AUTHOR = buildAuthorFromDoctors(PAGE.doctorId);
+
+const WEBPAGE_SCHEMA = {
+  ...buildMedicalWebPage(PAGE),
+  datePublished: PAGE.published,
+  dateModified: PAGE.modified,
+  reviewedBy: AUTHOR,
+};
+
+const ARTICLE_SCHEMA = buildArticle({
+  ...PAGE,
+  author: AUTHOR,
+  reviewedBy: AUTHOR,
+});
+
+const FAQ_SCHEMA = buildFAQPage({ url: PAGE.url, faqs: PAGE.faqs });
 
 export default function ProtesisRodillaPage() {
   useHead({
     title:
       'Prótesis de rodilla en Barcelona | Parcial y Total | CotaSport Clinic',
-    description:
-      'Especialistas en prótesis de rodilla en Barcelona. Indicaciones de prótesis parcial y total, cirugía, recuperación y valoración individualizada por expertos en rodilla.',
+    description: PAGE.description,
+    canonical: PAGE.url,
+    type: 'article',
+    author: AUTHOR?.name,
+    publishedTime: PAGE.published,
+    modifiedTime: PAGE.modified,
+    image: PAGE.image,
   });
+
   return (
     <Article>
+      <JsonLd id="ld-protesis-webpage" data={WEBPAGE_SCHEMA} />
+      <JsonLd id="ld-protesis-article" data={ARTICLE_SCHEMA} />
+      <JsonLd id="ld-protesis-faq" data={FAQ_SCHEMA} />
+
       <header className="mb-10">
         <p className="text-sm font-semibold uppercase tracking-wide text-cota-navy">
           Rodilla
@@ -223,66 +291,12 @@ export default function ProtesisRodillaPage() {
           </h2>
 
           <div className="mt-6 space-y-6 text-neutral-700">
-            <div>
-              <h3 className="font-semibold text-cota-slate">
-                ¿Cuánto dura una prótesis de rodilla?
-              </h3>
-              <p className="mt-2">
-                Una prótesis de rodilla suele tener una durabilidad media
-                superior a 15–20 años. La duración depende del tipo de implante,
-                la técnica quirúrgica, el peso del paciente y el nivel de
-                actividad.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-cota-slate">
-                ¿Cuánto tiempo se tarda en caminar después de una prótesis de
-                rodilla?
-              </h3>
-              <p className="mt-2">
-                La mayoría de pacientes comienzan a caminar con ayuda en las
-                primeras 24 horas tras la cirugía. La recuperación es progresiva
-                y suele permitir una marcha funcional en pocas semanas.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-cota-slate">
-                ¿Es muy dolorosa la operación de prótesis de rodilla?
-              </h3>
-              <p className="mt-2">
-                La cirugía puede producir molestias iniciales, pero actualmente
-                utilizamos protocolos modernos de control del dolor que permiten
-                una recuperación más confortable y una movilización precoz.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-cota-slate">
-                ¿Qué es mejor, una prótesis parcial o una prótesis total?
-              </h3>
-              <p className="mt-2">
-                Depende del patrón de artrosis y de la estabilidad de la
-                rodilla. Si la artrosis está localizada y los ligamentos son
-                estables, la prótesis parcial puede ser una buena opción. En
-                casos más avanzados, la prótesis total ofrece resultados muy
-                fiables.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-cota-slate">
-                ¿Cuándo podré conducir después de una prótesis de rodilla?
-              </h3>
-              <p className="mt-2">
-                La conducción suele retomarse cuando el paciente tiene buen
-                control muscular, movilidad suficiente y ausencia de dolor
-                relevante, habitualmente entre las 4 y 6 semanas. La decisión se
-                individualiza en función del lado operado y la evolución
-                clínica.
-              </p>
-            </div>
+            {PAGE.faqs.map((item) => (
+              <div key={item.q}>
+                <h3 className="font-semibold text-cota-slate">{item.q}</h3>
+                <p className="mt-2">{item.a}</p>
+              </div>
+            ))}
           </div>
         </section>
 
