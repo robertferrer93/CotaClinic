@@ -1,4 +1,8 @@
-// src/content/pathologies/lca.content.js
+// src/content/pathologies/lca.content.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const linkCls = 'text-cota-navy underline-offset-4 hover:underline';
 
 export const LCA_CONTENT = {
   // SEO / Schema
@@ -33,6 +37,7 @@ export const LCA_CONTENT = {
     { to: '/rodilla/cartilago', label: 'Lesiones osteocondrales y cartílago' },
     { to: '/rodilla/osteotomias', label: 'Osteotomías de rodilla' },
   ],
+
   sections: [
     {
       id: 'sintomas',
@@ -47,25 +52,62 @@ export const LCA_CONTENT = {
         'Dificultad para volver al deporte.',
       ],
     },
+
     {
       id: 'anatomia',
       heading: 'Anatomía y función',
       paragraphs: [
-        'El ligamento cruzado anterior conecta el fémur con la tibia y es clave para la estabilidad anterior y rotacional de la rodilla. Su función es especialmente importante en giros, cambios de dirección y saltos. Cuando se rompe, puede aumentar el riesgo de lesiones meniscales y del cartílago si existe inestabilidad repetida.',
+        <>
+          El ligamento cruzado anterior conecta el fémur con la tibia y es clave
+          para la estabilidad anterior y rotacional de la rodilla. Su función es
+          especialmente importante en giros, cambios de dirección y saltos.
+          Cuando se rompe, puede aumentar el riesgo de{' '}
+          <Link to="/rodilla/menisco" className={linkCls}>
+            lesiones meniscales
+          </Link>{' '}
+          y del{' '}
+          <Link to="/rodilla/cartilago" className={linkCls}>
+            cartílago
+          </Link>{' '}
+          si existe inestabilidad repetida.
+        </>,
       ],
     },
+
     {
       id: 'diagnostico',
       heading: 'Diagnóstico',
       paragraphs: [
-        'El diagnóstico se basa en la historia clínica y la exploración física, junto con pruebas de estabilidad específicas. La resonancia magnética confirma la rotura y permite valorar lesiones asociadas como daño meniscal, condral u otras estructuras ligamentarias.',
+        <>
+          El diagnóstico se basa en la historia clínica y la exploración física,
+          junto con pruebas de estabilidad específicas. La resonancia magnética
+          confirma la rotura y permite valorar lesiones asociadas como daño{' '}
+          <Link to="/rodilla/menisco" className={linkCls}>
+            meniscal
+          </Link>
+          , lesiones{' '}
+          <Link to="/rodilla/cartilago" className={linkCls}>
+            condales u osteocondrales
+          </Link>{' '}
+          u otras estructuras ligamentarias.
+        </>,
       ],
     },
+
     {
       id: 'tratamiento',
       heading: 'Opciones de tratamiento',
       paragraphs: [
-        'No todas las roturas de LCA requieren cirugía. La decisión depende del grado de inestabilidad, el nivel deportivo y los objetivos personales.',
+        <>
+          No todas las roturas de LCA requieren cirugía. La decisión depende del
+          grado de inestabilidad, el nivel deportivo y los objetivos personales.
+          En casos seleccionados, cuando existe alteración del eje de la pierna,
+          puede valorarse una{' '}
+          <Link to="/rodilla/osteotomias" className={linkCls}>
+            osteotomía de rodilla
+          </Link>{' '}
+          como procedimiento asociado para mejorar la biomecánica.
+        </>,
       ],
       listRich: [
         {
@@ -78,6 +120,7 @@ export const LCA_CONTENT = {
         },
       ],
     },
+
     {
       id: 'tecnicas',
       heading: 'Técnicas de reconstrucción del LCA',
@@ -105,11 +148,21 @@ export const LCA_CONTENT = {
       footer:
         'En determinados deportistas puede asociarse una técnica complementaria para mejorar el control rotacional.',
     },
+
     {
       id: 'recuperacion',
       heading: 'Recuperación y retorno al deporte',
       paragraphs: [
-        'La rehabilitación se organiza por fases: control del dolor e inflamación, recuperación del rango de movimiento, fortalecimiento progresivo, trabajo propioceptivo y readaptación deportiva.',
+        <>
+          La rehabilitación se organiza por fases: control del dolor e
+          inflamación, recuperación del rango de movimiento, fortalecimiento
+          progresivo, trabajo propioceptivo y readaptación deportiva. En casos
+          seleccionados puede considerarse apoyo con{' '}
+          <Link to="/rodilla/terapias-biologicas" className={linkCls}>
+            terapias biológicas
+          </Link>{' '}
+          para optimizar el entorno biológico de la rodilla.
+        </>,
         'El retorno al deporte suele situarse alrededor de los 6–9 meses, dependiendo del injerto y del nivel deportivo. Más allá del tiempo, se valoran criterios objetivos de fuerza y control neuromuscular antes de autorizar la vuelta a la competición.',
       ],
     },
