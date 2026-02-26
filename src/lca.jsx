@@ -5,7 +5,7 @@ import { Article } from './components/ui.jsx';
 import { useHead } from './hooks/useHead';
 import JsonLd from './components/JsonLd.jsx';
 
-import { LCA_CONTENT as PAGE } from './content/pathologies/lca.content';
+import { LCA_CONTENT as PAGE } from './content/pathologies/lca.content.jsx';
 
 import { buildArticle } from './seo/buildArticle';
 import { buildMedicalWebPage } from './seo/buildMedicalWebPage';
@@ -154,3 +154,4 @@ export default function LCAPage() {
     </Article>
   );
 }
+
