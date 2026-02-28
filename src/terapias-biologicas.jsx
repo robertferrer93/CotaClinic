@@ -1,11 +1,11 @@
-// src/terapias-biologicas.jsx
+// src/menisco.jsx
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from './components/ui.jsx';
 import { useHead } from './hooks/useHead';
 import JsonLd from './components/JsonLd.jsx';
 
-import { TERAPIAS_BIOLOGICAS_CONTENT as PAGE } from './content/pathologies/terapias-biologicas.content.jsx';
+import { MENISCO_CONTENT as PAGE } from './content/pathologies/menisco.content.jsx';
 
 import { buildArticle } from './seo/buildArticle';
 import { buildMedicalWebPage } from './seo/buildMedicalWebPage';
@@ -37,7 +37,7 @@ const ARTICLE_SCHEMA = buildArticle({
 
 const FAQ_SCHEMA = buildFAQPage({ url: PAGE.url, faqs: PAGE.faqs });
 
-export default function TerapiasBiologicasPage() {
+export default function MeniscoPage() {
   useHead({
     title: PAGE.metaTitle,
     description: PAGE.metaDescription,
@@ -51,9 +51,9 @@ export default function TerapiasBiologicasPage() {
 
   return (
     <Article>
-      <JsonLd id="ld-terapias-webpage" data={WEBPAGE_SCHEMA} />
-      <JsonLd id="ld-terapias-article" data={ARTICLE_SCHEMA} />
-      {FAQ_SCHEMA && <JsonLd id="ld-terapias-faq" data={FAQ_SCHEMA} />}
+      <JsonLd id="ld-menisco-webpage" data={WEBPAGE_SCHEMA} />
+      <JsonLd id="ld-menisco-article" data={ARTICLE_SCHEMA} />
+      {FAQ_SCHEMA && <JsonLd id="ld-menisco-faq" data={FAQ_SCHEMA} />}
 
       <header className="mb-10">
         <p className="text-sm font-semibold uppercase tracking-wide text-cota-navy">
