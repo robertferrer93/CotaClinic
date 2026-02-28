@@ -11,6 +11,7 @@ import { buildMedicalWebPage } from './seo/buildMedicalWebPage';
 import { buildArticle } from './seo/buildArticle';
 import { buildFAQPage } from './seo/buildFAQPage';
 import { buildAuthorFromDoctors } from './seo/buildAuthorFromDoctors';
+import FloatingCta from './components/FloatingCta.jsx';
 
 // 1) AUTHOR primero
 const AUTHOR = buildAuthorFromDoctors(PAGE.authorId);
@@ -153,6 +154,7 @@ export default function ProtesisRodillaPage() {
           </div>
         </section>
       ) : null}
+      <FloatingCta to="/contacto" label="Solicitar visita" />
     </Article>
   );
 }
