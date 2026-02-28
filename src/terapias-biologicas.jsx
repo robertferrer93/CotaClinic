@@ -11,6 +11,7 @@ import { buildArticle } from './seo/buildArticle';
 import { buildMedicalWebPage } from './seo/buildMedicalWebPage';
 import { buildFAQPage } from './seo/buildFAQPage';
 import { buildAuthorFromDoctors } from './seo/buildAuthorFromDoctors';
+import FloatingCta from './components/FloatingCta.jsx';
 
 // 1) AUTHOR primero
 const AUTHOR = buildAuthorFromDoctors(PAGE.authorId);
@@ -85,7 +86,9 @@ export default function TerapiasBiologicasPage() {
 
       {PAGE.sections.map((s) => (
         <section key={s.id} className="mb-10 space-y-3">
-          <h2 className="text-2xl font-semibold text-cota-slate">{s.heading}</h2>
+          <h2 className="text-2xl font-semibold text-cota-slate">
+            {s.heading}
+          </h2>
 
           {s.paragraphs?.map((p, idx) => (
             <p key={idx} className="text-neutral-700">
@@ -151,6 +154,7 @@ export default function TerapiasBiologicasPage() {
           </div>
         </section>
       ) : null}
+      <FloatingCta to="/contacto" label="Solicitar visita" />
     </Article>
   );
 }
