@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Article } from './components/ui.jsx';
 import { useHead } from './hooks/useHead';
+import FloatingCta from './components/FloatingCta.jsx';
 
 export default function CartilagoPage() {
   // OBJETIVO SEO
@@ -309,6 +310,7 @@ export default function CartilagoPage() {
           </Link>
         </div>
       </section>
+      <FloatingCta to="/contacto" label="Solicitar visita" />
     </Article>
   );
 }
