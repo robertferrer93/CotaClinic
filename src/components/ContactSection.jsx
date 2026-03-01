@@ -199,13 +199,13 @@ export default function ContactSection({
                     className="w-full h-[260px] md:h-[320px]"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps?q=Carrer%20de%20la%20Mare%20de%20D%C3%A9u%20de%20la%20Salut%2078%204%C2%BAB%20Barcelona%2008024&output=embed"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.216986041646!2d2.1569926762448874!3d41.41280819441772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a313de2aa78d%3A0xc9b41c1eba5f640!2sCotaSport%20Clinic!5e0!3m2!1sen!2ses!4v1772375066629!5m2!1sen!2ses"
                   />
                 </div>
 
                 <a
                   className="mt-3 inline-flex text-sm font-medium text-cota-navy hover:underline"
-                  href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20la%20Mare%20de%20D%C3%A9u%20de%20la%20Salut%2078%204%C2%BAB%20Barcelona%2008024"
+                  href="https://www.google.com/maps/place/CotaSport+Clinic"
                   target="_blank"
                   rel="noreferrer"
                 >
