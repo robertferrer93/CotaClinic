@@ -32,7 +32,7 @@ export const doctors = [
   {
     id: 'gabriel-oliver-far',
     name: 'Dr. Gabriel Oliver Far',
-    role: 'Cirugía deportiva  y protésica compleja de rodilla',
+    role: 'Cirugía meniscal y deportiva, protésis de rodilla compleja',
     imageCard: '/images/team/gabriel_oliver.webp',
     imageProfile: '/images/team/oliver_quiro.png',
 
@@ -70,7 +70,7 @@ export const doctors = [
   {
     id: 'llort',
     name: 'Dr. Jaume Llort Buira',
-    role: 'COT · Rodilla',
+    role: 'Tratamientos regenerativos y biológicos',
     imageCard: '/images/team/jaume_llort.webp',
     imageProfile: '/images/team/eco_llort.png',
     highlights: [
@@ -96,7 +96,7 @@ export const doctors = [
     id: 'robert-ferrer-rivero',
     name: 'Dr. Robert Ferrer Rivero',
     colegiado: '54839',
-    role: 'Preservación articular y Traumatología Deportiva',
+    role: 'Especialista en Ligamento Cruzado y Protesis Unicompartimental de rodilla',
     imageCard: '/images/team/robert_ferrer.webp',
     imageProfile: '/images/team/robert_ferrer_quiro.png',
 
