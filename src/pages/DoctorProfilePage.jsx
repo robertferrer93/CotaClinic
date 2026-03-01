@@ -77,7 +77,7 @@ export default function DoctorProfilePage() {
             <div className="mt-6">
               <ButtonPrimary
                 as="a"
-                href="/#contacto"
+                href="/contacto"
                 className="w-full justify-center rounded-2xl px-5 py-3"
               >
                 Solicitar visita con {doctor.name}
